@@ -17,7 +17,22 @@
 			<result name="failure" type="tiles">error.jsp</result>
 		</action>
 		
-		<!-- end of Addition by Surya Pratp Desai(MT2012038) -->
+		<action name="manageCategory" class="edu.iiitb.ebay.action.ManageCategoryAction">
+			<result name="success" type="tiles">manageCategories.jsp</result>
+			<result name="failure" type="tiles">error.jsp</result>
+		</action>
+		
+		<action name="saveCategory" class="edu.iiitb.ebay.action.ManageCategorySaveAction">
+		<result name="success" type="redirectAction">manageCategory</result>
+			<result name="error" type="tiles">error.jsp</result>
+		</action>
+		
+		
+		<action name="makeListing" class="edu.iiitb.ebay.action.MakeListingAction">
+			<result name="success" type="tiles">makeListing.jsp</result>
+			<result name="failure" type="tiles">error.jsp</result>
+		</action>
+		
 	</package>
 
 </struts>
