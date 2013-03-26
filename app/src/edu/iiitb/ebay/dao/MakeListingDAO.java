@@ -3,20 +3,20 @@ package edu.iiitb.ebay.dao;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import edu.iiitb.ebay.model.entity.CategoryBean;
+import edu.iiitb.ebay.model.entity.CategoryModel;
 
 public class MakeListingDAO extends BaseDAO {
 	
-	public ArrayList<CategoryBean>  getAllCategories()
+	public ArrayList<CategoryModel>  getAllCategories()
 	{
 		String query = "select * from category where parentCategoryId=0";
-		ArrayList<CategoryBean> categories = new ArrayList<CategoryBean>();
+		ArrayList<CategoryModel> categories = new ArrayList<CategoryModel>();
 		ResultSet rs= readFromDB(query);
 		try
 		{
 		while(rs.next())
 		{
-			CategoryBean cb=new CategoryBean();
+			CategoryModel cb=new CategoryModel();
 			cb.setCategoryID(rs.getString(1));
 			cb.setCategoryName(rs.getString(2)+">");
 			cb.setParentCategoryId(rs.getString(3));
@@ -33,16 +33,16 @@ public class MakeListingDAO extends BaseDAO {
 	}
 	
 	
-	public ArrayList<CategoryBean>  getAllSubCategories(String categoryId)
+	public ArrayList<CategoryModel>  getAllSubCategories(String categoryId)
 	{
 		String query = "select * from category where parentCategoryId="+categoryId;
-		ArrayList<CategoryBean> categories = new ArrayList<CategoryBean>();
+		ArrayList<CategoryModel> categories = new ArrayList<CategoryModel>();
 		ResultSet rs= readFromDB(query);
 		try
 		{
 		while(rs.next())
 		{
-			CategoryBean cb=new CategoryBean();
+			CategoryModel cb=new CategoryModel();
 			cb.setCategoryID(rs.getString(1));
 			cb.setCategoryName(rs.getString(2));
 			cb.setParentCategoryId(rs.getString(3));
