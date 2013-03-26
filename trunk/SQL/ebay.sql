@@ -1,5 +1,6 @@
 -- --------------------------------
 -- VERSION 1.0 last edited by VAMSI
+-- 		   1.1 last edited by Debargha, auto increment added to Category table, corresponding data added
 -- --------------------------------
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -331,21 +332,17 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `eBay`.`category`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `eBay`.`category` ;
+DROP TABLE IF EXISTS `category`;
+CREATE TABLE IF NOT EXISTS `category` (
+  `categoryId` int(11) NOT NULL AUTO_INCREMENT,
+  `categoryName` varchar(30) NOT NULL,
+  `parentCategoryId` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`categoryId`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
-CREATE  TABLE IF NOT EXISTS `eBay`.`category` (
-  `categoryId` INT NOT NULL ,
-  `categoryName` VARCHAR(30) NOT NULL ,
-  `parentCategoryId` INT NOT NULL ,
-  PRIMARY KEY (`categoryId`) ,
-  INDEX `fk_category_1` (`parentCategoryId` ASC) ,
-  CONSTRAINT `fk_category_1`
-    FOREIGN KEY (`parentCategoryId` )
-    REFERENCES `eBay`.`category` (`categoryId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
+-- Dumping data for table ebay.category: ~14 rows (approximately)
+DELETE FROM `category`;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
 
 -- -----------------------------------------------------
 -- Table `eBay`.`productCategoryMapping`
