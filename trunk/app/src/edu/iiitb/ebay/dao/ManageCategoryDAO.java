@@ -6,20 +6,20 @@ import java.util.ArrayList;
 
 
 
-import edu.iiitb.ebay.model.entity.CategoryBean;
+import edu.iiitb.ebay.model.entity.CategoryModel;
 public class ManageCategoryDAO extends BaseDAO{
 	
 	
-	public ArrayList<CategoryBean>  getAllCategories()
+	public ArrayList<CategoryModel>  getAllCategories()
 	{
 		String query = "select * from category";
-		ArrayList<CategoryBean> categories = new ArrayList<CategoryBean>();
+		ArrayList<CategoryModel> categories = new ArrayList<CategoryModel>();
 		ResultSet rs= readFromDB(query);
 		try
 		{
 		while(rs.next())
 		{
-			CategoryBean cb=new CategoryBean();
+			CategoryModel cb=new CategoryModel();
 			cb.setCategoryID(rs.getString(1));
 			cb.setCategoryName(rs.getString(2));
 			cb.setParentCategoryId(rs.getString(3));
@@ -35,10 +35,10 @@ public class ManageCategoryDAO extends BaseDAO{
 		return categories;
 	}
 	
-	public void saveCategories(ArrayList<CategoryBean> categories)
+	public void saveCategories(ArrayList<CategoryModel> categories)
 	{
 		String updateQuery="";
-		for(CategoryBean category:categories)
+		for(CategoryModel category:categories)
 		{
 		
 			if(category.getCategoryID().indexOf(",")!=-1)
