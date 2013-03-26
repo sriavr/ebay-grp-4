@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.opensymphony.xwork2.ActionSupport;
 
 import edu.iiitb.ebay.dao.MakeListingDAO;
-import edu.iiitb.ebay.model.entity.CategoryBean;
+import edu.iiitb.ebay.model.entity.CategoryModel;
 
 public class MakeListingAction extends ActionSupport {
 	
@@ -73,44 +73,44 @@ public class MakeListingAction extends ActionSupport {
 	}
 	
 	
-	private ArrayList<CategoryBean> categoryList;
-	public ArrayList<CategoryBean> getCategoryList() {
+	private ArrayList<CategoryModel> categoryList;
+	public ArrayList<CategoryModel> getCategoryList() {
 		return categoryList;
 	}
 
-	public void setCategoryList(ArrayList<CategoryBean> categoryList) {
+	public void setCategoryList(ArrayList<CategoryModel> categoryList) {
 		this.categoryList = categoryList;
 	}
 
-	public ArrayList<CategoryBean> getSubcategoryList() {
+	public ArrayList<CategoryModel> getSubcategoryList() {
 		return subcategoryList;
 	}
 
-	public void setSubcategoryList(ArrayList<CategoryBean> subcategoryList) {
+	public void setSubcategoryList(ArrayList<CategoryModel> subcategoryList) {
 		this.subcategoryList = subcategoryList;
 	}
 
-	public ArrayList<CategoryBean> getSubsubcategoryList() {
+	public ArrayList<CategoryModel> getSubsubcategoryList() {
 		return subsubcategoryList;
 	}
 
-	public void setSubsubcategoryList(ArrayList<CategoryBean> subsubcategoryList) {
+	public void setSubsubcategoryList(ArrayList<CategoryModel> subsubcategoryList) {
 		this.subsubcategoryList = subsubcategoryList;
 	}
 
 
-	private ArrayList<CategoryBean> subcategoryList;
-	private ArrayList<CategoryBean> subsubcategoryList;
+	private ArrayList<CategoryModel> subcategoryList;
+	private ArrayList<CategoryModel> subsubcategoryList;
 	
 	public String execute()
 	{
-		subcategoryList = new ArrayList<CategoryBean>();
-		subsubcategoryList = new ArrayList<CategoryBean>();
+		subcategoryList = new ArrayList<CategoryModel>();
+		subsubcategoryList = new ArrayList<CategoryModel>();
 		MakeListingDAO dao =  new MakeListingDAO();
 		setCategoryList(dao.getAllCategories());
 		if(!selectedCategoryId.equals(""))
 		{
-		    for(CategoryBean cb:categoryList)
+		    for(CategoryModel cb:categoryList)
 		    {
 		    	if(cb.getCategoryID().equals(selectedCategoryId))
 		    	{	
@@ -123,7 +123,7 @@ public class MakeListingAction extends ActionSupport {
 		}
 		if(!selectedsubCategoryId.equals(""))
 		{
-			for(CategoryBean cb:subcategoryList)
+			for(CategoryModel cb:subcategoryList)
 		    {
 		    	if(cb.getCategoryID().equals(selectedsubCategoryId))
 		    	  selectedsubCategoryName = cb.getCategoryName();
@@ -134,7 +134,7 @@ public class MakeListingAction extends ActionSupport {
 		
 		if(!selectedsubsubCategoryId.equals(""))
 		{
-			for(CategoryBean cb:subsubcategoryList)
+			for(CategoryModel cb:subsubcategoryList)
 		    {
 		    	if(cb.getCategoryID().equals(selectedsubsubCategoryId))
 		    	  selectedsubsubCategoryName = cb.getCategoryName();
