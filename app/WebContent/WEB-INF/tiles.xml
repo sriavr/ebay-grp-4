@@ -17,5 +17,15 @@
 	<definition name="browse.jsp" extends="baselayout">
 		<put-attribute name="body" value="/browse.jsp" />
 	</definition>
+	
+	<definition name="manageCategories.jsp" extends="baselayout">
+		<put-attribute name="body" value="/manageCategories.jsp" />
+	</definition>
+	
+	<definition name="makeListing.jsp" extends="baselayout">
+		<put-attribute name="body" value="/makeListing.jsp" />
+	</definition>
+	
+	
 
 </tiles-definitions>
