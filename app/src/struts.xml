@@ -9,30 +9,38 @@
 		<result-types>
 			<result-type name="tiles"
 				class="org.apache.struts2.views.tiles.TilesResult" />
-			
+
 		</result-types>
 
+		<!--- Start of Debargha Ganguly's code -->
 		<action name="home" class="edu.iiitb.ebay.action.HomeAction">
 			<result name="success" type="tiles">home.jsp</result>
 			<result name="failure" type="tiles">error.jsp</result>
 		</action>
-		
+
 		<action name="manageCategory" class="edu.iiitb.ebay.action.ManageCategoryAction">
 			<result name="success" type="tiles">manageCategories.jsp</result>
 			<result name="failure" type="tiles">error.jsp</result>
 		</action>
-		
+
 		<action name="saveCategory" class="edu.iiitb.ebay.action.ManageCategorySaveAction">
-		<result name="success" type="redirectAction">manageCategory</result>
+			<result name="success" type="redirectAction">manageCategory</result>
 			<result name="error" type="tiles">error.jsp</result>
 		</action>
-		
-		
+
 		<action name="makeListing" class="edu.iiitb.ebay.action.MakeListingAction">
 			<result name="success" type="tiles">makeListing.jsp</result>
 			<result name="failure" type="tiles">error.jsp</result>
 		</action>
-		
+		<!--- End of Debargha Ganguly's code -->
+
+		<!--- Start of Sridhar Jammalamadaka's code -->
+		<action name="browse" class="edu.iiitb.ebay.action.BrowseAction">
+			<result name="success" type="tiles">browse.jsp</result>
+			<result name="error" type="tiles">error.jsp</result>
+		</action>
+		<!--- End of Sridhar Jammalamadaka's code -->
+
 		<!-- Added by Ranadheer  -->
 			
 			<!--Registration Page --> 
