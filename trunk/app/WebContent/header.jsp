@@ -22,7 +22,7 @@
  Welcome !
  <a href="#">Sign in</a>
  or
- <a href="#">Register</a>
+ <a href="registerAction">Register</a>
  </span>
 
 </div>
