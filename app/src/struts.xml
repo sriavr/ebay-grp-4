@@ -33,6 +33,17 @@
 			<result name="failure" type="tiles">error.jsp</result>
 		</action>
 		
+		<!-- Added by Ranadheer  -->
+			
+			<!--Registration Page --> 
+		
+			<action name="registerAction" class="edu.iiitb.ebay.action.RegisterAction">
+				<result name="success" type="tiles">register.jsp</result>
+				<result name="failure" type="tiles">error.jsp</result>
+			</action>
+		
+		<!-- Added by Ranadheer -->
+		
 	</package>
 
 </struts>
