@@ -23,29 +23,54 @@
 </script>
 </head>
 <body>
-	<h1>Browse page</h1>
-	<h2>
-		Search query was:
-		<s:property value="query" />
-	</h2>
-	<div class="lefthand-sidebar"></div>
-	<div class="results-outer">
-		<s:iterator value="products">
-			<div class="results-box">
-				<s:url action="someaction" var="urlTag">
-					<s:param name="productId" value="productId"></s:param>
-				</s:url>
-				Name: <a href="<s:property value="#urlTag"></s:property>"> <s:text
-						name="title"></s:text></a> <br> Product ID:
-				<s:property value="productId" />
-				<br> Description:
-				<s:property value="description" />
-				<br> Price:
-				<s:property value="price" />
-				<img alt="<s:property value="description" />"
-					src="<%=request.getContextPath()%><s:property value="photo" />">
-			</div>
-		</s:iterator>
+	<div class="row">
+		<h2>
+			<s:if test="!query.isEmpty()">
+				<b><s:property value="products.size()" /></b> results found for <b><s:property
+						value="query" /></b>
+			</s:if>
+		</h2>
+	</div>
+	<div class="row">
+		<div class="lefthand-sidebar large-4 columns">
+			<s:iterator value="categories">
+				<div class="category-box">
+					<s:url action="somecategoryaction" var="urlTag">
+						<s:param name="categoryID" value="categoryID"></s:param>
+					</s:url>
+					<a href="<s:property value="#urlTag"></s:property>"> <s:text
+							name="categoryName"></s:text></a>
+				</div>
+			</s:iterator>
+		</div>
+		<div class="results-outer large-8 columns">
+			<s:if test="products.size() == 0">
+				<h2>Your search returned no results!</h2>
+			</s:if>
+			<s:iterator value="products">
+				<div class="row padding-4">
+
+					<div class="large-5 columns">
+						<s:url action="someaction" var="urlTag">
+							<s:param name="productId" value="productId"></s:param>
+						</s:url>
+						<img class="product-img" alt="<s:property value="description" />"
+							src="<%=request.getContextPath()%><s:property value="photo" />">
+
+						<hr />
+					</div>
+					<div class="large-7 columns">
+						Name: <a href="<s:property value="#urlTag"></s:property>"> <s:text
+								name="title"></s:text></a> <br> Product ID:
+						<s:property value="productId" />
+						<br> Description:
+						<s:property value="description" />
+						<br> Price:
+						<s:property value="price" />
+					</div>
+				</div>
+			</s:iterator>
+		</div>
 	</div>
 </body>
 </html>

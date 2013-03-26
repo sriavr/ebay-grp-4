@@ -5,27 +5,41 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-
+<title>eBay</title>
+<link rel="stylesheet" href="styles/reset.css" />
 <link rel="stylesheet" href="styles/foundation/normalize.css" />
 <link rel="stylesheet" href="styles/foundation/foundation.css" />
+<style type="text/css">
+.category-select {
+	padding-top: 5px;
+	height: 42px;
+}
 
+.search-btn {
+	height: 35px !important;
+	width: 120px;
+}
+
+.product-img {
+	height: 170px;
+	width: 200px;
+}
+</style>
 
 </head>
 <body>
 
 	<div class="row">
 
-<div class="small-2 columns"><img alt src="images/ebay.jpg"></div>
-<div class="small-2 columns">
- <span>
- Welcome !
- <a href="#">Sign in</a>
- or
- <a href="registerAction">Register</a>
- </span>
+		<div class="small-2 columns">
+			<img alt src="images/ebay.jpg">
+		</div>
+		<div class="small-2 columns">
+			<span> Welcome ! <a href="#">Sign in</a> or <a
+				href="registerAction">Register</a>
+			</span>
 
-</div>
+		</div>
 		<div class="small-8 columns">
 			<nav class="top-bar"> <section class="top-bar-section">
 			<!-- Left Nav Section -->
@@ -66,26 +80,24 @@
 	<div class="row">
 
 		<nav class="top-bar"> <section class="top-bar-section">
-		<!-- Right Nav Section -->
-		<ul class="center">
-			<s:form action="browse.action" theme="simple">
-				<li>
+		<!-- Right Nav Section --> <s:form action="browse.action"
+			theme="simple">
 
-					<div class="small-6 columns">
-						<s:textfield name="query" value="query" label="Search" />
-					</div>
-					<div class="small-4 columns">
-						<s:select list="categories"></s:select>
-					</div>
-					<div class="small-2 columns">
+			<div class="small-6 columns">
+				<s:textfield name="query" label="Search" />
+			</div>
+			<div class="small-4 columns">
+				<s:select list="categories" listKey="categoryID" headerKey="-1"
+					headerValue="All Categories" listValue="categoryName"
+					cssClass="category-select"></s:select>
+			</div>
+			<div class="small-2 columns">
 
-						<s:submit label="Search" value="search"></s:submit>
+				<s:submit label="Search" cssClass="search-btn" value="search"></s:submit>
 
-					</div>
-				</li>
-			</s:form>
-		</ul>
-		</section> </nav>
+			</div>
+
+		</s:form> </section> </nav>
 
 	</div>
 
