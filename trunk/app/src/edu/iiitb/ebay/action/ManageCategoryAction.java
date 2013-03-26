@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import com.opensymphony.xwork2.ActionSupport;
 
 import edu.iiitb.ebay.dao.ManageCategoryDAO;
-import edu.iiitb.ebay.model.entity.CategoryBean;
+import edu.iiitb.ebay.model.entity.CategoryModel;
 public class ManageCategoryAction extends ActionSupport {
 	
-	private ArrayList<CategoryBean> categoryList;
+	private ArrayList<CategoryModel> categoryList;
 
-	public ArrayList<CategoryBean> getCategoryList() {
+	public ArrayList<CategoryModel> getCategoryList() {
 		return categoryList;
 	}
 
-	public void setCategoryList(ArrayList<CategoryBean> categoryList) {
+	public void setCategoryList(ArrayList<CategoryModel> categoryList) {
 		this.categoryList = categoryList;
 	}
 	
