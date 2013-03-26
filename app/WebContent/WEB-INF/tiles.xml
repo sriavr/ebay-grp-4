@@ -26,6 +26,18 @@
 		<put-attribute name="body" value="/makeListing.jsp" />
 	</definition>
 	
+	<!-- Added by Ranadheer  -->
+			
+			<!--Registration Page --> 
+			
+				<definition name="register.jsp" extends="baselayout">
+					<put-attribute name="body" value="/register.jsp" />
+				</definition>
+				
+	<!-- Added by Ranadheer  --> 
+		
+		
+	
 	
 
 </tiles-definitions>
