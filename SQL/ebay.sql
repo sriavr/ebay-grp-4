@@ -306,7 +306,6 @@ CREATE  TABLE IF NOT EXISTS `eBay`.`order` (
   `orderPlacedDate` DATETIME NULL ,
   `statusUpdatedDate` DATETIME NULL ,
   `shipped` DATETIME NULL ,
-  `currentStatus` VARCHAR(45) NULL ,
   PRIMARY KEY (`orderId`) ,
   INDEX `fk_order_1` (`userId` ASC) ,
   INDEX `fk_order_2` (`sellerId` ASC) ,
