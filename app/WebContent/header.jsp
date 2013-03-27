@@ -7,13 +7,13 @@
 	<div class="large-2 columns">
 		<img src="images/ebay.jpg">
 	</div>
-	<div class="large-2 columns">
+	<div class="large-3 columns">
 		<span> Welcome ! <a href="#">Sign in</a> or <a
 			href="registerAction">Register</a>
 		</span>
 
 	</div>
-	<div class="large-8 columns">
+	<div class="large-7 columns">
 		<nav class="top-bar">
 			<section class="top-bar-section">
 				<!-- Left Nav Section -->
@@ -59,18 +59,16 @@
 			<!-- Right Nav Section -->
 			<s:form action="browse.action" theme="simple">
 
-				<div class="small-6 columns">
+				<div class="large-6 columns">
 					<s:textfield name="query" label="Search" />
 				</div>
-				<div class="small-4 columns">
+				<div class="large-4 columns">
 					<s:select list="categories" listKey="categoryID" headerKey="-1"
 						headerValue="All Categories" listValue="categoryName"
 						cssClass="category-select"></s:select>
 				</div>
-				<div class="small-2 columns">
-
-					<s:submit label="Search" cssClass="medium button" value="search"></s:submit>
-
+				<div class="large-2 columns">
+					<s:submit label="Search" cssClass="small button" value="search"></s:submit>
 				</div>
 
 			</s:form>

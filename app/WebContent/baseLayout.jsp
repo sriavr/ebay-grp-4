@@ -15,10 +15,6 @@
 	height: 42px;
 }
 
-.search-btn {
-	height: 35px !important;
-	width: 120px;
-}
 
 .product-img {
 	height: 170px;
