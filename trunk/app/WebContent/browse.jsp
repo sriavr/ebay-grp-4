@@ -15,9 +15,9 @@
 		//alert("loaded");
 		$("img").click(function() {
 			//alert("clicked");
-			$(this).avgrund({
+			/* $(this).avgrund({
 				template : "<img src='" + $(this).prop('src') + "''"
-			});
+			}); */
 		});
 	});
 </script>
@@ -33,15 +33,15 @@
 	</div>
 	<div class="row">
 		<div class="lefthand-sidebar large-4 columns">
-			<s:iterator value="categories">
-				<div class="category-box">
-					<s:url action="somecategoryaction" var="urlTag">
-						<s:param name="categoryID" value="categoryID"></s:param>
-					</s:url>
-					<a href="<s:property value="#urlTag"></s:property>"> <s:text
-							name="categoryName"></s:text></a>
-				</div>
-			</s:iterator>
+			<ul class="side-nav">
+				<s:iterator value="categories">
+					<li class="category-box"><s:url action="somecategoryaction"
+							var="urlTag">
+							<s:param name="categoryID" value="categoryID"></s:param>
+						</s:url> <a href="<s:property value="#urlTag"></s:property>"> <s:text
+								name="categoryName"></s:text></a></li>
+				</s:iterator>
+			</ul>
 		</div>
 		<div class="results-outer large-8 columns">
 			<s:if test="products.size() == 0">
@@ -54,11 +54,13 @@
 						<s:url action="someaction" var="urlTag">
 							<s:param name="productId" value="productId"></s:param>
 						</s:url>
-						<a class="th radius"
-							href="<%=request.getContextPath()%><s:property value="photo" />">
-							<img alt="<s:property value="description" />"
+						<a class="th radius" data-reveal-id="myModal" href="#"> 
+						<img
+							alt="<s:property value="description" />"
 							src="<%=request.getContextPath()%><s:property value="photo" />">
-						</a>
+						</a> <img id="myModal" class="reveal-modal large"
+							alt="<s:property value="description" />"
+							src="<%=request.getContextPath()%><s:property value="photo" />">
 						<hr />
 					</div>
 					<div class="large-7 columns">
@@ -72,6 +74,19 @@
 					</div>
 				</div>
 			</s:iterator>
+			<div class="pagination-centered">
+				<ul class="pagination">
+					<li class="arrow unavailable"><a href="">&laquo;</a></li>
+					<li class="current"><a href="">1</a></li>
+					<li><a href="">2</a></li>
+					<li><a href="">3</a></li>
+					<li><a href="">4</a></li>
+					<li class="unavailable"><a href="">&hellip;</a></li>
+					<li><a href="">12</a></li>
+					<li><a href="">13</a></li>
+					<li class="arrow"><a href="">&raquo;</a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </body>
