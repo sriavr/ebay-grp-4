@@ -24,7 +24,7 @@ import edu.iiitb.ebay.model.page.BrowseModel;
  * 
  */
 public class BrowseDAO extends BaseDAO {
-	Logger logger = Logger.getLogger("edu.iiitb.ebay.dao");
+	Logger logger = Logger.getLogger(BrowseDAO.class);
 
 	/***
 	 * This method is called to load the categories on the left hand side of
