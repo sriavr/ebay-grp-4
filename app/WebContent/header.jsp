@@ -57,15 +57,15 @@
 	<nav class="top-bar">
 		<section class="top-bar-section">
 			<!-- Right Nav Section -->
-			<s:form action="browse.action" theme="simple">
+			<s:form action="browse.action" method="get" theme="simple">
 
 				<div class="large-6 columns">
 					<s:textfield name="query" label="Search" />
 				</div>
 				<div class="large-4 columns">
-					<s:select list="categories" listKey="categoryID" headerKey="-1"
-						headerValue="All Categories" listValue="categoryName"
-						cssClass="category-select"></s:select>
+					<s:select name="categoryId" list="categories" listKey="categoryID"
+						headerKey="-1" headerValue="All Categories"
+						listValue="categoryName" cssClass="category-select"></s:select>
 				</div>
 				<div class="large-2 columns">
 					<s:submit label="Search" cssClass="small button" value="search"></s:submit>

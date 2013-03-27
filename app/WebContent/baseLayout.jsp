@@ -29,6 +29,9 @@ body {
 	margin-left: 0px;
 	width: 100%;
 }
+.price-text{
+	width:50px !important;
+}
 </style>
 </head>
 <body>
