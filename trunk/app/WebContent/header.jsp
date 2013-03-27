@@ -1,7 +1,9 @@
+<%@page import="edu.iiitb.ebay.dao.BrowseDAO"%>
+<%@page import="edu.iiitb.ebay.model.entity.CategoryModel"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-
 
 <div class="row">
 	<div class="large-2 columns">
@@ -9,7 +11,7 @@
 	</div>
 	<div class="large-3 columns">
 		<span> Welcome ! <a href="#">Sign in</a> or <a
-			href="registerAction">Register</a>
+			href="register.action">Register</a>
 		</span>
 
 	</div>
@@ -51,7 +53,11 @@
 		</nav>
 	</div>
 </div>
-
+<%
+	ArrayList<CategoryModel> categories = new ArrayList<CategoryModel>();
+	BrowseDAO browseDAO = new BrowseDAO();
+	categories = browseDAO.getRelevantCategories();
+%>
 <div class="row">
 
 	<nav class="top-bar">
@@ -63,9 +69,20 @@
 					<s:textfield name="query" label="Search" />
 				</div>
 				<div class="large-4 columns">
-					<s:select name="categoryId" list="categories" listKey="categoryID"
-						headerKey="-1" headerValue="All Categories"
-						listValue="categoryName" cssClass="category-select"></s:select>
+					<jsp:useBean id="obj" class="edu.iiitb.ebay.dao.BrowseDAO"
+						scope="page" />
+
+					<select>
+						<%
+							for (int i = 0; i < categories.size(); i++) {
+						%>
+						<option value="<%=categories.get(i).getCategoryID()%>"><%=categories.get(i).getCategoryName()%></option>
+						<%
+							i++;
+								}
+						%>
+					</select>
+
 				</div>
 				<div class="large-2 columns">
 					<s:submit label="Search" cssClass="small button" value="search"></s:submit>

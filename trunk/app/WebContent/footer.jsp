@@ -4,7 +4,7 @@
 	<ul class="inline-list">
 		<li><a href="#">About Ebay</a></li>
 		<li><a href="#">Anouncements</a></li>
-		<li><a href="#">Register</a></li>
+		<li><a href="register.action">Register</a></li>
 		<li><a href="#">FeedBack Forum</a></li>
 		<li><a href="#">Support</a></li>
 	</ul>

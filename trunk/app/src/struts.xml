@@ -41,17 +41,14 @@
 		</action>
 		<!--- End of Sridhar Jammalamadaka's code -->
 
-		<!-- Added by Ranadheer  -->
-			
-			<!--Registration Page --> 
-		
-			<action name="registerAction" class="edu.iiitb.ebay.action.RegisterAction">
-				<result name="success" type="tiles">register.jsp</result>
-				<result name="failure" type="tiles">error.jsp</result>
-			</action>
-		
-		<!-- Added by Ranadheer -->
-		
+		<!--- Start of Ranadheer Kakkireni's code -->
+		<!--Registration Page -->
+		<action name="register" class="edu.iiitb.ebay.action.RegisterAction">
+			<result name="success" type="tiles">register.jsp</result>
+			<result name="failure" type="tiles">error.jsp</result>
+		</action>
+		<!--- End of Ranadheer Kakkireni's code -->
+
 	</package>
 
 </struts>
