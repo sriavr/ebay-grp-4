@@ -54,9 +54,11 @@
 						<s:url action="someaction" var="urlTag">
 							<s:param name="productId" value="productId"></s:param>
 						</s:url>
-						<img class="product-img" alt="<s:property value="description" />"
+						<a class="th radius"
+							href="<%=request.getContextPath()%><s:property value="photo" />">
+							<img alt="<s:property value="description" />"
 							src="<%=request.getContextPath()%><s:property value="photo" />">
-
+						</a>
 						<hr />
 					</div>
 					<div class="large-7 columns">
