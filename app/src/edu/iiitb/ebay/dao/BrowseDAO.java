@@ -49,130 +49,131 @@ public class BrowseDAO extends BaseDAO {
 		return categories;
 	}
 
-//	/***
-//	 * This method is called when "All Categories" is selected and query is
-//	 * EMPTY string.
-//	 */
-//	public ArrayList<ProductModel> getProducts() {
-//		logger.info("Inside BrowseDAO : getProducts()");
-//		ArrayList<ProductModel> products = new ArrayList<ProductModel>();
-//		ResultSet rs = readFromDB("select * from product");
-//		try {
-//			while (rs.next()) {
-//				ProductModel product = new ProductModel();
-//
-//				product.setProductId(rs.getInt("productId"));
-//				product.setDescription(rs.getString("description"));
-//				product.setSellerId(rs.getInt("sellerId"));
-//				product.setQuantity(rs.getInt("quantity"));
-//				product.setTitle(rs.getString("title"));
-//				product.setPhoto(rs.getString("photo"));
-//				product.setPrice(rs.getInt("price"));
-//				products.add(product);
-//			}
-//			logger.info("Size of products list is " + products.size());
-//		} catch (SQLException e) {
-//			logger.error("Error occurred", e);
-//			e.printStackTrace();
-//		}
-//		return products;
-//	}
-//
-//	/***
-//	 * This method is called when "All Categories" is selected and query is
-//	 * non-empty string.
-//	 */
-//	public ArrayList<ProductModel> getProducts(String query) {
-//		logger.info("Inside BrowseDAO : getProducts(query)");
-//		logger.info("query:" + query);
-//		ArrayList<ProductModel> products = new ArrayList<ProductModel>();
-//		if (query != null)
-//			System.out.println("query:" + query);
-//		ResultSet rs = readFromDB("select * from product where title like '%"
-//				+ query + "%'");
-//		try {
-//			while (rs.next()) {
-//				ProductModel product = new ProductModel();
-//
-//				product.setProductId(rs.getInt("productId"));
-//				product.setDescription(rs.getString("description"));
-//				product.setSellerId(rs.getInt("sellerId"));
-//				product.setQuantity(rs.getInt("quantity"));
-//				product.setTitle(rs.getString("title"));
-//				product.setPhoto(rs.getString("photo"));
-//				product.setPrice(rs.getInt("price"));
-//				products.add(product);
-//			}
-//			logger.info("Size of products list is " + products.size());
-//		} catch (SQLException e) {
-//			logger.error("Error occurred", e);
-//			e.printStackTrace();
-//		}
-//		return products;
-//	}
-//
-//	/***
-//	 * This method is called when a valid category is selected and query is
-//	 * EMPTY string.
-//	 */
-//	public ArrayList<ProductModel> getProducts(int categoryId) {
-//		logger.info("Inside BrowseDAO : getProducts(categoryId)");
-//		logger.info("categoryId:" + categoryId);
-//		ArrayList<ProductModel> products = new ArrayList<ProductModel>();
-//		// TODO SHOULD REFINE THIS QUERY TO ACCOMODATE CHECKING OF CATEGORY
-//		ResultSet rs = readFromDB("select * from product  ");
-//		try {
-//			while (rs.next()) {
-//				ProductModel product = new ProductModel();
-//
-//				product.setProductId(rs.getInt("productId"));
-//				product.setDescription(rs.getString("description"));
-//				product.setSellerId(rs.getInt("sellerId"));
-//				product.setQuantity(rs.getInt("quantity"));
-//				product.setTitle(rs.getString("title"));
-//				product.setPhoto(rs.getString("photo"));
-//				product.setPrice(rs.getInt("price"));
-//				products.add(product);
-//			}
-//			logger.info("Size of products list is " + products.size());
-//		} catch (SQLException e) {
-//			logger.error("Error occurred", e);
-//			e.printStackTrace();
-//		}
-//		return products;
-//	}
-//
-//	/***
-//	 * This method is called when a valid category is selected and query is
-//	 * non-empty string.
-//	 */
-//	public ArrayList<ProductModel> getProducts(String query, int categoryId) {
-//		logger.info("Inside BrowseDAO : getProducts(query, categoryId)");
-//		logger.info("query:" + query + ", categoryId:" + categoryId);
-//		ArrayList<ProductModel> products = new ArrayList<ProductModel>();
-//		// TODO NEED TO REFINE THE QUERY
-//		ResultSet rs = readFromDB("select * from product where title like '%"
-//				+ query + "%'");
-//		try {
-//			while (rs.next()) {
-//				ProductModel product = new ProductModel();
-//
-//				product.setProductId(rs.getInt("productId"));
-//				product.setDescription(rs.getString("description"));
-//				product.setSellerId(rs.getInt("sellerId"));
-//				product.setQuantity(rs.getInt("quantity"));
-//				product.setTitle(rs.getString("title"));
-//				product.setPhoto(rs.getString("photo"));
-//				product.setPrice(rs.getInt("price"));
-//				products.add(product);
-//			}
-//			logger.info("Size of products list is " + products.size());
-//		} catch (SQLException e) {
-//			logger.error("Error occurred", e);
-//			e.printStackTrace();
-//		}
-//		return products;
-//	}
+	// /***
+	// * This method is called when "All Categories" is selected and query is
+	// * EMPTY string.
+	// */
+	// public ArrayList<ProductModel> getProducts() {
+	// logger.info("Inside BrowseDAO : getProducts()");
+	// ArrayList<ProductModel> products = new ArrayList<ProductModel>();
+	// ResultSet rs = readFromDB("select * from product");
+	// try {
+	// while (rs.next()) {
+	// ProductModel product = new ProductModel();
+	//
+	// product.setProductId(rs.getInt("productId"));
+	// product.setDescription(rs.getString("description"));
+	// product.setSellerId(rs.getInt("sellerId"));
+	// product.setQuantity(rs.getInt("quantity"));
+	// product.setTitle(rs.getString("title"));
+	// product.setPhoto(rs.getString("photo"));
+	// product.setPrice(rs.getInt("price"));
+	// products.add(product);
+	// }
+	// logger.info("Size of products list is " + products.size());
+	// } catch (SQLException e) {
+	// logger.error("Error occurred", e);
+	// e.printStackTrace();
+	// }
+	// return products;
+	// }
+	//
+	// /***
+	// * This method is called when "All Categories" is selected and query is
+	// * non-empty string.
+	// */
+	// public ArrayList<ProductModel> getProducts(String query) {
+	// logger.info("Inside BrowseDAO : getProducts(query)");
+	// logger.info("query:" + query);
+	// ArrayList<ProductModel> products = new ArrayList<ProductModel>();
+	// if (query != null)
+	// System.out.println("query:" + query);
+	// ResultSet rs = readFromDB("select * from product where title like '%"
+	// + query + "%'");
+	// try {
+	// while (rs.next()) {
+	// ProductModel product = new ProductModel();
+	//
+	// product.setProductId(rs.getInt("productId"));
+	// product.setDescription(rs.getString("description"));
+	// product.setSellerId(rs.getInt("sellerId"));
+	// product.setQuantity(rs.getInt("quantity"));
+	// product.setTitle(rs.getString("title"));
+	// product.setPhoto(rs.getString("photo"));
+	// product.setPrice(rs.getInt("price"));
+	// products.add(product);
+	// }
+	// logger.info("Size of products list is " + products.size());
+	// } catch (SQLException e) {
+	// logger.error("Error occurred", e);
+	// e.printStackTrace();
+	// }
+	// return products;
+	// }
+	//
+	// /***
+	// * This method is called when a valid category is selected and query is
+	// * EMPTY string.
+	// */
+	// public ArrayList<ProductModel> getProducts(int categoryId) {
+	// logger.info("Inside BrowseDAO : getProducts(categoryId)");
+	// logger.info("categoryId:" + categoryId);
+	// ArrayList<ProductModel> products = new ArrayList<ProductModel>();
+	// // TODO SHOULD REFINE THIS QUERY TO ACCOMODATE CHECKING OF CATEGORY
+	// ResultSet rs = readFromDB("select * from product  ");
+	// try {
+	// while (rs.next()) {
+	// ProductModel product = new ProductModel();
+	//
+	// product.setProductId(rs.getInt("productId"));
+	// product.setDescription(rs.getString("description"));
+	// product.setSellerId(rs.getInt("sellerId"));
+	// product.setQuantity(rs.getInt("quantity"));
+	// product.setTitle(rs.getString("title"));
+	// product.setPhoto(rs.getString("photo"));
+	// product.setPrice(rs.getInt("price"));
+	// products.add(product);
+	// }
+	// logger.info("Size of products list is " + products.size());
+	// } catch (SQLException e) {
+	// logger.error("Error occurred", e);
+	// e.printStackTrace();
+	// }
+	// return products;
+	// }
+	//
+	// /***
+	// * This method is called when a valid category is selected and query is
+	// * non-empty string.
+	// */
+	// public ArrayList<ProductModel> getProducts(String query, int categoryId)
+	// {
+	// logger.info("Inside BrowseDAO : getProducts(query, categoryId)");
+	// logger.info("query:" + query + ", categoryId:" + categoryId);
+	// ArrayList<ProductModel> products = new ArrayList<ProductModel>();
+	// // TODO NEED TO REFINE THE QUERY
+	// ResultSet rs = readFromDB("select * from product where title like '%"
+	// + query + "%'");
+	// try {
+	// while (rs.next()) {
+	// ProductModel product = new ProductModel();
+	//
+	// product.setProductId(rs.getInt("productId"));
+	// product.setDescription(rs.getString("description"));
+	// product.setSellerId(rs.getInt("sellerId"));
+	// product.setQuantity(rs.getInt("quantity"));
+	// product.setTitle(rs.getString("title"));
+	// product.setPhoto(rs.getString("photo"));
+	// product.setPrice(rs.getInt("price"));
+	// products.add(product);
+	// }
+	// logger.info("Size of products list is " + products.size());
+	// } catch (SQLException e) {
+	// logger.error("Error occurred", e);
+	// e.printStackTrace();
+	// }
+	// return products;
+	// }
 
 	public ArrayList<ProductModel> getProducts(String query, int categoryId,
 			int priceLower, int priceHigher) {
@@ -189,7 +190,7 @@ public class BrowseDAO extends BaseDAO {
 
 		if (categoryId != 0) {
 			System.out.println("don't worry we added categoryId");
-			//sqlQuery = sqlQuery.append(" and categoryId=" + categoryId);
+			// sqlQuery = sqlQuery.append(" and categoryId=" + categoryId);
 		}
 
 		if (priceHigher > priceLower) {
@@ -206,7 +207,11 @@ public class BrowseDAO extends BaseDAO {
 				product.setSellerId(rs.getInt("sellerId"));
 				product.setQuantity(rs.getInt("quantity"));
 				product.setTitle(rs.getString("title"));
-				product.setPhoto(rs.getString("photo"));
+				String photoUrl = rs.getString("photo");
+				if (photoUrl == null || photoUrl.isEmpty())
+					product.setPhoto("/images/default-pic.jpg");
+				else
+					product.setPhoto(photoUrl);
 				product.setPrice(rs.getInt("price"));
 				products.add(product);
 			}
