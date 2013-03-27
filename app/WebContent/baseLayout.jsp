@@ -5,18 +5,44 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>eBay</title>
+<link rel="stylesheet" href="styles/reset.css" />
+<link rel="stylesheet" href="styles/foundation/normalize.css" />
+<link rel="stylesheet" href="styles/foundation/foundation.css" />
+<style type="text/css">
+.category-select {
+	padding-top: 5px;
+	height: 42px;
+}
 
+.search-btn {
+	height: 35px !important;
+	width: 120px;
+}
+
+.product-img {
+	height: 170px;
+	width: 200px;
+}
+
+body {
+	margin-left: 0px;
+	width: 100%;
+}
+</style>
 </head>
 <body>
-	<div id="header">
-		<tiles:insertAttribute name="header" />
-	</div>
-	<div id="body">
-		<tiles:insertAttribute name="body" />
-	</div>
-	
-	<div id="footer">
-		<tiles:insertAttribute name="footer" />
+	<div>
+		<div class="row header-box">
+			<tiles:insertAttribute name="header" />
+		</div>
+		<div class="row body-box">
+			<tiles:insertAttribute name="body" />
+		</div>
+
+		<div class="row footer-box">
+			<tiles:insertAttribute name="footer" />
+		</div>
 	</div>
 </body>
 </html>
