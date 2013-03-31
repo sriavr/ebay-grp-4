@@ -47,6 +47,8 @@
 					</div>
 				</div>
 
+        
+        
 			</s:form>
 			
 			<div class="row">
@@ -55,9 +57,14 @@
 
 		</div>
 	</div>
-	
-	<div class="row">
-	  <a href="#" class="button">Continue</a>
-	</div>
+	<s:url action="createListing.action" var="urlTag" >
+        <s:param name="selection" value="%{selection}"></s:param>
+        <s:param name="selectedCategoryId" value="%{selectedCategoryId}"></s:param>
+        <s:param name="selectedsubCategoryId" value="%{selectedsubCategoryId}"></s:param>
+        <s:param name="selectedsubsubCategoryId" value="%{selectedsubsubCategoryId}"></s:param>
+   </s:url>
+   <div class="row">
+     <a href="<s:property value="#urlTag" />"  class="button">Continue</a>
+   </div>  
 </body>
 </html>
