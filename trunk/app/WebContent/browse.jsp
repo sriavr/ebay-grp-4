@@ -55,7 +55,7 @@
 			<div class="row padding-4">
 
 				<div class="large-4 columns">
-					<s:url action="someaction" var="urlTag">
+					<s:url action="productdetails" var="urlTag">
 						<s:param name="productId" value="productId"></s:param>
 					</s:url>
 					<a class="th radius" data-reveal-id="myModal" href="#"> <img
