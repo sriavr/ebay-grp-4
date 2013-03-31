@@ -19,6 +19,8 @@
 		<put-attribute name="body" value="/home.jsp" />
 	</definition>
 
+	<!-- Added by Debargha Ganguly -->
+
 	<definition name="manageCategories.jsp" extends="baselayout">
 		<put-attribute name="body" value="/manageCategories.jsp" />
 	</definition>
@@ -26,7 +28,15 @@
 	<definition name="makeListing.jsp" extends="baselayout">
 		<put-attribute name="body" value="/makeListing.jsp" />
 	</definition>
+
+	
+	<definition name="createListing.jsp" extends="baselayout">
+		<put-attribute name="body" value="/createListing.jsp" />
+	</definition>
+	
+
 	<!--- End of Debargha Ganguly's code -->
+
 
 	<!--- Start of Sridhar Jammalamadaka's code -->
 	<definition name="browse.jsp" extends="baselayout">
