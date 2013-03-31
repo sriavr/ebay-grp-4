@@ -35,6 +35,8 @@ public class ManageCategoryDAO extends BaseDAO{
 		return categories;
 	}
 	
+	
+	
 	public void saveCategories(ArrayList<CategoryModel> categories)
 	{
 		String updateQuery="";
