@@ -39,9 +39,13 @@
 
 
 	<!--- Start of Sridhar Jammalamadaka's code -->
-	<definition name="browse.jsp" extends="baselayout">
+	<definition name="browse" extends="baselayout">
 		<put-attribute name="body" value="/browse.jsp" />
 	</definition>
+
+	<definition name="productdetails" extends="baselayout">
+		<put-attribute name="body" value="/productDetails.jsp" />
+	</definition>	
 	<!--- End of Sridhar Jammalamadaka's code -->
 
 	<!--- Start of Ranadheer Kakkireni's code -->
