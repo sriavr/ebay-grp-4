@@ -67,15 +67,15 @@ public class MakeListingDAO extends BaseDAO {
 		
 		try
 		{
-		String updateQuery = "insert into product(productId,sellerId,description,title,price,quantity,photo,discount) values("+pm.getProductId()+",1,'"+pm.getDescription()+"','"+pm.getTitle()+"',"+pm.getPrice()+","+pm.getQuantity()+",'"+pm.getPhoto()+"',"+0+")";
+		String updateQuery = "insert into product(productId,sellerId,description,title,price,quantity,photo,discount) values("+pm.getProductId()+",1,'"+pm.getDescription()+"','"+pm.getTitle()+"',"+pm.getPrice()+","+pm.getQuantity()+",'"+pm.getPhoto()+"',"+pm.getDiscount()+")";
 		System.out.println(updateQuery);
 		update(updateQuery);
 		
 		for(ProductSpecModel ps:itemSpecs)
 		{
 			
-			int prodspecid = getProductSpecId();
-			String query = "insert into productspecs values("+prodspecid+",'"+ps.getProperty()+"','"+ps.getValue()+"',"+pm.getProductId()+")";
+			
+			String query = "insert into productspecs(entity,value,type,productId) values('"+ps.getProperty()+"','"+ps.getValue()+"','string',"+pm.getProductId()+")";
 			System.out.println(query);
 			update(query);
 		}
@@ -97,12 +97,10 @@ public class MakeListingDAO extends BaseDAO {
 		ResultSet rs=readFromDB(query);
 		try
 		{
-		while(rs.next())
+		if(rs.next())
 		{
-			if(rs.getString(1)==null)
-				return 0;
-			else
-				rs.getInt(1);
+			
+				return rs.getInt(1);
 		}
 		
 		}
