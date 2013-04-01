@@ -1,6 +1,7 @@
 -- --------------------------------
 -- VERSION 1.1 last edited by Debargha, added data for category table
 -- VERSION 1.1 last edited by Sridhar, added data for seller, product table
+-- VERSION 1.2 last edited by Surya, added data for state, country, user table
 -- --------------------------------
 
 INSERT INTO `category` (`categoryId`, `categoryName`, `parentCategoryId`) VALUES
@@ -42,3 +43,5 @@ insert into product (productId, sellerId, title, description, price, photo) valu
     (208, 106, 'Haldirams Plain Khakhara', 'Plain Khakhara made out of wheat and ready to eat. Perfect for breakfast and snacks.', 300, '/images/default-pic.jpg'),
     (209, 104, 'Teach yourself UNIX book', 'A hand book written by Ruth Amely', 50, '/images/default-pic.jpg'),
     (210, 107, 'Beautiful portrait', 'A beautiful scenario that can be used as a wall hanging.', 5000, '/images/scenary1.jpg');
+
+ insert into country (countryId, country) values   (51, 'India'),  (52, 'America');
