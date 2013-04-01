@@ -11,20 +11,43 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.struts2.interceptor.ServletRequestAware;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import edu.iiitb.ebay.dao.MakeListingDAO;
 import edu.iiitb.ebay.model.entity.ProductModel;
 import edu.iiitb.ebay.model.entity.ProductSpecModel;
 
-public class CreateListingAction extends ActionSupport {
-	
-	String selectedCategoryId="";
-	String save="";
-	String filename="images/default-pic.jpg";
-	String upload="";
+public class CreateListingAction extends ActionSupport implements
+		ServletRequestAware {
+
+	String selectedCategoryId = "";
+	String save = "";
+	String filename = "images/default-pic.jpg";
+	String upload = "";
+	String discount = "";
+
+	public String getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(String discount) {
+		this.discount = discount;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	String description = "";
 	public HttpServletRequest request;
+
 	public String getUpload() {
 		return upload;
 	}
@@ -81,16 +104,17 @@ public class CreateListingAction extends ActionSupport {
 		this.selection = selection;
 	}
 
-	String selectedsubCategoryId="";
-	
-	String selectedsubsubCategoryId="";
-	
-    String selection="";
-    String title;
-    String price;
-    String quantity;
-    private File userImage;
-    public File getUserImage() {
+	String selectedsubCategoryId = "";
+
+	String selectedsubsubCategoryId = "";
+
+	String selection = "";
+	String title;
+	String price;
+	String quantity;
+	private File userImage;
+
+	public File getUserImage() {
 		return userImage;
 	}
 
@@ -115,8 +139,9 @@ public class CreateListingAction extends ActionSupport {
 	}
 
 	private String userImageContentType;
-    private String userImageFileName;
-    public HttpServletRequest getRequest() {
+	private String userImageFileName;
+
+	public HttpServletRequest getRequest() {
 		return request;
 	}
 
@@ -124,11 +149,11 @@ public class CreateListingAction extends ActionSupport {
 		this.request = request;
 	}
 
-	String propertyName="";
-    String propertyValue="";
-    String itemSpec="";
-    
-    public String getItemSpec() {
+	String propertyName = "";
+	String propertyValue = "";
+	String itemSpec = "";
+
+	public String getItemSpec() {
 		return itemSpec;
 	}
 
@@ -160,8 +185,6 @@ public class CreateListingAction extends ActionSupport {
 		this.quantity = quantity;
 	}
 
-	
-
 	public String getPropertyName() {
 		return propertyName;
 	}
@@ -187,97 +210,90 @@ public class CreateListingAction extends ActionSupport {
 	}
 
 	ArrayList<ProductSpecModel> itemspefics = new ArrayList<ProductSpecModel>();
-    public String execute()
-    {
-    	System.out.println("property name:"+propertyName);
-    	System.out.println("category id:"+selectedCategoryId);
-    	if(!itemSpec.equals(""))
-    	{
-    		System.out.println("here");
-    		ProductSpecModel productSpecModel=new ProductSpecModel();
-    		productSpecModel.setProperty(propertyName);
-    		productSpecModel.setValue(propertyValue);
-    		propertyName="";
-    		propertyValue="";
-    		itemspefics.add(productSpecModel);
-    		itemSpec="";
-    	}
-    	
-    		
-        	if(userImage!=null)
-        	{
-        		
-        		String name=userImage.getName();
-        		try
-        		{
-        			String filePath = "C:\\Users\\DEBARGHA\\workspace1\\Ebay\\WebContent\\images";
-                    System.out.println("Server path:" + filePath + "name of file:"+userImage.getAbsolutePath());
-                    File fileToCreate = new File(filePath, this.userImageFileName);
-                    System.out.println(fileToCreate.getAbsolutePath());
-                   
-                   
-                    FileUtils.copyFile(userImage, fileToCreate); 
-                    filename = "images/"+fileToCreate.getName();
-                    System.out.println(filename);
-        	        
-        		}
-        		catch(Exception ex)
-        		{
-        			ex.printStackTrace();
-        			return SUCCESS;
-        		}
-        		
-        	}
-        	
-        	if(!save.equals(""))
-        	{
-        		
-        		try
-        		{
-        			//Compute productId
-        			MakeListingDAO dao = new MakeListingDAO();
-        			int productId = dao.getProductId();
-        			ProductModel pm = new ProductModel();
-        			pm.setProductId(productId);
-        			pm.setTitle(title);
-        			pm.setPrice(Integer.parseInt(price));
-        			pm.setDescription("");
-        			pm.setQuantity(Integer.parseInt(quantity));
-        			pm.setSellerId(1);
-        			pm.setPhoto(filename);
-        		
-        			
-        			int catId;
-        			
-        			/*if(!selectedsubsubCategoryId.equals(""))
-        				catId = Integer.parseInt(selectedsubsubCategoryId);
-        			else if(!selectedsubCategoryId.equals(""))
-        				catId = Integer.parseInt(selectedsubCategoryId);
-        			else
-        				catId = Integer.parseInt(selectedCategoryId);*/
-        			
-        			
-        			dao.saveProduct(pm, itemspefics, "1");
-        		}
-        		catch(Exception ex)
-        		{
-        			ex.printStackTrace();
-        		}
-        		save="";
-        	}
-        	
-        	
-    		
-    		
-    	
-    
-    		
-    	return SUCCESS;
-    	
-    }
-    
-    public void setServletRequest(HttpServletRequest request) {
-        this.request = request;  
-        }
+
+	public String execute() {
+		System.out.println("property name:" + propertyName);
+		System.out.println("category id:" + selectedCategoryId);
+
+		if (!itemSpec.equals("")) {
+			System.out.println("here");
+			ProductSpecModel productSpecModel = new ProductSpecModel();
+			productSpecModel.setProperty(propertyName);
+			productSpecModel.setValue(propertyValue);
+			propertyName = "";
+			propertyValue = "";
+			itemspefics.add(productSpecModel);
+			itemSpec = "";
+		}
+
+		if (userImage != null) {
+
+			String name = userImage.getName();
+			try {
+				String filePath = request.getRealPath("/images");
+				System.out.println("Server path:" + filePath + "name of file:"
+						+ userImage.getAbsolutePath());
+				
+				String imageName = this.userImageFileName.substring(0,userImageFileName.indexOf("."))+System.currentTimeMillis()+".jpg";
+				setUserImageFileName(imageName);
+				File fileToCreate = new File(filePath, this.userImageFileName);
+				System.out.println(fileToCreate.getAbsolutePath());
+
+				FileUtils.copyFile(userImage, fileToCreate);
+				filename = "images/" + fileToCreate.getName();
+				System.out.println(filename);
+
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				return SUCCESS;
+			}
+
+		}
+
+		if (!save.equals("")) {
+
+			try {
+				// Compute productId
+				MakeListingDAO dao = new MakeListingDAO();
+				int productId = dao.getProductId();
+				System.out.println(productId);
+				ProductModel pm = new ProductModel();
+				pm.setProductId(productId);
+				pm.setTitle(title);
+				pm.setPrice(Integer.parseInt(price));
+				pm.setDescription("");
+				pm.setQuantity(Integer.parseInt(quantity));
+				pm.setSellerId(1);
+				pm.setPhoto("/" + filename);
+				pm.setDescription(description);
+				if (!discount.equals(""))
+					pm.setDiscount(discount);
+				else
+					pm.setDiscount("0");
+
+				int catId;
+
+				if (!selectedsubsubCategoryId.equals(""))
+					catId = Integer.parseInt(selectedsubsubCategoryId);
+				else if (!selectedsubCategoryId.equals(""))
+					catId = Integer.parseInt(selectedsubCategoryId);
+				else
+					catId = Integer.parseInt(selectedCategoryId);
+
+				dao.saveProduct(pm, itemspefics, catId + "");
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+			save = "";
+		}
+
+		return SUCCESS;
+
+	}
+
+	@Override
+	public void setServletRequest(HttpServletRequest request) {
+		this.request = request;
+	}
 
 }
