@@ -3,23 +3,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Make Listing</title>
-<link rel="stylesheet" href="styles/foundation/normalize.css" />
-<link rel="stylesheet" href="styles/foundation/foundation.css" />
-</head>
 <body>
 	<div class="row">
+	<div class="panel">
+	 Sell Your Item steps >> <font size="3"><b>1.Tell us What You sell</b></font>  2.Create your Listing  3.Review your listing
+	</div>
+	
 		<div class="panel">
-			Select Categories
+			Select a suitable Category for your product
 
 
-
-
-
-
-			<s:form action="makeListing.action" id='myform'>
+			<s:form action="makeListing.action" id='myform' theme="simple">
 
 				<div class="row">
 
@@ -27,27 +21,29 @@
 					<div class="small-4 columns">
 						<s:select list="categoryList" id="catList" listKey="categoryID"
 							listValue="categoryName" name="selectedCategoryId"
-							cssClass="label" theme="simple" multiple="true"
+							  multiple="true"
 							onclick="javascript:document.getElementById('myform').submit()"
-							cssStyle="color:white" />
+							 />
 					</div>
 					<div class="small-4 columns">
 						<s:select list="subcategoryList" id="subcatList"
 							listKey="categoryID" listValue="categoryName"
-							name="selectedsubCategoryId" cssClass="label" theme="simple"
+							name="selectedsubCategoryId"  
 							multiple="true"
 							onclick="javascript:document.getElementById('myform').submit()" />
 					</div>
 					<div class="small-4 columns">
 						<s:select list="subsubcategoryList" id="subsubcatList"
 							listKey="categoryID" listValue="categoryName"
-							name="selectedsubsubCategoryId" cssClass="label" theme="simple"
+							name="selectedsubsubCategoryId"  
 							multiple="true"
 							onclick="javascript:document.getElementById('myform').submit()" />
 					</div>
 				</div>
 
-        
+                 <div class="row">
+                   <input type="submit" value="continue" class="small button round" name="cont"/>
+                 </div> 
         
 			</s:form>
 			
@@ -57,14 +53,6 @@
 
 		</div>
 	</div>
-	<s:url action="createListing.action" var="urlTag" >
-        <s:param name="selection" value="%{selection}"></s:param>
-        <s:param name="selectedCategoryId" value="%{selectedCategoryId}"></s:param>
-        <s:param name="selectedsubCategoryId" value="%{selectedsubCategoryId}"></s:param>
-        <s:param name="selectedsubsubCategoryId" value="%{selectedsubsubCategoryId}"></s:param>
-   </s:url>
-   <div class="row">
-     <a href="<s:property value="#urlTag" />"  class="button">Continue</a>
-   </div>  
+	
 </body>
 </html>
