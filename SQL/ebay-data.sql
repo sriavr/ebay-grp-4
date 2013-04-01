@@ -45,3 +45,6 @@ insert into product (productId, sellerId, title, description, price, photo) valu
     (210, 107, 'Beautiful portrait', 'A beautiful scenario that can be used as a wall hanging.', 5000, '/images/scenary1.jpg');
 
  insert into country (countryId, country) values   (51, 'India'),  (52, 'America');
+ 
+ insert into state (stateId, countryId, state) values (20, 51, 'Andhra Pradesh'), (21, 51, 'Weest Bengal'),    (22, 51, 'Bihar'), (23, 51, 'Maharashtra'), (24, 51, 'Tamil Nadu'), (25, 51, 'Karnataka');
+
