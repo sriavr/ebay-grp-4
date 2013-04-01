@@ -70,5 +70,8 @@ insert into secretquestion values (30, 'What is your mothers maiden name?'), (31
 (16, 'Ranadheer', 'Kakkireni', '22-456', 'Kodad', 51, 20, 567920,'9845665323', 'randheer.kakkireni@iiitb.org', 'randheer123', 31, 'cricket', '1989-04-15');
 
 
-
+INSERT INTO `admin` (`adminID`,`adminUserName`,`adminPassword`,`adminFirstName`,`adminLastName`) VALUES
+ (1,'john', '123','john','raulson'),
+ (2, 'smith','123','smith','fedrick'),
+ (3, 'paul', '123', 'paul', 'malson');
 
