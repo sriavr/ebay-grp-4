@@ -31,12 +31,33 @@
 		</action>
 
 		<action name="makeListing" class="edu.iiitb.ebay.action.MakeListingAction">
+		    <result name="initial" type="tiles">login.jsp</result>
 			<result name="success" type="tiles">makeListing.jsp</result>
+			<result name="continue" type="redirectAction">
+				<param name="actionName">createListing</param>
+				<param name="selection">%{selection}</param>
+				<param name="selectedCategoryId">%{selectedCategoryId}</param>
+				<param name="selectedsubCategoryId">%{selectedsubCategoryId}</param>
+				<param name="selectedsubsubCategoryId">%{selectedsubsubCategoryId}</param>
+			</result>
 			<result name="failure" type="tiles">error.jsp</result>
 		</action>
 
 		<action name="createListing" class="edu.iiitb.ebay.action.CreateListingAction">
 			<result name="success" type="tiles">createListing.jsp</result>
+
+			<result name="failure" type="tiles">error.jsp</result>
+		</action>
+
+		<action name="login" class="edu.iiitb.ebay.action.LoginAction">
+			<result name="initial" type="tiles">login.jsp</result>
+			<result name="success" type="redirectAction">browse</result>
+			<result name="failure" type="tiles">error.jsp</result>
+		</action>
+		
+		<action name="logout" class="edu.iiitb.ebay.action.LogoutAction">
+			
+			<result name="success" type="redirectAction">browse</result>
 			<result name="failure" type="tiles">error.jsp</result>
 		</action>
 		<!--- End of Debargha Ganguly's code -->
@@ -61,14 +82,7 @@
 		</action>
 		<!--- End of Ranadheer Kakkireni's code -->
 
-		<action name="createListing" class="edu.iiitb.ebay.action.CreateListingAction">
-		
-			
-			<result name="success" type="tiles">createListing.jsp</result>
-			<result name="input">createListing.jsp	</result>
-			<result name="failure" type="tiles">error.jsp</result>
-		</action>
-		<!-- End of addition by Debargha Ganguly -->
+
 	</package>
 
 </struts>
