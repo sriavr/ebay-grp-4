@@ -33,6 +33,9 @@
 	<definition name="createListing.jsp" extends="baselayout">
 		<put-attribute name="body" value="/createListing.jsp" />
 	</definition>
+	<definition name="login.jsp" extends="baselayout">
+		<put-attribute name="body" value="/login.jsp" />
+	</definition>
 	
 
 	<!--- End of Debargha Ganguly's code -->
