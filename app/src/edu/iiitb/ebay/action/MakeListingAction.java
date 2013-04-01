@@ -1,7 +1,9 @@
 package edu.iiitb.ebay.action;
 
 import java.util.ArrayList;
+import java.util.Map;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import edu.iiitb.ebay.dao.MakeListingDAO;
@@ -16,6 +18,15 @@ public class MakeListingAction extends ActionSupport {
 	String selectedsubsubCategoryId="";
 	String selectedsubsubCategoryName="";
     String selection="";
+    String cont="";
+	public String getCont() {
+		return cont;
+	}
+
+	public void setCont(String cont) {
+		this.cont = cont;
+	}
+
 	public String getSelection() {
 		return selection;
 	}
@@ -104,6 +115,11 @@ public class MakeListingAction extends ActionSupport {
 	
 	public String execute()
 	{
+		Map<String, Object> sessionMap = ActionContext.getContext()
+		.getSession();
+		
+		if(sessionMap.get("user")==null)
+          return "initial";		
 		subcategoryList = new ArrayList<CategoryModel>();
 		subsubcategoryList = new ArrayList<CategoryModel>();
 		MakeListingDAO dao =  new MakeListingDAO();
@@ -142,6 +158,8 @@ public class MakeListingAction extends ActionSupport {
 			selection += ">"+selectedsubsubCategoryName;
 		}
 		
+		if(!cont.equals(""))
+			return "continue";
 		
 		return SUCCESS;
 		
