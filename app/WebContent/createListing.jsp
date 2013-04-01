@@ -6,10 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Create Listing</title>
-<link rel="stylesheet" href="styles/foundation/normalize.css" />
-<link rel="stylesheet" href="styles/foundation/foundation.css" />
 
-   <script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
+
+   
     <style type="text/css">
         .web_dialog_overlay
         {
@@ -122,9 +121,13 @@
     </script>
  
 </head>
-<body>
+
  <div class="row">
   <s:form theme="simple" action="createListing.action" enctype="multipart/form-data">
+  
+        <div class="panel">
+	       Sell Your Item steps >> 1.Tell us What You sell  <font size="3"><b>2.Create your Listing</b></font>  3.Review your listing
+	    </div>
 		<div class="panel">
 		
 		 <font size="3"><b>Categories where your list will appear </b></font> <br>
@@ -141,7 +144,7 @@
 		 <font size="3"><b>Help buyers find your item with a great title </b></font> 
 		 
 		 <s:label value="Title"/>
-		 <s:textfield cssClass="label" theme="simple" name="title"></s:textfield>
+		 <s:textfield name="title"></s:textfield>
 		</div>
 		
 		<div class="panel">
@@ -172,11 +175,11 @@
          </tr>
             <tr>
               <td>Enter Property Name</td>
-              <td> <s:textfield cssClass="label" theme="simple" name="propertyName" tooltip="eg:Brand,Material,Year" placeholder="Enter Property Name"></s:textfield> 
+              <td> <s:textfield  theme="simple" name="propertyName" tooltip="eg:Brand,Material,Year" placeholder="Enter Property Name"></s:textfield> 
             </tr>
             <tr>
                 <td>Enter Property Value</td>
-              <td> <s:textfield cssClass="label" theme="simple" name="propertyValue"  tooltip="eg:Ty,Plastic,2007" placeholder="Enter Property Value"></s:textfield> 
+              <td> <s:textfield  theme="simple" name="propertyValue"  tooltip="eg:Ty,Plastic,2007" placeholder="Enter Property Value"></s:textfield> 
             </tr>
           <tr>
            <td><input type="submit" value="Save" name="itemSpec" class="button"/>
@@ -188,30 +191,47 @@
 		    <s:file name="userImage" label="User Image" />
             <s:submit value="Upload" align="center" name="upload"/>
 
-            <a class="th radius" href="#">
+            <a class="th radius" href="#" style="width:100px">
               <img src='<s:property value="filename"/>'>
             </a>
   
 		   <s:hidden name="filename" value="%{filename}"/>
 		</div>
 		<div class="panel">
+		<font size="3"><b>Describe your Item in Words</b></font><br>
+		 <s:textarea  theme="simple" name="description"/>
+		</div>
+		<div class="panel">
 		   <font size="3"><b>Fixed Price</b></font><br>
 		    <font size="2">Buy It Now price*</font><br>
-		    
+		    <div class="row">
+		   <div class="small-2 columns">
 		    Rs.<s:textfield cssClass="label" theme="simple" name="price"  tooltip="Enter Price"></s:textfield> <br>
-		    <font size="2">Quantity*</font><br>
+		    </div>
+		    </div>
 		    
-		    <s:textfield cssClass="label" theme="simple" name="quantity" tooltip="Quantity" size="4"></s:textfield>
 		    
+		    <font  size="2">Quantity*</font><br>
+		    <div class="row">
+		    <div class="small-2 columns">
+		    <s:textfield  theme="simple" name="quantity" tooltip="Quantity" size="4"></s:textfield>
+		    </div>
+		    </div>
+		    <font size="2">Discount</font><br>
+		    <div class="row">
+		     <div class="small-2 columns">
+		      Rs.<s:textfield  theme="simple" name="discount"  tooltip="Enter Discount"/>
+		    </div>
+		    </div>
 		</div>
 		
 	<div class="panel">
-	  <input type="submit" value="save" name="save" class="button"/>
+	  <input type="submit" value="Continue" name="save" class="small button"/>
 	</div>	
 	</s:form>	
 </div>		
 
 
 
-</body>
+
 </html>
