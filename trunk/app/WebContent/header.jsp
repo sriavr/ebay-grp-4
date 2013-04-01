@@ -4,16 +4,38 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-
+<%@ page import="edu.iiitb.ebay.model.entity.UserModel" %>
+<%@ page import="edu.iiitb.ebay.model.entity.AdminModel" %>
 <div class="row">
 	<div class="large-2 columns">
-		<img src="images/ebay.jpg">
+		<a href="browse.action"><img src="images/ebay.jpg"></a>
 	</div>
 	<div class="large-3 columns">
-		<span> Welcome ! <a href="#">Sign in</a> or <a
+	<%
+	  if(session.getAttribute("user")==null && session.getAttribute("admin")==null)
+	  {
+	%>
+		<span> Welcome ! <a href="login.action">Sign in</a> or <a
 			href="register.action">Register</a>
 		</span>
-
+    <%
+	  }
+	  else if(session.getAttribute("admin")==null)
+	  {
+		   UserModel user = (UserModel)session.getAttribute("user");
+	 
+    %>
+    <span> Hi <%=user.getFirstName() %> (<a href="logout.action">Sign out</a>)
+		</span>
+	<%}
+	  else
+	  { 
+	   AdminModel a = (AdminModel)session.getAttribute("admin");
+	%>	
+	 <span> Hi admin <%=a.getAdminName() %> (<a href="logout.action">Sign out</a>)
+		</span>
+	<%}%>
+	
 	</div>
 	<div class="large-7 columns">
 		<nav class="top-bar">
@@ -31,11 +53,11 @@
 					<li class="divider"></li>
 					<li><a href="#">My Paisa Pay</a></li>
 					<li class="divider"></li>
-					<li class="has-dropdown"><a href="#">Sell</a>
+					<li class="has-dropdown"><a href="makeListing.action">Sell</a>
 
 						<ul class="dropdown">
 							<li><a href="#">How to Sell</a>
-							<li><a href="#">Seller Central</a>
+							<li><a href="makeListing.action">Seller Central</a>
 							<li><a href="#">Seller Tools</a>
 						</ul></li>
 					<li class="divider"></li>
@@ -48,6 +70,21 @@
 						</ul></li>
 					<li class="divider"></li>
 					<li><a href="#">Cart</a>
+					
+					<%
+					  if(session.getAttribute("admin")!=null)
+					  {
+					%>
+					<li class="has-dropdown"><a href="#">Admin</a>
+
+						<ul class="dropdown">
+							<li><a href="manageCategory.action">Manage Category</a>
+							<li><a href="#">Manage User </a>
+							
+						</ul></li>
+					<li class="divider"></li>
+					
+					<%} %>
 				</ul>
 			</section>
 		</nav>
