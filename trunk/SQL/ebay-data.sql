@@ -26,6 +26,7 @@ insert into seller (sellerId, sellerPassword, sellerName, dateOfRegistration, lo
     (103,'seller4', 'seller4', curdate(),'himachal pradesh'),
     (104,'seller5', 'seller5', curdate(),'ranchi'),
     (105,'seller6', 'seller6', curdate(),'vijayawada'),
+    (106,'seller33', 'seller106', curdate(),'ananthapur'),
     (107,'seller8', 'seller8', curdate(),'nellore'),
     (108,'seller9', 'seller9', curdate(),'mysore') ;
 
