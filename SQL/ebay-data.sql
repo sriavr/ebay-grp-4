@@ -48,3 +48,27 @@ insert into product (productId, sellerId, title, description, price, photo) valu
  
  insert into state (stateId, countryId, state) values (20, 51, 'Andhra Pradesh'), (21, 51, 'Weest Bengal'),    (22, 51, 'Bihar'), (23, 51, 'Maharashtra'), (24, 51, 'Tamil Nadu'), (25, 51, 'Karnataka');
 
+insert into secretquestion values (30, 'What is your mothers maiden name?'), (31, 'What is your favorite sport?'),  (32, 'What is your pet name?');
+
+
+
+
+ insert into user values 
+
+(10, 'Sridhar', 'Jammalamadaka', '1-23-23', 'hyderabad', 51, 20, 500020,'9924255323', 'sridhar.j@iiitb.org', 'sridhar123', 31, 'badminton', '1947-08-15'),
+
+(11, 'Vamsi', 'Srungarapu', '19-234', 'jaggayapet', 51, 20, 500100,'8050897666', 'vamsikrishna.srungarapu@iiitb.org', 'vamsi123', 32, 'puppy', '1982-07-15'),
+
+(12, 'Surya', 'Desai', '15-354', 'anantapur', 51, 20, 515001,'7259981049', 'suryapratap.desai@iiitb.org', 'surya123', 31, 'football', '1990-08-15'),
+
+(13, 'Pavan', 'Kumar', '16-234', 'vijayawada', 51, 20, 502367,'9925678923', 'pavan.kumar@iiitb.org', 'pavan123', 32, 'mintu', '1988-04-12'),
+
+(14, 'Ganguly', 'Dada', '1-34', 'kolkata', 51, 21, 505620,'9925465383', 'debargha.ganguly@iiitb.org', 'ganguly123', 31, 'tabletennis', '1967-05-25'),
+
+(15, 'Pratibind', 'Jha', '1-5-23', 'Jharkhand', 51, 22, 567020,'8956255323', 'pratibind.jha@iiitb.org', 'pratibind123', 32, 'chotu', '1989-02-13'),
+
+(16, 'Ranadheer', 'Kakkireni', '22-456', 'Kodad', 51, 20, 567920,'9845665323', 'randheer.kakkireni@iiitb.org', 'randheer123', 31, 'cricket', '1989-04-15');
+
+
+
+
