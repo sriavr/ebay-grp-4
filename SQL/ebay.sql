@@ -1,6 +1,7 @@
 -- --------------------------------
 -- VERSION 1.0 last edited by VAMSI
 -- 		   1.1 last edited by Debargha, auto increment added to Category table, corresponding data added
+          1.2 last edited by Debargha, auto increment added to productcategorymapping table,changes in productspecs table
 -- --------------------------------
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -350,7 +351,7 @@ DELETE FROM `category`;
 DROP TABLE IF EXISTS `eBay`.`productCategoryMapping` ;
 
 CREATE  TABLE IF NOT EXISTS `eBay`.`productCategoryMapping` (
-  `productCategoryMappingId` INT NOT NULL ,
+  `productCategoryMappingId` INT NOT NULL AUTO_INCREMENT ,
   `productId` INT NOT NULL ,
   `categoryId` INT NOT NULL ,
   PRIMARY KEY (`productCategoryMappingId`) ,
@@ -374,19 +375,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `eBay`.`productSpecs` ;
 
-CREATE  TABLE IF NOT EXISTS `eBay`.`productSpecs` (
-  `productSpecsId` INT NOT NULL ,
-  `entity` VARCHAR(100) NULL ,
-  `value` VARCHAR(500) NULL ,
-  `type` VARCHAR(30) NULL ,
-  `productId(FK)` INT NULL ,
-  PRIMARY KEY (`productSpecsId`) ,
-  INDEX `fk_productSpecs_1` (`productId(FK)` ASC) ,
-  CONSTRAINT `fk_productSpecs_1`
-    FOREIGN KEY (`productId(FK)` )
-    REFERENCES `eBay`.`product` (`productId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+CREATE TABLE `productspecs` (
+	`productSpecsId` INT(11) NOT NULL AUTO_INCREMENT,
+	`entity` VARCHAR(100) NULL DEFAULT NULL,
+	`value` VARCHAR(500) NULL DEFAULT NULL,
+	`type` VARCHAR(30) NULL DEFAULT NULL,
+	`productId` INT(11) NULL DEFAULT NULL,
+	PRIMARY KEY (`productSpecsId`)
 ENGINE = InnoDB;
 
 
