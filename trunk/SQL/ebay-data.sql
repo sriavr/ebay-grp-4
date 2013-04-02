@@ -4,7 +4,7 @@
 -- VERSION 1.2 last edited by Surya, added data for state, country, user table
 -- VERSION 1.3 last edited by Pratibind, added data for Admin, userfeedback
 -- --------------------------------
-
+DELETE FROM category;
 INSERT INTO `category` (`categoryId`, `categoryName`, `parentCategoryId`) VALUES
 	(1, 'Mobiles1', 0),
 	(2, 'Accessories', 0),
@@ -21,6 +21,7 @@ INSERT INTO `category` (`categoryId`, `categoryName`, `parentCategoryId`) VALUES
 	(13, 'Home and Kitchen', 0),
 	(14, 'Fiction Books', 9);
 
+DELETE FROM seller;
 insert into seller (sellerId, sellerPassword, sellerName, dateOfRegistration, location) values 
     (100,'seller1', 'seller1', curdate(),'hyderabad'),
     (101,'seller2', 'seller2', curdate(),'patna'),
@@ -32,6 +33,7 @@ insert into seller (sellerId, sellerPassword, sellerName, dateOfRegistration, lo
     (107,'seller8', 'seller8', curdate(),'nellore'),
     (108,'seller9', 'seller9', curdate(),'mysore') ;
 
+DELETE FROM product;
 insert into product (productId, sellerId, title, description, price, photo) values
     (200, 100, 'A1 shaving cream', 'Shaving cream that can give you an excellent shave', 75, '/images/default-pic.jpg'),
     (201, 100, 'Bhagavad Gita as it is', 'A classic book wirtten by Prabhupada',150, '/images/default-pic.jpg'),
@@ -45,15 +47,18 @@ insert into product (productId, sellerId, title, description, price, photo) valu
     (209, 104, 'Teach yourself UNIX book', 'A hand book written by Ruth Amely', 50, '/images/default-pic.jpg'),
     (210, 107, 'Beautiful portrait', 'A beautiful scenario that can be used as a wall hanging.', 5000, '/images/scenary1.jpg');
 
+DELETE FROM country;
  insert into country (countryId, country) values   (51, 'India'),  (52, 'America');
- 
+
+DELETE FROM state;
  insert into state (stateId, countryId, state) values (20, 51, 'Andhra Pradesh'), (21, 51, 'Weest Bengal'),    (22, 51, 'Bihar'), (23, 51, 'Maharashtra'), (24, 51, 'Tamil Nadu'), (25, 51, 'Karnataka');
 
+DELETE FROM secretquestion;
 insert into secretquestion values (30, 'What is your mothers maiden name?'), (31, 'What is your favorite sport?'),  (32, 'What is your pet name?');
 
 
 
-
+DELETE FROM user;
  insert into user (`userId`,`firstName`,`lastName`,`homeAddress`,`city`,`countryId`,`stateId`,`pinCode`,`telephoneNo`,`email`,`password`,`secretQId`,`secretAnswer`,`dob`) values 
 
 (10, 'Sridhar', 'Jammalamadaka', '1-23-23', 'hyderabad', 51, 20, 500020,'9924255323', 'sridhar.j@iiitb.org', 'sridhar123', 31, 'badminton', '1947-08-15'),
@@ -70,12 +75,13 @@ insert into secretquestion values (30, 'What is your mothers maiden name?'), (31
 
 (16, 'Ranadheer', 'Kakkireni', '22-456', 'Kodad', 51, 20, 567920,'9845665323', 'randheer.kakkireni@iiitb.org', 'randheer123', 31, 'cricket', '1989-04-15');
 
-
+DELETE FROM admin;
 INSERT INTO `admin` (`adminID`,`adminUserName`,`adminPassword`,`adminFirstName`,`adminLastName`) VALUES
  (1,'john', '123','john','raulson'),
  (2, 'smith','123','smith','fedrick'),
  (3, 'paul', '123', 'paul', 'malson');
- 
+
+DELETE FROM userfeedback;
  INSERT INTO `userfeedback` (`userFeedBackId`,`userId`,`sellerId`,`rate`,`rating1`,`rating2`,`rating3`,`productId`,`description`) VALUES 
 	(1,10,100,'positive',6,7,5,200,' shaving Cream'),
 	(2,11,101,'positive',9,10,8,200,' shaving Cream very good'),
