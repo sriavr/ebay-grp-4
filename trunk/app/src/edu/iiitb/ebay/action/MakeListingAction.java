@@ -118,7 +118,7 @@ public class MakeListingAction extends ActionSupport {
 		Map<String, Object> sessionMap = ActionContext.getContext()
 		.getSession();
 		
-		if(sessionMap.get("user")==null)
+		if(sessionMap.get("seller")==null)
           return "initial";		
 		subcategoryList = new ArrayList<CategoryModel>();
 		subsubcategoryList = new ArrayList<CategoryModel>();
