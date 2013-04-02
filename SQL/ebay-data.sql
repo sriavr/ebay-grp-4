@@ -2,6 +2,7 @@
 -- VERSION 1.1 last edited by Debargha, added data for category table
 -- VERSION 1.1 last edited by Sridhar, added data for seller, product table
 -- VERSION 1.2 last edited by Surya, added data for state, country, user table
+-- VERSION 1.3 last edited by Pratibind, added data for Admin, userfeedback
 -- --------------------------------
 
 INSERT INTO `category` (`categoryId`, `categoryName`, `parentCategoryId`) VALUES
