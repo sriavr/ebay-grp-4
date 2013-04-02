@@ -29,9 +29,16 @@
 			<result name="success" type="redirectAction">manageCategory</result>
 			<result name="error" type="tiles">error.jsp</result>
 		</action>
+		
+		<action name="createSeller" class="edu.iiitb.ebay.action.CreateSellerAction">
+		 <result name="initial" type="tiles">login.jsp</result>
+			<result name="success" type="redirectAction">makeListing</result>
+			<result name="register" type="tiles">createSeller.jsp</result>
+			<result name="failure" type="tiles">error.jsp</result>
+		</action>
 
 		<action name="makeListing" class="edu.iiitb.ebay.action.MakeListingAction">
-		    <result name="initial" type="tiles">login.jsp</result>
+		    <result name="initial" type="redirectAction">createSeller</result>
 			<result name="success" type="tiles">makeListing.jsp</result>
 			<result name="continue" type="redirectAction">
 				<param name="actionName">createListing</param>
@@ -52,7 +59,7 @@
 		<action name="login" class="edu.iiitb.ebay.action.LoginAction">
 			<result name="initial" type="tiles">login.jsp</result>
 			<result name="success" type="redirectAction">browse</result>
-			<result name="failure" type="tiles">error.jsp</result>
+			<result name="failure" type="tiles">login.jsp</result>
 		</action>
 		
 		<action name="logout" class="edu.iiitb.ebay.action.LogoutAction">
