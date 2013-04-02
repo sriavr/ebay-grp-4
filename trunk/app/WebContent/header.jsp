@@ -53,11 +53,11 @@
 					<li class="divider"></li>
 					<li><a href="#">My Paisa Pay</a></li>
 					<li class="divider"></li>
-					<li class="has-dropdown"><a href="makeListing.action">Sell</a>
+					<li class="has-dropdown"><a href="createSeller.action">Sell</a>
 
 						<ul class="dropdown">
 							<li><a href="#">How to Sell</a>
-							<li><a href="makeListing.action">Seller Central</a>
+							<li><a href="createSeller.action">Seller Central</a>
 							<li><a href="#">Seller Tools</a>
 						</ul></li>
 					<li class="divider"></li>
