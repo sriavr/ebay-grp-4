@@ -1,80 +1,459 @@
--- --------------------------------
--- VERSION 1.1 last edited by Debargha, added data for category table
--- VERSION 1.1 last edited by Sridhar, added data for seller, product table
--- VERSION 1.2 last edited by Surya, added data for state, country, user table
--- VERSION 1.3 last edited by Pratibind, added data for Admin, userfeedback
--- --------------------------------
-delete from category;
-INSERT INTO `category` (`categoryId`, `categoryName`, `parentCategoryId`) VALUES
-	(1, 'Mobiles1', 0),
-	(2, 'Accessories', 0),
-	(3, 'Computers', 0),
-	(4, 'Laptops', 3),
-	(5, 'PDA', 3),
-	(6, 'Audio Accessories', 2),
-	(7, 'Clothing', 2),
-	(8, 'Footwears', 2),
-	(9, 'Books and Magazines', 0),
-	(10, 'Movies and Music', 0),
-	(11, 'Sports Equipments', 0),
-	(12, 'Novels', 9),
-	(13, 'Home and Kitchen', 0),
-	(14, 'Fiction Books', 9);
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
+
+DROP SCHEMA IF EXISTS `eBay` ;
+CREATE SCHEMA IF NOT EXISTS `eBay` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
+USE `eBay` ;
+
+-- -----------------------------------------------------
+-- Table `eBay`.`user`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `eBay`.`user` ;
+
+CREATE  TABLE IF NOT EXISTS `eBay`.`user` (
+  `userId` INT NOT NULL AUTO_INCREMENT ,
+  `firstName` VARCHAR(30) NOT NULL ,
+  `lastName` VARCHAR(30) NOT NULL ,
+  `homeAddress` VARCHAR(300) NULL ,
+  `city` VARCHAR(30) NULL ,
+  `state` VARCHAR(30) NOT NULL ,
+  `pinCode` INT NOT NULL ,
+  `telephoneNo` VARCHAR(12) NULL ,
+  `email` VARCHAR(50) NOT NULL ,
+  `password` VARCHAR(20) NOT NULL ,
+  `secretQId` INT NULL ,
+  `secretAnswer` VARCHAR(100) NULL ,
+  `dob` DATE NOT NULL ,
+  PRIMARY KEY (`userId`) )
+ENGINE = InnoDB;
 
 
-delete from product;
-insert into product (productId, sellerId, title, description, price, photo) values
-    (200, 100, 'A1 shaving cream', 'Shaving cream that can give you an excellent shave', 75, '/images/default-pic.jpg'),
-    (201, 100, 'Bhagavad Gita as it is', 'A classic book wirtten by Prabhupada',150, '/images/default-pic.jpg'),
-    (202, 100, 'Park Avenue deoderant', 'A deoderant that keeps you fresh all the day', 200, '/images/default-pic.jpg'),
-    (203, 101, 'Dell a5001 laptop', 'High performance laptop for enterprise users', 35000, '/images/default-pic.jpg'),
-    (204, 102, 'Sanskrit shlokas CD', 'A devotional MP3 collection of 80 songs', 100, '/images/default-pic.jpg'),
-    (205, 103, 'Soyvita health Drink', 'A health drink for inteolerants, pregnant women, lactating mothers and aged people', 130, '/images/default-pic.jpg'),
-    (206, 104, 'Raagini electronic tanpura', 'An electronic machine for Shruthi. Used by classicial musicians and learners', 5000, '/images/default-pic.jpg'),
-    (207, 105, 'UNIX concepts and applications book', 'A best seller book written by Sumitabha Das', 400, '/images/default-pic.jpg'),
-    (208, 106, 'Haldirams Plain Khakhara', 'Plain Khakhara made out of wheat and ready to eat. Perfect for breakfast and snacks.', 300, '/images/default-pic.jpg'),
-    (209, 104, 'Teach yourself UNIX book', 'A hand book written by Ruth Amely', 50, '/images/default-pic.jpg'),
-    (210, 107, 'Beautiful portrait', 'A beautiful scenario that can be used as a wall hanging.', 5000, '/images/scenary1.jpg');
+-- -----------------------------------------------------
+-- Table `eBay`.`secretQuestion`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `eBay`.`secretQuestion` ;
+
+CREATE  TABLE IF NOT EXISTS `eBay`.`secretQuestion` (
+  `secretQId` INT NOT NULL AUTO_INCREMENT ,
+  `ques` VARCHAR(100) NULL ,
+  PRIMARY KEY (`secretQId`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `eBay`.`seller`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `eBay`.`seller` ;
+
+CREATE  TABLE IF NOT EXISTS `eBay`.`seller` (
+  `sellerId` INT NOT NULL AUTO_INCREMENT ,
+  `dateOfRegistration` DATE NULL ,
+  `location` VARCHAR(30) NULL ,
+  `feedbackScore` INT NULL ,
+  `positiveFeedbackPercentage` INT NULL ,
+  `userId` INT NOT NULL ,
+  `sla` INT NULL ,
+  PRIMARY KEY (`sellerId`) ,
+  UNIQUE INDEX `userId_UNIQUE` (`userId` ASC) ,
+  UNIQUE INDEX `sellerId_UNIQUE` (`sellerId` ASC) ,
+  INDEX `fk_seller_2` (`userId` ASC) ,
+  CONSTRAINT `fk_seller_2`
+    FOREIGN KEY (`userId` )
+    REFERENCES `eBay`.`user` (`userId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `eBay`.`product`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `eBay`.`product` ;
+
+CREATE  TABLE IF NOT EXISTS `eBay`.`product` (
+  `productId` INT NOT NULL ,
+  `sellerId` INT NOT NULL ,
+  `description` VARCHAR(600) NULL ,
+  `title` VARCHAR(200) NULL ,
+  `price` FLOAT NULL ,
+  `quantity` INT NULL ,
+  `photo` VARCHAR(200) NULL ,
+  `discount` INT NULL ,
+  PRIMARY KEY (`productId`) ,
+  INDEX `fk_product_1` (`sellerId` ASC) ,
+  CONSTRAINT `fk_product_1`
+    FOREIGN KEY (`sellerId` )
+    REFERENCES `eBay`.`seller` (`sellerId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `eBay`.`userFeedBack`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `eBay`.`userFeedBack` ;
+
+CREATE  TABLE IF NOT EXISTS `eBay`.`userFeedBack` (
+  `userFeedBackId` INT NOT NULL AUTO_INCREMENT ,
+  `userId` INT NOT NULL ,
+  `sellerId` INT NOT NULL ,
+  `rate` VARCHAR(20) NULL ,
+  `rating1` INT NULL ,
+  `rating2` INT NULL ,
+  `rating3` INT NULL ,
+  `productId` INT NOT NULL ,
+  `description` VARCHAR(200) NULL ,
+  PRIMARY KEY (`userFeedBackId`) ,
+  INDEX `fk_userFeedBack_1` (`userId` ASC) ,
+  INDEX `fk_userFeedBack_2` (`productId` ASC) ,
+  INDEX `fk_userFeedBack_3` (`sellerId` ASC) ,
+  CONSTRAINT `fk_userFeedBack_1`
+    FOREIGN KEY (`userId` )
+    REFERENCES `eBay`.`user` (`userId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_userFeedBack_2`
+    FOREIGN KEY (`productId` )
+    REFERENCES `eBay`.`product` (`productId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_userFeedBack_3`
+    FOREIGN KEY (`sellerId` )
+    REFERENCES `eBay`.`seller` (`sellerId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `eBay`.`userWishList`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `eBay`.`userWishList` ;
+
+CREATE  TABLE IF NOT EXISTS `eBay`.`userWishList` (
+  `userWishListId` INT NOT NULL AUTO_INCREMENT ,
+  `userId` INT NOT NULL ,
+  `productId` INT NOT NULL ,
+  PRIMARY KEY (`userWishListId`) ,
+  INDEX `fk_userWishList_1` (`userId` ASC) ,
+  INDEX `fk_userWishList_2` (`productId` ASC) ,
+  CONSTRAINT `fk_userWishList_1`
+    FOREIGN KEY (`userId` )
+    REFERENCES `eBay`.`user` (`userId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_userWishList_2`
+    FOREIGN KEY (`productId` )
+    REFERENCES `eBay`.`product` (`productId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `eBay`.`modesofpayment`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `eBay`.`modesofpayment` ;
+
+CREATE  TABLE IF NOT EXISTS `eBay`.`modesofpayment` (
+  `modesofpaymentId` INT NOT NULL AUTO_INCREMENT ,
+  `modesofpayment` VARCHAR(30) NULL ,
+  PRIMARY KEY (`modesofpaymentId`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `eBay`.`shippingService`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `eBay`.`shippingService` ;
+
+CREATE  TABLE IF NOT EXISTS `eBay`.`shippingService` (
+  `shippingServiceId` INT NOT NULL AUTO_INCREMENT ,
+  `shippingService` VARCHAR(60) NULL ,
+  PRIMARY KEY (`shippingServiceId`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `eBay`.`returns`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `eBay`.`returns` ;
+
+CREATE  TABLE IF NOT EXISTS `eBay`.`returns` (
+  `returnsId` INT NOT NULL AUTO_INCREMENT ,
+  `refund` VARCHAR(30) NULL ,
+  `returnscol` VARCHAR(30) NULL ,
+  `warrantyType` VARCHAR(30) NULL ,
+  `warrantyDuration` INT NULL ,
+  `returnPolicy` VARCHAR(300) NULL ,
+  PRIMARY KEY (`returnsId`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `eBay`.`auction`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `eBay`.`auction` ;
+
+CREATE  TABLE IF NOT EXISTS `eBay`.`auction` (
+  `auctionId` INT NOT NULL ,
+  `productId` INT NOT NULL ,
+  `auctionType` VARCHAR(45) NULL ,
+  `startingPrice` INT NULL ,
+  `buyItNowPrice` INT NULL ,
+  `duration` INT NULL ,
+  `scheduledStartState` DATE NULL ,
+  `modeofpaymentId` INT NOT NULL ,
+  `shippingServiceId` INT NOT NULL ,
+  `shippingserviceCost` INT NULL ,
+  `handlingTime` INT NULL ,
+  `returnsId` INT NOT NULL ,
+  `paymentDescription` VARCHAR(300) NULL ,
+  PRIMARY KEY (`auctionId`) ,
+  INDEX `fk_auction_1` (`productId` ASC) ,
+  INDEX `fk_auction_2` (`modeofpaymentId` ASC) ,
+  INDEX `fk_auction_3` (`shippingServiceId` ASC) ,
+  INDEX `fk_auction_4` (`returnsId` ASC) ,
+  CONSTRAINT `fk_auction_1`
+    FOREIGN KEY (`productId` )
+    REFERENCES `eBay`.`product` (`productId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_auction_2`
+    FOREIGN KEY (`modeofpaymentId` )
+    REFERENCES `eBay`.`modesofpayment` (`modesofpaymentId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_auction_3`
+    FOREIGN KEY (`shippingServiceId` )
+    REFERENCES `eBay`.`shippingService` (`shippingServiceId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_auction_4`
+    FOREIGN KEY (`returnsId` )
+    REFERENCES `eBay`.`returns` (`returnsId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `eBay`.`order`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `eBay`.`order` ;
+
+CREATE  TABLE IF NOT EXISTS `eBay`.`order` (
+  `orderId` INT NOT NULL AUTO_INCREMENT ,
+  `userId` INT NOT NULL ,
+  `sellerId` INT NOT NULL ,
+  `productId` INT NOT NULL ,
+  `transactionId` INT NOT NULL ,
+  `currentStatus` VARCHAR(30) NULL ,
+  `orderPlacedDate` DATETIME NULL ,
+  `statusUpdatedDate` DATETIME NULL ,
+  `shipped` DATETIME NULL ,
+  PRIMARY KEY (`orderId`) ,
+  INDEX `fk_order_1` (`userId` ASC) ,
+  INDEX `fk_order_2` (`sellerId` ASC) ,
+  INDEX `fk_order_3` (`productId` ASC) ,
+  CONSTRAINT `fk_order_1`
+    FOREIGN KEY (`userId` )
+    REFERENCES `eBay`.`user` (`userId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_order_2`
+    FOREIGN KEY (`sellerId` )
+    REFERENCES `eBay`.`seller` (`sellerId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_order_3`
+    FOREIGN KEY (`productId` )
+    REFERENCES `eBay`.`product` (`productId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `eBay`.`category`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `eBay`.`category` ;
+
+CREATE  TABLE IF NOT EXISTS `eBay`.`category` (
+  `categoryId` INT NOT NULL AUTO_INCREMENT ,
+  `categoryName` VARCHAR(30) NOT NULL ,
+  `parentCategoryId` INT NOT NULL ,
+  PRIMARY KEY (`categoryId`) 
+  
+    )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `eBay`.`productCategoryMapping`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `eBay`.`productCategoryMapping` ;
+
+CREATE  TABLE IF NOT EXISTS `eBay`.`productCategoryMapping` (
+  `productCategoryMappingId` INT NOT NULL AUTO_INCREMENT ,
+  `productId` INT NOT NULL ,
+  `categoryId` INT NOT NULL ,
+  PRIMARY KEY (`productCategoryMappingId`) ,
+  INDEX `fk_productCategoryMapping_1` (`categoryId` ASC) ,
+  INDEX `fk_productCategoryMapping_2` (`productId` ASC) ,
+  CONSTRAINT `fk_productCategoryMapping_1`
+    FOREIGN KEY (`categoryId` )
+    REFERENCES `eBay`.`category` (`categoryId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_productCategoryMapping_2`
+    FOREIGN KEY (`productId` )
+    REFERENCES `eBay`.`product` (`productId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `eBay`.`productSpecs`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `eBay`.`productSpecs` ;
+
+CREATE  TABLE IF NOT EXISTS `eBay`.`productSpecs` (
+  `productSpecsId` INT NOT NULL AUTO_INCREMENT ,
+  `entity` VARCHAR(100) NULL ,
+  `value` VARCHAR(500) NULL ,
+  `type` VARCHAR(30) NULL ,
+  `productId` INT NOT NULL ,
+  PRIMARY KEY (`productSpecsId`) ,
+  INDEX `fk_productSpecs_1` (`productId` ASC) ,
+  CONSTRAINT `fk_productSpecs_1`
+    FOREIGN KEY (`productId` )
+    REFERENCES `eBay`.`product` (`productId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `eBay`.`deals`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `eBay`.`deals` ;
+
+CREATE  TABLE IF NOT EXISTS `eBay`.`deals` (
+  `dealsId` INT NOT NULL AUTO_INCREMENT ,
+  `productId` INT NOT NULL ,
+  `productDiscountPercent` INT NULL ,
+  `dealStartDate` DATE NULL ,
+  `dealEndDate` DATE NULL ,
+  `dealSellingPrice` INT NOT NULL ,
+  PRIMARY KEY (`dealsId`) ,
+  INDEX `fk_deals_1` (`productId` ASC) ,
+  UNIQUE INDEX `productId_UNIQUE` (`productId` ASC) ,
+  CONSTRAINT `fk_deals_1`
+    FOREIGN KEY (`productId` )
+    REFERENCES `eBay`.`product` (`productId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `eBay`.`productSellerMapping`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `eBay`.`productSellerMapping` ;
+
+CREATE  TABLE IF NOT EXISTS `eBay`.`productSellerMapping` (
+  `productSellerMappingId` INT NOT NULL AUTO_INCREMENT ,
+  `productId` INT NOT NULL ,
+  `sellerId` INT NOT NULL ,
+  PRIMARY KEY (`productSellerMappingId`) ,
+  INDEX `fk_productSellerMapping_1` (`productId` ASC) ,
+  INDEX `fk_productSellerMapping_2` (`sellerId` ASC) ,
+  CONSTRAINT `fk_productSellerMapping_1`
+    FOREIGN KEY (`productId` )
+    REFERENCES `eBay`.`product` (`productId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_productSellerMapping_2`
+    FOREIGN KEY (`sellerId` )
+    REFERENCES `eBay`.`seller` (`sellerId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `eBay`.`admin`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `eBay`.`admin` ;
+
+CREATE  TABLE IF NOT EXISTS `eBay`.`admin` (
+  `adminId` INT NOT NULL AUTO_INCREMENT ,
+  `adminUserName` VARCHAR(30) NOT NULL ,
+  `adminPassword` VARCHAR(30) NULL ,
+  `adminFirstName` VARCHAR(30) NULL ,
+  `adminLastName` VARCHAR(30) NULL ,
+  PRIMARY KEY (`adminId`) ,
+  UNIQUE INDEX `adminId_UNIQUE` (`adminId` ASC) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `eBay`.`cart`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `eBay`.`cart` ;
+
+CREATE  TABLE IF NOT EXISTS `eBay`.`cart` (
+  `cartId` INT NOT NULL AUTO_INCREMENT ,
+  `userId` INT NOT NULL ,
+  `productId` INT NOT NULL ,
+  `quantity` INT NULL ,
+  `type` VARCHAR(1) NULL ,
+  PRIMARY KEY (`cartId`) ,
+  INDEX `fk_cart_1` (`userId` ASC) ,
+  INDEX `fk_cart_2` (`productId` ASC) ,
+  CONSTRAINT `fk_cart_1`
+    FOREIGN KEY (`userId` )
+    REFERENCES `eBay`.`user` (`userId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cart_2`
+    FOREIGN KEY (`productId` )
+    REFERENCES `eBay`.`product` (`productId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `eBay`.`bank`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `eBay`.`bank` ;
+
+CREATE  TABLE IF NOT EXISTS `eBay`.`bank` (
+  `bankId` INT NOT NULL AUTO_INCREMENT ,
+  `userId` INT NOT NULL ,
+  `accountNum` VARCHAR(45) NULL ,
+  `atmNum` VARCHAR(45) NULL ,
+  `pinNum` INT NULL ,
+  `password` VARCHAR(45) NULL ,
+  `balance` INT NULL ,
+  PRIMARY KEY (`bankId`) ,
+  UNIQUE INDEX `userId_UNIQUE` (`userId` ASC) ,
+  UNIQUE INDEX `accountNum_UNIQUE` (`accountNum` ASC) ,
+  INDEX `fk_bank_1` (`userId` ASC) ,
+  CONSTRAINT `fk_bank_1`
+    FOREIGN KEY (`userId` )
+    REFERENCES `eBay`.`user` (`userId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
 
-delete from secretquestion;
-insert into secretquestion values (30, 'What is your mothers maiden name?'), (31, 'What is your favorite sport?'),  (32, 'What is your pet name?');
-
-
-delete from user;
-
- insert into user (`userId`,`firstName`,`lastName`,`homeAddress`,`city`,`countryId`,`stateId`,`pinCode`,`telephoneNo`,`email`,`password`,`secretQId`,`secretAnswer`,`dob`) values 
-
-(10, 'Sridhar', 'Jammalamadaka', '1-23-23', 'hyderabad', 51, 20, 500020,'9924255323', 'sridhar.j@iiitb.org', 'sridhar123', 31, 'badminton', '1947-08-15'),
-
-(11, 'Vamsi', 'Srungarapu', '19-234', 'jaggayapet', 51, 20, 500100,'8050897666', 'vamsikrishna.srungarapu@iiitb.org', 'vamsi123', 32, 'puppy', '1982-07-15'),
-
-(12, 'Surya', 'Desai', '15-354', 'anantapur', 51, 20, 515001,'7259981049', 'suryapratap.desai@iiitb.org', 'surya123', 31, 'football', '1990-08-15'),
-
-(13, 'Pavan', 'Kumar', '16-234', 'vijayawada', 51, 20, 502367,'9925678923', 'pavan.kumar@iiitb.org', 'pavan123', 32, 'mintu', '1988-04-12'),
-
-(14, 'Ganguly', 'Dada', '1-34', 'kolkata', 51, 21, 505620,'9925465383', 'debargha.ganguly@iiitb.org', 'ganguly123', 31, 'tabletennis', '1967-05-25'),
-
-(15, 'Pratibind', 'Jha', '1-5-23', 'Jharkhand', 51, 22, 567020,'8956255323', 'pratibind.jha@iiitb.org', 'pratibind123', 32, 'chotu', '1989-02-13'),
-
-(16, 'Ranadheer', 'Kakkireni', '22-456', 'Kodad', 51, 20, 567920,'9845665323', 'randheer.kakkireni@iiitb.org', 'randheer123', 31, 'cricket', '1989-04-15');
-
-delete from admin;
-INSERT INTO `admin` (`adminID`,`adminUserName`,`adminPassword`,`adminFirstName`,`adminLastName`) VALUES
- (1,'john', '123','john','raulson'),
- (2, 'smith','123','smith','fedrick'),
- (3, 'paul', '123', 'paul', 'malson');
- delete from userfeedback;
- INSERT INTO `userfeedback` (`userFeedBackId`,`userId`,`sellerId`,`rate`,`rating1`,`rating2`,`rating3`,`productId`,`description`) VALUES 
-	(1,10,100,'positive',6,7,5,200,' shaving Cream'),
-	(2,11,101,'positive',9,10,8,200,' shaving Cream very good'),
-	(3,11,104,'netural',9,10,6,200,' shaving Cream very good'),
-	(4,11,101,'negative',4,3,8,200,' shaving Cream very good'),
-	(5,11,102,'positive',9,7,3,200,' shaving Cream very good'),
-	(6,11,101,'positive',9,10,8,201,' ice product'),
-	(7,11,101,'netural',9,10,8,201,' ice product'),
-	(8,11,102,'positive',9,10,8,201,' ice product'),
-	(9,11,101,'negative',9,10,8,201,' ice product'),
-	(10,11,105,'positive',9,10,8,202,' ice product');
-
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
