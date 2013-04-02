@@ -67,7 +67,7 @@ public class MakeListingDAO extends BaseDAO {
 		
 		try
 		{
-		String updateQuery = "insert into product(productId,sellerId,description,title,price,quantity,photo,discount) values("+pm.getProductId()+",1,'"+pm.getDescription()+"','"+pm.getTitle()+"',"+pm.getPrice()+","+pm.getQuantity()+",'"+pm.getPhoto()+"',"+pm.getDiscount()+")";
+		String updateQuery = "insert into product(productId,sellerId,description,title,price,quantity,photo,discount) values("+pm.getProductId()+","+pm.getSellerId()+",'"+pm.getDescription()+"','"+pm.getTitle()+"',"+pm.getPrice()+","+pm.getQuantity()+",'"+pm.getPhoto()+"',"+pm.getDiscount()+")";
 		System.out.println(updateQuery);
 		update(updateQuery);
 		
