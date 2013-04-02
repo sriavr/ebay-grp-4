@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,6 +20,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import edu.iiitb.ebay.dao.MakeListingDAO;
 import edu.iiitb.ebay.model.entity.ProductModel;
 import edu.iiitb.ebay.model.entity.ProductSpecModel;
+import edu.iiitb.ebay.model.entity.SellerModel;
 
 public class CreateListingAction extends ActionSupport implements
 		ServletRequestAware {
@@ -214,7 +216,13 @@ public class CreateListingAction extends ActionSupport implements
 	public String execute() {
 		System.out.println("property name:" + propertyName);
 		System.out.println("category id:" + selectedCategoryId);
-
+		Map<String, Object> sessionMap = ActionContext.getContext()
+		.getSession();
+		
+		if(sessionMap.get("seller")==null)
+          return "initial";
+		
+		SellerModel sm= (SellerModel) sessionMap.get("seller");
 		if (!itemSpec.equals("")) {
 			System.out.println("here");
 			ProductSpecModel productSpecModel = new ProductSpecModel();
@@ -263,7 +271,7 @@ public class CreateListingAction extends ActionSupport implements
 				pm.setPrice(Integer.parseInt(price));
 				pm.setDescription("");
 				pm.setQuantity(Integer.parseInt(quantity));
-				pm.setSellerId(1);
+				pm.setSellerId(sm.getSellerId());
 				pm.setPhoto("/" + filename);
 				pm.setDescription(description);
 				if (!discount.equals(""))
@@ -281,6 +289,7 @@ public class CreateListingAction extends ActionSupport implements
 					catId = Integer.parseInt(selectedCategoryId);
 
 				dao.saveProduct(pm, itemspefics, catId + "");
+				addActionError("Item successfully Listed.Press ontinue to review the listings made by you");
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
