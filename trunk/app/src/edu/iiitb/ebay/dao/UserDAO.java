@@ -32,13 +32,13 @@ public class UserDAO {
 			while (DatabaseUtil.rs.next()) {
 				user = new UserModel();
 				user.setCity(DatabaseUtil.rs.getString("city"));
-				user.setCountryId(DatabaseUtil.rs.getInt("countryId"));
+				//user.setCountryId(DatabaseUtil.rs.getInt("countryId"));
 				user.setEmail(DatabaseUtil.rs.getString("email"));
 				user.setFirstName(DatabaseUtil.rs.getString("firstName"));
 				user.setLastName(DatabaseUtil.rs.getString("lastName"));
 				user.setPassword(DatabaseUtil.rs.getString("password"));
 				user.setPinCode(DatabaseUtil.rs.getLong("pinCode"));
-				user.setStateId(DatabaseUtil.rs.getInt("stateId"));
+				//user.setStateId(DatabaseUtil.rs.getInt("stateId"));
 				user.setTelephoneNo(DatabaseUtil.rs.getLong("telephoneNo"));
 				user.setUserId(DatabaseUtil.rs.getInt("userId"));
 				LogMessage
