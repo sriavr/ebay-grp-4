@@ -9,7 +9,7 @@ import java.util.Map;
 	import edu.iiitb.ebay.model.entity.UserModel;
 
 
-public class LoginAction {
+public class LoginAction extends ActionSupport {
 
 		private String userName="";
 		private String password="";
@@ -55,8 +55,8 @@ public class LoginAction {
 				UserModel user = userDao.login(userName, password);
 				
 				if (user == null) {
-					//addActionError("Wrong username/password combination");
-					return "error";
+					addActionError("Wrong username/password combination");
+					return "failure";
 				} else {
 					sessionMap.put("user", user);
 					sessionMap.put("role", "user");
