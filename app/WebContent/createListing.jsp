@@ -124,7 +124,17 @@
 
  <div class="row">
   <s:form theme="simple" action="createListing.action" enctype="multipart/form-data">
-  
+  <s:if test="hasActionErrors()">
+			<div class="panel">
+							<br />
+							<s:iterator value="actionErrors">
+								<div data-alert class="alert-box success">
+								 <a href="#" class="close">&times;</a>
+									<s:property />
+								</div>
+							</s:iterator>
+			</div>				
+						</s:if>
         <div class="panel">
 	       Sell Your Item steps >> 1.Tell us What You sell  <font size="3"><b>2.Create your Listing</b></font>  3.Review your listing
 	    </div>
@@ -182,7 +192,7 @@
               <td> <s:textfield  theme="simple" name="propertyValue"  tooltip="eg:Ty,Plastic,2007" placeholder="Enter Property Value"></s:textfield> 
             </tr>
           <tr>
-           <td><input type="submit" value="Save" name="itemSpec" class="button"/>
+           <td><input type="submit" value="Save" name="itemSpec" class="small button"/>
           </tr>
         </table>
     </div>  	
@@ -226,7 +236,7 @@
 		</div>
 		
 	<div class="panel">
-	  <input type="submit" value="Continue" name="save" class="small button"/>
+	  <input type="submit" value="Save" name="save" class="small button"/>
 	</div>	
 	</s:form>	
 </div>		
