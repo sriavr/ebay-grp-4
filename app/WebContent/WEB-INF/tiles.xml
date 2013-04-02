@@ -36,7 +36,9 @@
 	<definition name="login.jsp" extends="baselayout">
 		<put-attribute name="body" value="/login.jsp" />
 	</definition>
-	
+	<definition name="createSeller.jsp" extends="baselayout">
+		<put-attribute name="body" value="/createSeller.jsp" />
+	</definition>
 
 	<!--- End of Debargha Ganguly's code -->
 
