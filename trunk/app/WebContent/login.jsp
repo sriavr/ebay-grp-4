@@ -2,6 +2,18 @@
 <div class="row">
 	<div class="large-6 columns">
 		<s:form action="login.action" method="post">
+		
+			<s:if test="hasActionErrors()">
+			<div class="panel">
+							<br />
+							<s:iterator value="actionErrors">
+								<div data-alert class="alert-box alert">
+								 <a href="#" class="close">&times;</a>
+									<s:property />
+								</div>
+							</s:iterator>
+			</div>				
+						</s:if>
 			<div class="panel">
 
 
