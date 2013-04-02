@@ -53,7 +53,7 @@ insert into secretquestion values (30, 'What is your mothers maiden name?'), (31
 
 
 
- insert into user values 
+ insert into user (`userId`,`firstName`,`lastName`,`homeAddress`,`city`,`countryId`,`stateId`,`pinCode`,`telephoneNo`,`email`,`password`,`secretQId`,`secretAnswer`,`dob`) values 
 
 (10, 'Sridhar', 'Jammalamadaka', '1-23-23', 'hyderabad', 51, 20, 500020,'9924255323', 'sridhar.j@iiitb.org', 'sridhar123', 31, 'badminton', '1947-08-15'),
 
@@ -74,4 +74,16 @@ INSERT INTO `admin` (`adminID`,`adminUserName`,`adminPassword`,`adminFirstName`,
  (1,'john', '123','john','raulson'),
  (2, 'smith','123','smith','fedrick'),
  (3, 'paul', '123', 'paul', 'malson');
+ 
+ INSERT INTO `userfeedback` (`userFeedBackId`,`userId`,`sellerId`,`rate`,`rating1`,`rating2`,`rating3`,`productId`,`description`) VALUES 
+	(1,10,100,'positive',6,7,5,200,' shaving Cream'),
+	(2,11,101,'positive',9,10,8,200,' shaving Cream very good'),
+	(3,11,104,'netural',9,10,6,200,' shaving Cream very good'),
+	(4,11,101,'negative',4,3,8,200,' shaving Cream very good'),
+	(5,11,102,'positive',9,7,3,200,' shaving Cream very good'),
+	(6,11,101,'positive',9,10,8,201,' ice product'),
+	(7,11,101,'netural',9,10,8,201,' ice product'),
+	(8,11,102,'positive',9,10,8,201,' ice product'),
+	(9,11,101,'negative',9,10,8,201,' ice product'),
+	(10,11,105,'positive',9,10,8,202,' ice product');
 
