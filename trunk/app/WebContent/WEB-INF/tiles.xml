@@ -59,5 +59,10 @@
 		<put-attribute name="body" value="/register.jsp" />
 	</definition>
 	<!--- End of Ranadheer Kakkireni's code -->
-
+	
+	<!--Start of code: by Pratibind Jha  -->
+	<definition name="viewFeedback.jsp" extends="baselayout">
+		<put-attribute name="body" value="/viewFeedback.jsp"></put-attribute>
+	</definition>
+	<!--End of code: by Pratibind Jha -->
 </tiles-definitions>
