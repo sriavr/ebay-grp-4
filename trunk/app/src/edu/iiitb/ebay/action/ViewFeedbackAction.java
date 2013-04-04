@@ -17,7 +17,8 @@ public class ViewFeedbackAction extends ActionSupport {
 
 	// product id
 	private int productID;
-
+	// product title
+	private String productTitle;
 	// userfeedback details.
 	private UserFeedbackModel userFeedbackModel;
 
@@ -36,6 +37,21 @@ public class ViewFeedbackAction extends ActionSupport {
 	 */
 	public void setProductID(int productID) {
 		this.productID = productID;
+	}
+
+	/**
+	 * @return the productTitle
+	 */
+	public String getProductTitle() {
+		return productTitle;
+	}
+
+	/**
+	 * @param productTitle
+	 *            the productTitle to set
+	 */
+	public void setProductTitle(String productTitle) {
+		this.productTitle = productTitle;
 	}
 
 	/**
@@ -78,9 +94,13 @@ public class ViewFeedbackAction extends ActionSupport {
 		 * (String)session.get("role"); UserModel student =
 		 * (UserModel)session.get("user");
 		 */
-		int productID = this.getProductID();
-		productID = 200;
-		pageModel = UserFeedbackDAO.getFeedbackList(productID);
+		int productId = this.getProductID();
+		System.out.println("productID " + productId);
+		if (productId == 0) {
+			addActionMessage("productId is not valid ");
+			return "success";
+		}
+		pageModel = UserFeedbackDAO.getFeedbackList(productId);
 		if (pageModel == null)
 			addActionMessage("There is no feedback available");
 		else
