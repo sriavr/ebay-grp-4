@@ -3,6 +3,8 @@
  */
 package edu.iiitb.ebay.dao;
 
+import java.sql.ResultSet;
+
 import org.apache.log4j.Logger;
 
 import edu.iiitb.ebay.model.page.UserFeedbackModelPage;
@@ -34,18 +36,47 @@ public class UserFeedbackDAO {
 				userFeedbackModel.setRating2(DatabaseUtil.rs.getInt("c2"));
 				userFeedbackModel.setRating3(DatabaseUtil.rs.getInt("c3"));
 				userFeedbackModel.setAvgRating1(DatabaseUtil.rs
-						.getInt("criteria1"));
+						.getFloat("criteria1"));
 				userFeedbackModel.setAvgRating2(DatabaseUtil.rs
-						.getInt("criteria2"));
+						.getFloat("criteria2"));
 				userFeedbackModel.setAvgRating3(DatabaseUtil.rs
-						.getInt("criteria3"));
-
+						.getFloat("criteria3"));
+				userFeedbackModel.setTotal(DatabaseUtil.rs.getInt("count"));
 			}
 
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
 			DatabaseUtil.connectionClose();
+		}
+
+		String query1 = "SELECT COUNT(*) as positive  FROM userfeedback WHERE rate LIKE 'positive' AND productId="
+				+ productID;
+		ResultSet rst = BaseDAO.readFromDB(query1);
+		int positiveFeedback = 0;
+		try {
+			while (rst.next()) {
+				positiveFeedback = rst.getInt("positive");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			DatabaseUtil.connectionClose();
+		}
+		System.out.println("totl: " + userFeedbackModel.getTotal()
+				+ " positiveFeedback " + positiveFeedback);
+		if (userFeedbackModel.getTotal() != 0) {
+			float positiveScore = (float) (positiveFeedback * 100)
+					/ (userFeedbackModel.getTotal());
+			System.out.println("positiveScore " + positiveScore);
+
+			// calcucalte the feedbackScore
+			int feedbackscores = (int) (userFeedbackModel.getAvgRating1()
+					+ userFeedbackModel.getAvgRating2() + userFeedbackModel
+					.getAvgRating3()) / 3;
+
+			userFeedbackModel.setFeedbackScore(feedbackscores * 10);
+			userFeedbackModel.setPositiveFeedback(positiveScore);
 		}
 		return userFeedbackModel;
 
