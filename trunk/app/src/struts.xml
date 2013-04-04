@@ -90,6 +90,13 @@
 		<!--- End of Ranadheer Kakkireni's code -->
 
 
+		
+		<!--Start Code: by Prartibind Jha  -->
+		<action name="viewFeedback" class="edu.iiitb.ebay.action.ViewFeedbackAction" method="viewFeedback">
+			<result name="success" type="tiles">viewFeedback.jsp</result>
+			<result name="error" type="tiles">error.jsp</result>
+		</action>
+		<!--Start Code: by Prartibind Jha  -->
 	</package>
 
 </struts>
