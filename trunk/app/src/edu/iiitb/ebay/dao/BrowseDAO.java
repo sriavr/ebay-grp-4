@@ -9,11 +9,8 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
-import com.sun.org.apache.bcel.internal.generic.Select;
-
 import edu.iiitb.ebay.model.entity.CategoryModel;
 import edu.iiitb.ebay.model.entity.ProductModel;
-import edu.iiitb.ebay.model.page.BrowseModel;
 
 /**
  * This is DAO object for BrowseAction, purpose is to do the DB operations for
