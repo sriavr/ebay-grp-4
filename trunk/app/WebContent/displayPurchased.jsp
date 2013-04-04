@@ -1,13 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="/struts-tags" prefix="s"%>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 
-</body>
-</html>
+<hr/>
+<div class="large-3 columns">
+<h5>PHOTO</h5>
+</div>
+<div class="large-9 columns">
+<div class="row">
+<div class="large-3 columns">
+<h5>Title</h5>
+</div>
+<div class="large-3 columns">
+</div>
+<h5>Price</h5>
+<h5>Seller Name</h5>
+</div>
+</div>
+<hr/>
+<s:iterator begin="0" end="%{productId.size()-1}" var="index">
+	
+	<div class="large-3 columns">
+		<a class="th radius" data-reveal-id="myModal" href="#"> <img
+			alt="<s:property value="description" />"
+			src="<%=request.getContextPath()%><s:property value="%{products.get(#index).photo}" />">
+				</a>
+	</div>
+	
+	<div class="large-9 columns">
+		<div class="row">
+			
+				<div class="large-3 columns">
+				<s:property value="%{products.get(#index).title}"/>
+				<s:property value="%{products.get(#index).description}"/>
+				</div>
+				<div class="large-3 columns">
+				<s:property value="%{products.get(#index).price}"/>
+				<a href="#" ><s:property value="%{sellers.get(#index).sellerName}"/>
+				</a>	
+				<br>					
+				<a href="url1" >Leave Feedback</a>
+				<s:url action="leaveFeedback.action" var="url1">
+				<s:param name="productId">products.get(#index).productId</s:param>
+			</s:url>
+				</div>		
+		
+		</div>
+		
+	</div>
+	
+	<hr/>
+</s:iterator>
