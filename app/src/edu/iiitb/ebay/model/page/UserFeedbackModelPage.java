@@ -16,12 +16,13 @@ public class UserFeedbackModelPage {
 	private int productName;
 
 	private int feedbackScore;
-	private int positiveFeedback;
+	private float positiveFeedback;
+	private int total;
 
 	// rating aug. values.
-	private int avgRating1;
-	private int avgRating2;
-	private int avgRating3;
+	private float avgRating1;
+	private float avgRating2;
+	private float avgRating3;
 
 	// no. of rating
 	private int rating1;
@@ -76,7 +77,7 @@ public class UserFeedbackModelPage {
 	/**
 	 * @return the avgRating1
 	 */
-	public int getAvgRating1() {
+	public float getAvgRating1() {
 		return avgRating1;
 	}
 
@@ -84,14 +85,14 @@ public class UserFeedbackModelPage {
 	 * @param avgRating1
 	 *            the avgRating1 to set
 	 */
-	public void setAvgRating1(int avgRating1) {
+	public void setAvgRating1(float avgRating1) {
 		this.avgRating1 = avgRating1;
 	}
 
 	/**
 	 * @return the avgRating2
 	 */
-	public int getAvgRating2() {
+	public float getAvgRating2() {
 		return avgRating2;
 	}
 
@@ -99,14 +100,14 @@ public class UserFeedbackModelPage {
 	 * @param avgRating2
 	 *            the avgRating2 to set
 	 */
-	public void setAvgRating2(int avgRating2) {
+	public void setAvgRating2(float avgRating2) {
 		this.avgRating2 = avgRating2;
 	}
 
 	/**
 	 * @return the avgRating3
 	 */
-	public int getAvgRating3() {
+	public float getAvgRating3() {
 		return avgRating3;
 	}
 
@@ -114,7 +115,7 @@ public class UserFeedbackModelPage {
 	 * @param avgRating3
 	 *            the avgRating3 to set
 	 */
-	public void setAvgRating3(int avgRating3) {
+	public void setAvgRating3(float avgRating3) {
 		this.avgRating3 = avgRating3;
 	}
 
@@ -166,7 +167,7 @@ public class UserFeedbackModelPage {
 	/**
 	 * @return the positiveFeedback
 	 */
-	public int getPositiveFeedback() {
+	public float getPositiveFeedback() {
 		return positiveFeedback;
 	}
 
@@ -174,8 +175,23 @@ public class UserFeedbackModelPage {
 	 * @param positiveFeedback
 	 *            the positiveFeedback to set
 	 */
-	public void setPositiveFeedback(int positiveFeedback) {
+	public void setPositiveFeedback(float positiveFeedback) {
 		this.positiveFeedback = positiveFeedback;
+	}
+
+	/**
+	 * @return the total
+	 */
+	public int getTotal() {
+		return total;
+	}
+
+	/**
+	 * @param total
+	 *            the total to set
+	 */
+	public void setTotal(int total) {
+		this.total = total;
 	}
 
 }
