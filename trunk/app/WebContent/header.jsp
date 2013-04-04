@@ -1,11 +1,12 @@
 <%@page import="edu.iiitb.ebay.dao.BrowseDAO"%>
 <%@page import="edu.iiitb.ebay.model.entity.CategoryModel"%>
 <%@page import="java.util.ArrayList"%>
+<%@ page import="edu.iiitb.ebay.model.entity.UserModel" %>
+<%@ page import="edu.iiitb.ebay.model.entity.AdminModel" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ page import="edu.iiitb.ebay.model.entity.UserModel" %>
-<%@ page import="edu.iiitb.ebay.model.entity.AdminModel" %>
+
 <div class="row">
 	<div class="large-2 columns">
 		<a href="browse.action"><img src="images/ebay.jpg"></a>
