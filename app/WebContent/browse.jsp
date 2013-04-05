@@ -54,7 +54,7 @@
 		<s:iterator value="products">
 			<div class="row padding-4">
 
-				<div class="large-4 columns">
+				<div class="large-3 columns">
 					<s:url action="productdetails" var="urlTag">
 						<s:param name="productId" value="productId"></s:param>
 					</s:url>
@@ -66,7 +66,7 @@
 						src="<%=request.getContextPath()%><s:property value="photo" />">
 
 				</div>
-				<div class="large-8 columns">
+				<div class="large-6 columns">
 					Name: <a href="<s:property value="#urlTag"></s:property>"> <s:text
 							name="title"></s:text></a> <br> Product ID:
 					<s:property value="productId" />
