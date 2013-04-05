@@ -30,6 +30,72 @@
 	</definition>
 
 	
+	<!-- Added by Ranadheer  -->
+			
+			<!--Registration Page --> 
+			
+				<definition name="register.jsp" extends="baselayout">
+					<put-attribute name="body" value="/register.jsp" />
+				</definition>
+				
+	<!-- Added by Ranadheer  --> 
+	<!-- Added by Ranadheer  -->
+			
+			<!--Cart Page --> 
+			
+				<definition name="cart.jsp" extends="baselayout">
+					<put-attribute name="body" value="/cart.jsp" />
+				</definition>
+				
+			<!--Error Page --> 
+			
+				<definition name="error.jsp" extends="baselayout">
+					<put-attribute name="body" value="/error.jsp" />
+				</definition>
+				
+			<!--creditCardPayment Page --> 
+			
+				<definition name="creditCardPayment.jsp" extends="baselayout">
+					<put-attribute name="body" value="/creditCardPayment.jsp" />
+				</definition>
+			<!--debitCardPayment.jsp Page --> 
+			
+				<definition name="debitCardPayment.jsp" extends="baselayout">
+					<put-attribute name="body" value="/debitCardPayment.jsp" />
+				</definition>
+				
+			<!--creditCardBuyPayment Page --> 
+			
+				<definition name="creditCardBuyPayment.jsp" extends="baselayout">
+					<put-attribute name="body" value="/creditCardBuyPayment.jsp" />
+				</definition>
+			<!--debitCardBuyPayment.jsp Page --> 
+			
+				<definition name="debitCardBuyPayment.jsp" extends="baselayout">
+					<put-attribute name="body" value="/debitCardBuyPayment.jsp" />
+				</definition>	
+			<!--selectModeOfPayment.jsp Page --> 
+			
+				<definition name="selectModeOfPayment.jsp" extends="baselayout">
+					<put-attribute name="body" value="/selectModeOfPayment.jsp" />
+				</definition>
+				
+			<!--selectModeOfPayment.jsp Page --> 
+			
+				<definition name="selectModeOfPaymentBuyProduct.jsp" extends="baselayout">
+					<put-attribute name="body" value="/selectModeOfPaymentBuyProduct.jsp" />
+				</definition>	
+			<!--summary.jsp Page --> 
+			
+				<definition name="summary.jsp" extends="baselayout">
+					<put-attribute name="body" value="/summary.jsp" />
+				</definition>						
+				
+	<!-- Added by Ranadheer  --> 	
+		
+	
+
+	
 	<definition name="createListing.jsp" extends="baselayout">
 		<put-attribute name="body" value="/createListing.jsp" />
 	</definition>
