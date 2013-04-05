@@ -11,10 +11,14 @@ package edu.iiitb.ebay.util;
  * 
  */
 public class ConstantValues {
-	public static String connectionString = "jdbc:mysql://localhost:3306/studentprofile";
+	public static String connectionString = "jdbc:mysql://localhost:3306/eBay";
 	public static String databaseUser = "root";
-	public static String databasePassword = "rootroot";
+	public static String databasePassword = "123456";
 	public static String administrator = "administrator";
 	public static String student = "student";
+	public static int SUCCESS=0;
+	public static int FAILURE=1;
+	public static int INSUFFICIENT_MONEY=2;
+	public static int EbayUserID=1;
 
 }
