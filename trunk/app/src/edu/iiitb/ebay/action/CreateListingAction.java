@@ -275,9 +275,9 @@ public class CreateListingAction extends ActionSupport implements
 				pm.setPhoto("/" + filename);
 				pm.setDescription(description);
 				if (!discount.equals(""))
-					pm.setDiscount(discount);
+					pm.setDiscount(Integer.parseInt(discount));
 				else
-					pm.setDiscount("0");
+					pm.setDiscount(0);
 
 				int catId;
 
