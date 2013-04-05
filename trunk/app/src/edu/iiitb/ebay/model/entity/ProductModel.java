@@ -15,12 +15,14 @@ public class ProductModel {
 	private int price;
 	private int quantity;
 	private String photo;
-    private String discount;
-	public String getDiscount() {
+    private int discount;
+	
+
+	public int getDiscount() {
 		return discount;
 	}
 
-	public void setDiscount(String discount) {
+	public void setDiscount(int discount) {
 		this.discount = discount;
 	}
 
