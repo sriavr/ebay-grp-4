@@ -91,12 +91,74 @@
 
 
 		
+
+		<!-- Added by Vamsi Krishna Srungarapu  -->
+			<!-- Cart Page  -->
+			<action name="cartAction" class="edu.iiitb.ebay.action.CartAction">
+				<result name="success" type="tiles">cart.jsp</result>
+				<result name="failure" type="tiles">error.jsp</result>
+			</action>
+			<action name="buyProduct" class="edu.iiitb.ebay.action.BuyProductAction">
+				<result name="success" type="tiles">selectModeOfPaymentBuyProduct.jsp</result>
+				<result name="failure" type="tiles">error.jsp</result>
+			</action>
+			<action name="removeFromCartAction" class="edu.iiitb.ebay.action.CartAction" method="removeFromCart">
+				<result name="success" type="tiles">cart.jsp</result>
+				<result name="failure" type="tiles">error.jsp</result>
+			</action>
+			<action name="debitCardPay" class="edu.iiitb.ebay.action.PaymentAction" method="debitCardPay">
+				<result name="success" type="tiles">summary.jsp</result>
+				<result name="error" type="tiles">error.jsp</result>
+			</action>
+			<action name="debitCardBuyPay" class="edu.iiitb.ebay.action.PaymentAction" method="debitCardBuyPay">
+				<result name="success" type="tiles">summary.jsp</result>
+				<result name="error" type="tiles">error.jsp</result>
+			</action>
+			<action name="creditCardPay" class="edu.iiitb.ebay.action.PaymentAction" method="creditCardPay">
+				<result name="success" type="tiles">summary.jsp</result>
+				<result name="error" type="tiles">error.jsp</result>
+			</action>
+			<action name="creditCardBuyPay" class="edu.iiitb.ebay.action.PaymentAction" method="creditCardBuyPay">
+				<result name="success" type="tiles">summary.jsp</result>
+				<result name="error" type="tiles">error.jsp</result>
+			</action>
+			<!-- Forward Actions -->
+			<action name="selectModeOfPaymentForward" class="edu.iiitb.ebay.action.ForwardAction" method="selectModeOfPayment">
+				<result name="success" type="tiles">selectModeOfPayment.jsp</result>
+				<result name="failure" type="tiles">error.jsp</result>
+			</action>
+			<action name="debitCardForward" class="edu.iiitb.ebay.action.ForwardAction" method="debitCard">
+				<result name="success" type="tiles">debitCardPayment.jsp</result>
+				<result name="failure" type="tiles">error.jsp</result>
+			</action>
+			<action name="creditCardForward" class="edu.iiitb.ebay.action.ForwardAction" method="creditCard">
+				<result name="success" type="tiles">creditCardPayment.jsp</result>
+				<result name="failure" type="tiles">error.jsp</result>
+			</action>
+			<action name="cashOnDeliveryForward" class="edu.iiitb.ebay.action.ForwardAction" method="cashOnDelivery">
+				<result name="success" type="tiles">cashOnDeliveryPayment.jsp</result>
+				<result name="failure" type="tiles">error.jsp</result>
+			</action>
+			<action name="debitCardBuyForward" class="edu.iiitb.ebay.action.ForwardAction" method="debitCardBuy">
+				<result name="success" type="tiles">debitCardBuyPayment.jsp</result>
+				<result name="failure" type="tiles">error.jsp</result>
+			</action>
+			<action name="creditCardBuyForward" class="edu.iiitb.ebay.action.ForwardAction" method="creditCardBuy">
+				<result name="success" type="tiles">creditCardBuyPayment.jsp</result>
+				<result name="failure" type="tiles">error.jsp</result>
+			</action>
+			<action name="cashOnDeliveryBuyForward" class="edu.iiitb.ebay.action.ForwardAction" method="cashOnDeliveryBuy">
+				<result name="success" type="tiles">cashOnDeliveryBuyPayment.jsp</result>
+				<result name="failure" type="tiles">error.jsp</result>
+			</action>
+
 		<!--Start Code: by Prartibind Jha  -->
 		<action name="viewFeedback" class="edu.iiitb.ebay.action.ViewFeedbackAction" method="viewFeedback">
 			<result name="success" type="tiles">viewFeedback.jsp</result>
 			<result name="error" type="tiles">error.jsp</result>
 		</action>
 		<!--Start Code: by Prartibind Jha  -->
+
 	</package>
 
 </struts>
