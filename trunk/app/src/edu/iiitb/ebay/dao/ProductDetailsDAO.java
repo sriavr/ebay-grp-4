@@ -35,6 +35,7 @@ public class ProductDetailsDAO extends BaseDAO {
 				else
 					product.setPhoto(photoUrl);
 				product.setPrice(rs.getInt("price"));
+				product.setDiscount(rs.getInt("discount"));
 				logger.info("found a product");
 			} else {
 				logger.warn("no product with matching productId found");
