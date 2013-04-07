@@ -20,5 +20,6 @@ public class ConstantValues {
 	public static int FAILURE=1;
 	public static int INSUFFICIENT_MONEY=2;
 	public static int EbayUserID=1;
+	public static int productLimitForOutOfStock=3;
 
 }
