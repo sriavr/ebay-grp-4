@@ -8,6 +8,7 @@
 </head>
 <body>
 	<label>Choose Mode of Payment</label>
+	<div class="row">
 	<div class="modeOfPayment">
 		<a href="debitCardForward.action">Debit Card</a>
 	</div><br>
@@ -16,6 +17,7 @@
 	</div><br>
 	<div class="modeOfPayment">
 		<a href="cashOnDeliveryForward.action">Cash on Delivery</a>
+	</div>
 	</div>
 </body>
 </html>
