@@ -108,8 +108,8 @@ public class PaymentAction extends ActionSupport{
 
 	public String debitCardPay(){
 		PaymentDAO paymentDAO = new PaymentDAO();
-		//int userId = ((UserModel)ActionContext.getContext().getSession().get("user")).getUserId();
-		int userId =2;
+		int userId = ((UserModel)ActionContext.getContext().getSession().get("user")).getUserId();
+		//int userId =2;
 		boolean isValidated = paymentDAO.validateDebitCard(userId,atmNumber,pinNumber);
 		if(!isValidated)
 			return Action.ERROR;
@@ -146,8 +146,8 @@ public class PaymentAction extends ActionSupport{
 	
 	public String creditCardPay(){
 		PaymentDAO paymentDAO = new PaymentDAO();
-		//int userId = ((UserModel)ActionContext.getContext().getSession().get("user")).getUserId();
-		int userId =2;
+		int userId = ((UserModel)ActionContext.getContext().getSession().get("user")).getUserId();
+		//int userId =2;
 		boolean isValidated = paymentDAO.validateCreditCard(userId,accountNumber,password);
 		if(!isValidated)
 			return Action.ERROR;
@@ -183,8 +183,8 @@ public class PaymentAction extends ActionSupport{
 	}
 	public String debitCardBuyPay(){
 		PaymentDAO paymentDAO = new PaymentDAO();
-		//int userId = ((UserModel)ActionContext.getContext().getSession().get("user")).getUserId();
-		int userId =2;
+		int userId = ((UserModel)ActionContext.getContext().getSession().get("user")).getUserId();
+		//int userId =2;
 		boolean isValidated = paymentDAO.validateDebitCard(userId,atmNumber,pinNumber);
 		if(!isValidated)
 			return Action.ERROR;
@@ -220,8 +220,8 @@ public class PaymentAction extends ActionSupport{
 	
 	public String creditCardBuyPay(){
 		PaymentDAO paymentDAO = new PaymentDAO();
-		//int userId = ((UserModel)ActionContext.getContext().getSession().get("user")).getUserId();
-		int userId =2;
+		int userId = ((UserModel)ActionContext.getContext().getSession().get("user")).getUserId();
+		//int userId =2;
 		boolean isValidated = paymentDAO.validateCreditCard(userId,accountNumber,password);
 		if(!isValidated)
 			return Action.ERROR;
