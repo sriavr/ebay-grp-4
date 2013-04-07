@@ -3,19 +3,22 @@ package edu.iiitb.ebay.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
 import edu.iiitb.ebay.model.entity.SellerModel;
 import edu.iiitb.ebay.model.page.CartPageModel;
 import edu.iiitb.ebay.util.ConstantValues;
 
 public class PaymentDAO extends BaseDAO {
+	Logger logger = Logger.getLogger(PaymentDAO.class);
 
 	public boolean validateDebitCard(int userId, String atmNumber,
 			String pinNumber) {
 		// TODO Auto-generated method stub
 		boolean returnValue = false;
 		String query = "SELECT * FROM bank WHERE userId=" + userId
-				+ " AND atmNum='" + atmNumber + "' AND pinNum='"
-				+ pinNumber + "'";
+				+ " AND atmNum='" + atmNumber + "' AND pinNum='" + pinNumber
+				+ "'";
 		ResultSet rs = readFromDB(query);
 		try {
 			while (rs.next()) {
@@ -68,19 +71,25 @@ public class PaymentDAO extends BaseDAO {
 	}
 
 	public SellerModel getSeller(int sellerId) {
-		// TODO Auto-generated method stub
+		logger.info("Inside getSeller(int sellerId) method");
 		SellerModel seller = null;
 		String query = "SELECT * FROM seller WHERE sellerId=" + sellerId;
+		logger.info("querying database: " + query);
 		ResultSet rs = readFromDB(query);
 		try {
 			while (rs.next()) {
 				seller = new SellerModel();
-				seller.setSellerId(sellerId);
-				seller.setSla(rs.getInt("sla"));
-				seller.setUserId(rs.getInt("userId"));
+				seller.setSellerId(rs.getInt(1));
+				seller.setDateOfRegistration(rs.getString(2));
+				seller.setLocation(rs.getString(3));
+				seller.setFeedbackScore(rs.getInt(4));
+				seller.setPositivFeedBack(rs.getInt(5));
+				seller.setUserId(rs.getInt(6));
+				seller.setSla(rs.getInt(7));
+				logger.info("Found a seller");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			logger.error("Error occurred:", e);
 			e.printStackTrace();
 		}
 		return seller;
@@ -126,7 +135,7 @@ public class PaymentDAO extends BaseDAO {
 			return ConstantValues.FAILURE;
 		}
 		balance = balance + moneyToBeCreditedIntoSeller;
-		
+
 		query = "UPDATE bank SET balance=" + balance + " WHERE userId="
 				+ userId;
 		update(query);
@@ -176,7 +185,8 @@ public class PaymentDAO extends BaseDAO {
 
 	public int decrementProductQuantity(int productId, int quantity) {
 		// TODO Auto-generated method stub
-		String query="UPDATE product SET quantity=quantity-"+quantity+" WHERE productId="+productId;
+		String query = "UPDATE product SET quantity=quantity-" + quantity
+				+ " WHERE productId=" + productId;
 		update(query);
 		return 0;
 	}

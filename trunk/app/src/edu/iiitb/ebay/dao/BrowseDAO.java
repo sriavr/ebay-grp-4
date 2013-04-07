@@ -174,26 +174,30 @@ public class BrowseDAO extends BaseDAO {
 
 	public ArrayList<ProductModel> getProducts(String query, int categoryId,
 			int priceLower, int priceHigher) {
+		if (query.contains(",")) {
+			query.replace("'", "");
+		}
 		logger.info("Inside BrowseDAO : getProducts(query, categoryId, priceLower, priceHigher)");
 		logger.info("query:" + query + ", categoryId:" + categoryId
 				+ ", priceLower:" + priceLower + ", priceHigher:" + priceHigher);
 		ArrayList<ProductModel> products = new ArrayList<ProductModel>();
 
-		StringBuilder sqlQuery = new StringBuilder(
-				"select * from product where 1=1 ");
-		if (!query.isEmpty()) {
-			sqlQuery = sqlQuery.append(" and title like '%" + query + "%'");
-		}
-
-		if (categoryId != 0) {
-			System.out.println("don't worry we added categoryId");
-			// sqlQuery = sqlQuery.append(" and categoryId=" + categoryId);
-		}
-
-		if (priceHigher > priceLower) {
-			sqlQuery = sqlQuery.append(" and price between " + priceLower
-					+ " and " + priceHigher);
-		}
+		StringBuilder sqlQuery = new StringBuilder("call getProducts('" + query
+				+ "'," + categoryId + "," + priceLower + "," + priceHigher
+				+ ");");
+		// if (!query.isEmpty()) {
+		// sqlQuery = sqlQuery.append(" and title like '%" + query + "%'");
+		// }
+		//
+		// if (categoryId != 0) {
+		// System.out.println("don't worry we added categoryId");
+		// // sqlQuery = sqlQuery.append(" and categoryId=" + categoryId);
+		// }
+		//
+		// if (priceHigher > priceLower) {
+		// sqlQuery = sqlQuery.append(" and price between " + priceLower
+		// + " and " + priceHigher);
+		// }
 		logger.info("Query executed: " + sqlQuery);
 		ResultSet rs = readFromDB(sqlQuery.toString());
 		try {

@@ -2,18 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<script type="text/javascript">
-	$(document).ready(function() {
-		//alert("loaded");
-		$("img").click(function() {
-			//alert("clicked");
-			/* $(this).avgrund({
-				template : "<img src='" + $(this).prop('src') + "''"
-			}); */
-		});
-	});
-</script>
-
 <div class="row">
 	<s:if test="!query.isEmpty()">
 		<b><s:property value="products.size()" /></b>

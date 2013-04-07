@@ -89,7 +89,7 @@ public class PurchaseHistoryDAO extends BaseDAO {
 		
 		try{
 			if(rs.next()){
-				seller.setSellerName(rs.getString("sellerName"));
+				//seller.setSellerName(rs.getString("sellerName"));
 			}
 			}
 			catch(Exception e){
