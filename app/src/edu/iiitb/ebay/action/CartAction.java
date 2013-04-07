@@ -43,8 +43,8 @@ public class CartAction extends ActionSupport{
 	}
 	public String execute(){
 		CartDAO cartDAO = new CartDAO();
-		//int userId = ((UserModel)ActionContext.getContext().getSession().get("user")).getUserId();
-		int userId=2;
+		int userId = ((UserModel)ActionContext.getContext().getSession().get("user")).getUserId();
+		
 		Integer cartId = cartDAO.productUserInCart(userId, productId);
 		if(cartId == null){
 			//Insert a cartItem with type P
@@ -64,8 +64,8 @@ public class CartAction extends ActionSupport{
 	
 	public String removeFromCart(){
 		CartDAO cartDAO = new CartDAO();
-		//int userId = ((UserModel)ActionContext.getContext().getSession().get("user")).getUserId();
-		int userId =2;
+		int userId = ((UserModel)ActionContext.getContext().getSession().get("user")).getUserId();
+		
 		cartDAO.removeFromCart(cartId);//Removing cartItem
 		cartList = cartDAO.getUserCartList(userId);//Populating cartList again from DB so that it can be listed in jsp
 		
