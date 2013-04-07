@@ -17,7 +17,6 @@ CREATE  TABLE IF NOT EXISTS `eBay`.`user` (
   `lastName` VARCHAR(30) NOT NULL ,
   `homeAddress` VARCHAR(300) NULL ,
   `city` VARCHAR(30) NULL ,
-  `state` VARCHAR(30) NOT NULL ,
   `pinCode` INT NOT NULL ,
   `telephoneNo` VARCHAR(12) NULL ,
   `email` VARCHAR(50) NOT NULL ,
@@ -461,9 +460,15 @@ DELIMITER ;
 -- -----------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `getProducts`(IN catId INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getProducts`(IN query VARCHAR(2000), IN catId INT, IN priceLower INT, IN priceHigher INT)
 BEGIN
     DECLARE temp INT DEFAULT catId;
+    DECLARE queryString VARCHAR(2002);
+    select concat('%',query) into queryString;
+    if query <> '' then
+        select concat(queryString,'%') into queryString;
+    end if;
+
     drop temporary table if exists tmpcat;
     create temporary table tmpcat (
         categoryId INT,
@@ -483,8 +488,9 @@ BEGIN
     s.location, u.firstName, u.lastName, u.email, u.telephoneNo
     from productcategorymapping pcm, product p, user u, seller s, tmpCat t
     where p.productId = pcm.productId and s.sellerId = p.sellerId and u.userId = s.userId and pcm.categoryId = t.categoryId
+    and (p.title like queryString or p.description like queryString)
     order by p.productId;
-
+    -- select queryString from dual;
     drop temporary table tmpcat;
 END$$
 DELIMITER ;
