@@ -93,4 +93,19 @@ DELETE FROM userfeedback;
 	(8,11,102,'positive',9,10,8,201,' ice product'),
 	(9,11,101,'negative',9,10,8,201,' ice product'),
 	(10,11,105,'positive',9,10,8,202,' ice product');
+   
+DELETE FROM userwishlist;
+INSERT INTO `userwishlist` (`userwishlistId`,`userId`,`productId`) VALUES 
+  (1,10,200),
+  (2,10,201),
+  (3,10,203),
+  (4,11,200),
+  (5,12,205),
+  (6,13,207),
+  (7,13,208),
+  (9,15,201),
+  (10,15,202),
+  (11,15,203),
+  (12,15,204),
+  (13,15,205);
 
