@@ -89,7 +89,16 @@
 			
 				<definition name="summary.jsp" extends="baselayout">
 					<put-attribute name="body" value="/summary.jsp" />
-				</definition>						
+				</definition>			
+				
+				<definition name="notifySellersOutofStock.jsp" extends="baselayout">
+					<put-attribute name="body" value="/notifySellersOutofStock.jsp" />
+				</definition>
+				
+				<definition name="successNotifyMessage.jsp" extends="baselayout">
+					<put-attribute name="body" value="/successNotifyMessage.jsp" />
+				</definition>
+							
 				
 	<!-- Added by Ranadheer  --> 	
 		
