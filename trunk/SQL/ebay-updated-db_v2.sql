@@ -427,7 +427,67 @@ CREATE  TABLE IF NOT EXISTS `eBay`.`bank` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Procedure `eBay`.`getSubCategories`
+-- -----------------------------------------------------
+DROP procedure IF EXISTS `getSubCategories`;
 
+DELIMITER $$
+USE `ebay`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getSubCategories`(IN catId INT)
+BEGIN
+    DECLARE temp INT DEFAULT catId;
+    drop temporary table if exists tmpcat;
+    create temporary table tmpcat (
+        categoryId INT,
+        done INT
+    ) engine = memory;
+    insert into tmpcat values (0,0);
+    WHILE temp <> 0 DO
+        insert into tmpcat (categoryId, done) (select categoryId, 0 from category where parentCategoryId = temp);
+        select categoryId into temp from tmpcat where done = 0 order by categoryId desc LIMIT 1 ;
+        update tmpcat set done = 1 where categoryId = temp;
+    END WHILE;
+    insert into tmpcat values (catId, 1);
+    delete from tmpcat where categoryId = 0;
+    select categoryId from tmpcat;
+    -- select categoryId from tmpcat;
+    drop temporary table tmpcat;
+END$$
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- Procedure `eBay`.`getProducts`
+-- -----------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getProducts`(IN catId INT)
+BEGIN
+    DECLARE temp INT DEFAULT catId;
+    drop temporary table if exists tmpcat;
+    create temporary table tmpcat (
+        categoryId INT,
+        done INT
+    ) engine = memory;
+    insert into tmpcat values (0,0);
+    WHILE temp <> 0 DO
+        insert into tmpcat (categoryId, done) (select categoryId, 0 from category where parentCategoryId = temp);
+        select categoryId into temp from tmpcat where done = 0 order by categoryId desc LIMIT 1 ;
+        update tmpcat set done = 1 where categoryId = temp;
+    END WHILE;
+    insert into tmpcat values (catId, 1);
+    delete from tmpcat where categoryId = 0;
+
+    select 
+    p.productId, pcm.categoryId, p.description, p.title, p.price, p.quantity, p.photo, p.discount, 
+    s.location, u.firstName, u.lastName, u.email, u.telephoneNo
+    from productcategorymapping pcm, product p, user u, seller s, tmpCat t
+    where p.productId = pcm.productId and s.sellerId = p.sellerId and u.userId = s.userId and pcm.categoryId = t.categoryId
+    order by p.productId;
+
+    drop temporary table tmpcat;
+END$$
+DELIMITER ;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
