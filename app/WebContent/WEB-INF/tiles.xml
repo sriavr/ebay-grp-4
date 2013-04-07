@@ -29,17 +29,6 @@
 		<put-attribute name="body" value="/makeListing.jsp" />
 	</definition>
 
-	
-	<!-- Added by Ranadheer  -->
-			
-			<!--Registration Page --> 
-			
-				<definition name="register.jsp" extends="baselayout">
-					<put-attribute name="body" value="/register.jsp" />
-				</definition>
-				
-	<!-- Added by Ranadheer  --> 
-	<!-- Added by Ranadheer  -->
 			
 			<!--Cart Page --> 
 			
@@ -99,8 +88,7 @@
 					<put-attribute name="body" value="/successNotifyMessage.jsp" />
 				</definition>
 							
-				
-	<!-- Added by Ranadheer  --> 	
+			
 		
 	
 
@@ -128,16 +116,35 @@
 	</definition>	
 	<!--- End of Sridhar Jammalamadaka's code -->
 
-	<!--- Start of Ranadheer Kakkireni's code -->
-	<!--Registration Page -->
-	<definition name="register.jsp" extends="baselayout">
-		<put-attribute name="body" value="/register.jsp" />
-	</definition>
-	<!--- End of Ranadheer Kakkireni's code -->
 	
 	<!--Start of code: by Pratibind Jha  -->
 	<definition name="viewFeedback.jsp" extends="baselayout">
 		<put-attribute name="body" value="/viewFeedback.jsp"></put-attribute>
 	</definition>
 	<!--End of code: by Pratibind Jha -->
+	
+	<!-- Added by Ranadheer  -->
+			
+			<!--Registration Page --> 
+			
+				<definition name="register.jsp" extends="baselayout">
+					<put-attribute name="body" value="/register.jsp" />
+				</definition>
+				
+			<!--update price,discount,quantity of a product by its seller -->
+			
+				<definition name="viewMyProducts.jsp" extends="baselayout">
+					<put-attribute name="body" value="/viewMyProducts.jsp" />
+				</definition>
+				
+				<definition name="perticularSellerProductDetails.jsp" extends="baselayout">
+					<put-attribute name="body" value="/perticularSellerProductDetails.jsp" />
+				</definition>
+				
+				<definition name="updateProdDetailsBySeller.jsp" extends="baselayout">
+					<put-attribute name="body" value="/updateProdDetailsBySeller.jsp" />
+				</definition>
+					
+	<!-- Ended by Ranadheer  -->
+	 
 </tiles-definitions>
