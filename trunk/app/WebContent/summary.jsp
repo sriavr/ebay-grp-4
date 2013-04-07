@@ -9,12 +9,13 @@
 <title>Payment Summary</title>
 </head>
 <body>
+<div class="row">
 	<h1>Buyer</h1>
 	<label>Initial Balance:</label><s:property value="%{initialBalanceUser}"/><br>
 	<label>Current Balance:</label><s:property value="%{currentBalanceUser}"/><br>
 	<h1>Ebay</h1>
 	<label>Initial Balance:</label><s:property value="%{initialBalanceEbay}"/><br>
 	<label>Current Balance:</label><s:property value="%{currentBalanceEbay}"/><br>
-				
+</div>				
 </body>
 </html>
