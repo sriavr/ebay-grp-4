@@ -60,6 +60,7 @@
 							<li><a href="#">How to Sell</a>
 							<li><a href="createSeller.action">Seller Central</a>
 							<li><a href="#">Seller Tools</a>
+							<li><a href="viewMyProducts.action">View My Products</a>
 						</ul></li>
 					<li class="divider"></li>
 					<li class="has-dropdown"><a href="#">Community</a>
