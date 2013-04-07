@@ -15,3 +15,9 @@ Version 1.0
 ############
 
 This is the first script which was written and checked in by Vamsi. 
+
+############
+Version 2.0
+############
+
+Changes incorporated by Vamsi to remove state country and other things.
