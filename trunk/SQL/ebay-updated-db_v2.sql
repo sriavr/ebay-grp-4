@@ -361,31 +361,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `eBay`.`productSellerMapping`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `eBay`.`productSellerMapping` ;
-
-CREATE  TABLE IF NOT EXISTS `eBay`.`productSellerMapping` (
-  `productSellerMappingId` INT NOT NULL AUTO_INCREMENT ,
-  `productId` INT NOT NULL ,
-  `sellerId` INT NOT NULL ,
-  PRIMARY KEY (`productSellerMappingId`) ,
-  INDEX `fk_productSellerMapping_1` (`productId` ASC) ,
-  INDEX `fk_productSellerMapping_2` (`sellerId` ASC) ,
-  CONSTRAINT `fk_productSellerMapping_1`
-    FOREIGN KEY (`productId` )
-    REFERENCES `eBay`.`product` (`productId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_productSellerMapping_2`
-    FOREIGN KEY (`sellerId` )
-    REFERENCES `eBay`.`seller` (`sellerId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `eBay`.`admin`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `eBay`.`admin` ;
