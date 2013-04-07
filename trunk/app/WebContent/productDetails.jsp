@@ -19,7 +19,7 @@
 	<div class="row">
 		<div class="columns large-8">
 			<s:hidden name="product.quantity" id="max_quantity" />
-			<b>Quantity:</b> <input type="text" name="quantity"
+			<b>Quantity:</b> <input type="text" name="quantity" id="quantity"
 				onkeyup="editCart_BuyLinks()" style="width: 30px" /> <label
 				id="Error" style="color: red;"></label>
 
