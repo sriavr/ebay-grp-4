@@ -33,7 +33,25 @@ insert into product (productId, sellerId, title, description, price, photo) valu
     (207, 105, 'UNIX concepts and applications book', 'A best seller book written by Sumitabha Das', 400, '/images/default-pic.jpg'),
     (208, 106, 'Haldirams Plain Khakhara', 'Plain Khakhara made out of wheat and ready to eat. Perfect for breakfast and snacks.', 300, '/images/default-pic.jpg'),
     (209, 104, 'Teach yourself UNIX book', 'A hand book written by Ruth Amely', 50, '/images/default-pic.jpg'),
-    (210, 104, 'Beautiful portrait', 'A beautiful scenario that can be used as a wall hanging.', 5000, '/images/scenary1.jpg');
+    (210, 104, 'Beautiful portrait', 'A beautiful scenario that can be used as a wall hanging.', 5000, '/images/scenary1.jpg'),
+    (211, 104, 'Adidas Cricket equipment', 'World class equipment from Adidas sports company.', 2500, '/images/cricket-equipment.jpg'),
+    (212, 105, 'SS Sports cricket kit', 'A collection of all the cricket equipment.',4500, '/images/cricket-goods.jpg'),
+    (213, 106, 'Krishna Sports cricket kit', 'A collection of all the cricket equipment containing gloves, bats and thigh pads',5500, '/images/cricket-goods1.jpg'),
+    (214, 103, 'MRF cricket bat', 'This bat is used by Master Blaster, Sachin Tendulkar.',750, '/images/cricket-bat1.jpg'),
+    (215, 102, 'Cosco cricket bat', 'A good quality wooden bat for playing with tennis ball.',1150, '/images/cricket-bat2.jpg'),
+    (216, 101, 'Galaxy Note china mobile copy', 'A replica of Galaxy note phone copied by China Mobile. ', 4700, '/images/china-mobile1.jpg'),
+    (217, 100, 'China mobile 5 inch screen', 'This phone has the latest features such as blue tooth, wifi and 3g.',3450, '/images/china-mobile2.jpg'),
+    (218, 100, 'China mobile dual sim', 'Dual sim phone china brand', 3200, '/images/china-mobile3.jpg'),
+    (219, 101, 'The Science Fiction novel', 'A classic novel related to science fiction', 300, '/images/fiction-book1.jpg'),
+    (220, 101, 'The Da vinci code', 'A bestseller novel by Dan Brown', 450, '/images/fiction-book2.jpg'),
+    (221, 105, 'Dracula book', 'Classic frankstein book on Dracula.', 150, '/images/dracula-bram-stoker.jpg'),
+    (222, 103, 'Dracula book (Paperback)', 'The best Dracula book by bram stoker',600, '/images/dracula-novel-cover.jpg'),
+    (223, 102, 'Dell Inspiron 15 3521', 'Excellent laptop. (CDC/ 2GB/ 500GB/ Linux) (Black Matte Textured Finish)',22812, '/images/dell-laptop1.jpg'),
+    (224, 102, 'Dell Vostro 2420 Laptop', 'Dell Vostro 2420 Laptop (2nd Gen PDC/ 2GB/ 320GB/ Linux)',23660, '/images/dell-laptop2.jpg'),
+    (225, 101, 'Kitchen knives pack', '3 Pc Kitchen Knives Wonderful Kitchen Great Stainless Steel Meat Knife', 699, '/images/kitchen-knife1.jpg'),
+    (226, 104, 'Stylish Modular Kitchen', 'A perfect modular kitchen.', 180000, '/images/home-kitchen1.jpg'),
+    (227, 105, 'Modular Kitchen', 'A stylish modular kitchen for people who like design.', 150000, '/images/home-kitchen2.jpg');
+    
 
 DELETE FROM secretquestion;
 insert into secretquestion values (30, 'What is your mothers maiden name?'), (31, 'What is your favorite sport?'),  (32, 'What is your pet name?');
@@ -68,7 +86,24 @@ insert into deals (dealsId, productId, dealStartDate, dealEndDate, dealSellingPr
     (3005,205,'2013-04-01','2013-04-10',120),
     (3006,206,'2013-03-01','2013-03-10',4000),
     (3007,207,'2013-03-03','2013-03-03',300),
-    (3008,208,'2013-04-01','2013-05-03',200),
+    (3008,208,'2013-04-01','2    (211, 104, 'Adidas Cricket equipment', 'World class equipment from Adidas sports company.', 2500, '/images/cricket-equipment.jpg'),
+    (212, 105, 'SS Sports cricket kit', 'A collection of all the cricket equipment.',4500, '/images/cricket-goods.jpg'),
+    (213, 106, 'Krishna Sports cricket kit', 'A collection of all the cricket equipment containing gloves, bats and thigh pads',5500, '/images/cricket-goods1.jpg'),
+    (214, 103, 'MRF cricket bat', 'This bat is used by Master Blaster, Sachin Tendulkar.',750, '/images/cricket-bat1.jpg'),
+    (215, 102, 'Cosco cricket bat', 'A good quality wooden bat for playing with tennis ball.',1150, '/images/cricket-bat2.jpg'),
+    (216, 101, 'Galaxy Note china mobile copy', 'A replica of Galaxy note phone copied by China Mobile. ', 4700, '/images/china-mobile1.jpg'),
+    (217, 100, 'China mobile 5 inch screen', 'This phone has the latest features such as blue tooth, wifi and 3g.',3450, '/images/china-mobile2.jpg'),
+    (218, 100, 'China mobile dual sim', 'Dual sim phone china brand', 3200, '/images/china-mobile3.jpg'),
+    (219, 101, 'The Science Fiction novel', 'A classic novel related to science fiction', 300, '/images/fiction-book1.jpg'),
+    (220, 101, 'The Da vinci code', 'A bestseller novel by Dan Brown', 450, '/images/fiction-book2.jpg'),
+    (221, 105, 'Dracula book', 'Classic frankstein book on Dracula.', 150, '/images/dracula-bram-stoker.jpg'),
+    (222, 103, 'Dracula book (Paperback)', 'The best Dracula book by bram stoker',600, '/images/dracula-novel-cover.jpg'),
+    (223, 102, 'Dell Inspiron 15 3521', 'Excellent laptop. (CDC/ 2GB/ 500GB/ Linux) (Black Matte Textured Finish)',22812, '/images/dell-laptop1.jpg'),
+    (224, 102, 'Dell Vostro 2420 Laptop', 'Dell Vostro 2420 Laptop (2nd Gen PDC/ 2GB/ 320GB/ Linux)',23660, '/images/dell-laptop2.jpg'),
+    (225, 101, 'Kitchen knives pack', '3 Pc Kitchen Knives Wonderful Kitchen Great Stainless Steel Meat Knife', 699, '/images/kitchen-knife1.jpg'),
+    (226, 104, 'Stylish Modular Kitchen', 'A perfect modular kitchen.', 180000, '/images/home-kitchen1.jpg'),
+    (227, 105, 'Modular Kitchen', 'A stylish modular kitchen for people who like design.', 150000, '/images/home-kitchen2.jpg');
+013-05-03',200),
     (3009,209,'2013-04-10','2013-05-03',30);
     
 delete from category;
@@ -86,4 +121,11 @@ INSERT INTO `category` (`categoryId`, `categoryName`, `parentCategoryId`) VALUES
 	(11, 'Sports Equipments', 0),
 	(12, 'Novels', 9),
 	(13, 'Home and Kitchen', 0),
-	(14, 'Fiction Books', 9);    
+	(14, 'Fiction Books', 9),
+	(15, 'China Mobiles', 1),
+    (16, 'Vampire Books', 14),
+    (17, 'Dracula Books', 16), 
+    (18, 'Cricket equipments', 11),
+    (19, 'Cricket Bats', 18),
+    (20, 'Kashmir Willow Bats', 19),
+    (21, 'Kitchen Knives', 13);
