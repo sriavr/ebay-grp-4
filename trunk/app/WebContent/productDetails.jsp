@@ -1,7 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-
+<html>
+<head>
+<script type="text/javascript">
+function editCart_BuyLinks() {
+	quantity = document.getElementById("quantity").value;
+	//alert(quantity);
+	max_quantiy = document.getElementById("max_quantity").value;
+	//alert((quantity-max_quantiy)<0);	
+	if((quantity-max_quantiy)>0)
+			document.getElementById("Error").innerText="Please enter a value less than "+max_quantiy;
+	else{
+		document.getElementById("Error").innerText=" ";
+		document.getElementById("cartLink").href = document.getElementById("cartHiddenLink").value+quantity;
+		document.getElementById("buyLink").href = document.getElementById("buyHiddenLink").value+quantity;
+	}
+}
+</script>
+</head>
+<body>
 <div class="large-3 columns">
 	<a class="th radius" data-reveal-id="myModal" href="#"> <img
 		alt="<s:property value="description" />"
@@ -19,24 +37,24 @@
 	</div>
 	<div class="row">
 		<div class="columns large-8">
-			<s:textfield cssClass="" maxlength="4" size="4"
-				name="product.quantity"></s:textfield>
+			<s:hidden name="product.quantity" id="max_quantity"/>
+			<s:textfield id="quantity" cssClass="" maxlength="4" size="4"
+				 onkeyup="editCart_BuyLinks()" ></s:textfield>
+			<label id="Error" style="color: red;"></label>
+			
 			<hr />
 			<h5>
 				Price:
 				<s:property value="product.price"></s:property>
 			</h5>
 			<hr />
-			<%-- 			<s:submit --%>
-			<%-- 				action="addtocart.action?productId=<s:property value="product.productId"/>"></s:submit> --%>
-			<s:submit action="#url2" value="Buy Now" cssClass="button small"></s:submit>
-			<s:submit action="#url1" value="Add to Cart" cssClass="button small"></s:submit>
-			<s:url action="addtocart.action" var="url1">
-				<s:param name="productId">product.productId</s:param>
-			</s:url>
-			<s:url action="buynow.action" var="url2">
-				<s:param name="productId">product.productId</s:param>
-			</s:url>
+			
+			
+			<s:hidden id="buyHiddenLink" value="buyProduct.action?productId=%{product.productId}&qty="></s:hidden>
+			<a id="buyLink" href="buyProduct.action?productId=<s:property value="%{product.productId}"/>&qty=">Buy Now </a>
+			<br>
+			<s:hidden id="cartHiddenLink" value="cartAction.action?productId=%{product.productId}&qty="></s:hidden>
+			<a id="cartLink" href="cartAction.action?productId=<s:property value="%{product.productId}"/>&qty=">Add to Cart</a>
 			<hr />
 		</div>
 		<div class="columns large-4">
@@ -47,4 +65,6 @@
 		</div>
 	</div>
 </div>
+</body>
+</html>
 
