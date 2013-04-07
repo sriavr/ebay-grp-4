@@ -122,6 +122,19 @@
 				<result name="success" type="tiles">summary.jsp</result>
 				<result name="error" type="tiles">error.jsp</result>
 			</action>
+			<action name="notifySellersOutOfStockAction" class="edu.iiitb.ebay.action.NotifySellersOutOfStockAction" >
+				<result name="success" type="tiles">notifySellersOutofStock.jsp</result>
+				<result name="error" type="tiles">error.jsp</result>
+			</action>
+			<action name="notifySellerAction" class="edu.iiitb.ebay.action.NotifySellerAction" >
+				<result name="success" type="tiles">successNotifyMessage.jsp</result>
+				<result name="error" type="tiles">error.jsp</result>
+			</action>
+			<action name="notifyAllSellersAction" class="edu.iiitb.ebay.action.NotifySellerAction" method="notifyAllSellers">
+				<result name="success" type="tiles">successNotifyMessage.jsp</result>
+				<result name="error" type="tiles">error.jsp</result>
+			</action>
+			
 			<!-- Forward Actions -->
 			<action name="selectModeOfPaymentForward" class="edu.iiitb.ebay.action.ForwardAction" method="selectModeOfPayment">
 				<result name="success" type="tiles">selectModeOfPayment.jsp</result>
