@@ -3,8 +3,6 @@
  */
 package edu.iiitb.ebay.action;
 
-import java.util.ArrayList;
-
 import com.opensymphony.xwork2.ActionSupport;
 
 import edu.iiitb.ebay.dao.ViewWatchListDAO;
@@ -18,42 +16,41 @@ public class RemoveWatchListAction extends ActionSupport {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private ArrayList<Integer> watchListId;
+	private int selectedCheckBox;
 
 	/**
-	 * @return the watchListId
+	 * @return the selectedCheckBox
 	 */
-	public ArrayList<Integer> getWatchListId() {
-		return watchListId;
+	public int getSelectedCheckBox() {
+		return selectedCheckBox;
 	}
 
 	/**
-	 * @param watchListId
-	 *            the watchListId to set
+	 * @param selectedCheckBox
+	 *            the selectedCheckBox to set
 	 */
-	public void setWatchListId(ArrayList<Integer> watchListId) {
-		this.watchListId = watchListId;
+	public void setSelectedCheckBox(int selectedCheckBox) {
+		this.selectedCheckBox = selectedCheckBox;
 	}
 
-	// method to be executed
-	public String removeWatchLists() {
-		System.out.println("Inside removeWatchLists");
+	public String removeFromList() {
+		System.out.println("Inside removeWatchLists "
+				+ this.getSelectedCheckBox());
+
 		int result;
-		if (this.watchListId == null) {
-			System.out.println("CheckBox is empty");
-		} else {
-			if (this.watchListId.size() != 0) {
-				for (int i = 0; i < this.watchListId.size(); i++) {
-					System.out.println("checkbox values "
-							+ this.watchListId.get(i));
-					result = ViewWatchListDAO
-							.removeFromWatchListDAO(this.watchListId.get(i));
-					if (result == 0) {
-						addActionError("Error occured in remooving the item");
-					}
-				}
+		if (this.getSelectedCheckBox() != 0) {
+			result = ViewWatchListDAO.removeFromWatchListDAO(this
+					.getSelectedCheckBox());
+			if (result != 0) {
+				addActionError("Item has been remove successfully");
+				return "success";
+			} else {
+				addActionError("Error occured in database operation");
+				return "fail";
 			}
+		} else {
+			return "fail";
 		}
-		return "success";
+
 	}
 }
