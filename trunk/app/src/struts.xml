@@ -194,8 +194,9 @@
 			<result name="success" type="redirectAction">viewWatchList</result>
 			<result name="fail" type="tiles">error.jsp</result>
 		</action>
-		<action name="addWatchList" class="edu.iiitb.ebay.action.addWatchListAction" method="addWatchList">
+		<action name="addWatchList" class="edu.iiitb.ebay.action.AddToWatchListAction" method="addWatchList">
 			<result name="success" type="redirectAction">viewWatchList</result>
+			<result name="fail" type="redirectAction">login</result>
 		</action>
 		<!--End Code: by Prartibind Jha  -->
 
