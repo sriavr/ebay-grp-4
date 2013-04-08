@@ -186,7 +186,19 @@
 			<result name="success" type="tiles">viewFeedback.jsp</result>
 			<result name="error" type="tiles">error.jsp</result>
 		</action>
-		<!--Start Code: by Prartibind Jha -->
+		<action name="viewWatchList" class="edu.iiitb.ebay.action.ViewWatchListAction" method="viewWatchList">
+			<result name="success" type="tiles">viewWatchList.jsp</result>
+			<result name="fail" type="redirectAction">login</result>
+		</action>
+		<action name="removeFromWatchList" class="edu.iiitb.ebay.action.RemoveWatchListAction" method="removeWatchLists">
+			<result name="success" type="redirectAction">viewWatchList</result>
+			<result name="fail" type="tiles">error.jsp</result>
+		</action>
+		<action name="addWatchList" class="edu.iiitb.ebay.action.addWatchListAction" method="addWatchList">
+			<result name="success" type="redirectAction">viewWatchList</result>
+		</action>
+		<!--End Code: by Prartibind Jha  -->
+
 
 	</package>
 
