@@ -217,10 +217,12 @@
 		<action name="viewWatchList" class="edu.iiitb.ebay.action.ViewWatchListAction" method="viewWatchList">
 			<result name="success" type="tiles">viewWatchList.jsp</result>
 			<result name="fail" type="redirectAction">login</result>
+			
 		</action>
 		<action name="removewatchlist" class="edu.iiitb.ebay.action.RemoveWatchListAction" >
 			<result name="success" type="redirectAction">viewWatchList</result>
 			<result name="fail" type="tiles">error.jsp</result>
+			<result name="input" type="redirectAction">viewWatchList</result>
 		</action>
 		<action name="addWatchList" class="edu.iiitb.ebay.action.AddToWatchListAction" method="addWatchList">
 			<result name="success" type="redirectAction">viewWatchList</result>
