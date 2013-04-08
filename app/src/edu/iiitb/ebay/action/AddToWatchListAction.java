@@ -40,16 +40,24 @@ public class AddToWatchListAction extends ActionSupport {
 		int userId = 0;
 		int result;
 		session = ActionContext.getContext().getSession();
-		String Role = (String) session.get("role");
-		if (Role.equals("user")) {
-			userModel = (UserModel) session.get("user");
-			userId = userModel.getUserId();
-		}
+		/*
+		 * String Role = (String) session.get("role"); if (Role.equals("user"))
+		 * { userModel = (UserModel) session.get("user"); userId =
+		 * userModel.getUserId(); }
+		 */
+		userId = 15;
 		if (userId != 0) {
 			result = ViewWatchListDAO.addToWatchListDAO(getProductId(), userId);
 			if (result == 0) {
+				System.out
+						.println("ADD TO WATCHLIST: Error occur in this action");
 				addActionError("Error occur in this action");
 				return "fail";
+			} else if (result == -1) {
+				System.out
+						.println("ADD TO WATCHLIST: Product is allready added to watchlist.");
+				addActionError("Product is allready added to watchlist.");
+				return "success";
 			}
 		} else {
 			addActionError("Please Login");
