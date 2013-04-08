@@ -84,6 +84,8 @@ public class UserDAO {
 				user.setPinCode(DatabaseUtil.rs.getLong("pinCode"));
 				user.setTelephoneNo(DatabaseUtil.rs.getLong("telephoneNo"));
 				user.setUserId(DatabaseUtil.rs.getInt("userId"));
+				user.setHomeAddress(DatabaseUtil.rs.getString("homeAddress"));
+				user.setCity(DatabaseUtil.rs.getString("city"));
 				logger.info("Message From userDAO.getUserDetails : student Name is "
 						+ user.getFirstName());
 				logger.info("Found a user");
