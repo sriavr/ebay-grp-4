@@ -121,6 +121,9 @@
 	<definition name="viewFeedback.jsp" extends="baselayout">
 		<put-attribute name="body" value="/viewFeedback.jsp"></put-attribute>
 	</definition>
+	<definition name="viewWatchList.jsp" extends="baselayout">
+		<put-attribute name="body" value="/viewWatchList.jsp"></put-attribute>
+	</definition>
 	<!--End of code: by Pratibind Jha -->
 	
 	<!-- Added by Ranadheer  -->
