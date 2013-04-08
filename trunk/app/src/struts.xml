@@ -195,6 +195,7 @@
 				<result name="success" type="tiles">cashOnDeliveryPayment.jsp</result>
 				<result name="failure" type="tiles">error.jsp</result>
 			</action>
+
 			<action name="debitCardBuyForward" class="edu.iiitb.ebay.action.ForwardAction" method="debitCardBuy">
 				<result name="success" type="tiles">debitCardBuyPayment.jsp</result>
 				<result name="failure" type="tiles">error.jsp</result>
@@ -217,7 +218,7 @@
 			<result name="success" type="tiles">viewWatchList.jsp</result>
 			<result name="fail" type="redirectAction">login</result>
 		</action>
-		<action name="removeFromWatchList" class="edu.iiitb.ebay.action.RemoveWatchListAction" method="removeWatchLists">
+		<action name="removewatchlist" class="edu.iiitb.ebay.action.RemoveWatchListAction" >
 			<result name="success" type="redirectAction">viewWatchList</result>
 			<result name="fail" type="tiles">error.jsp</result>
 		</action>
