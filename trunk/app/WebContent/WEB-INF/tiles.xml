@@ -110,11 +110,11 @@
 		
 		<!-- display the purchase history -->
 		
-		<definition name="xyz.jsp" extends="baselayout">
+		<definition name="purchaseHistory.jsp" extends="baselayout">
 		<put-attribute name="body" value="/displayPurchased.jsp" />
 		</definition>
 		
-		<definition name="abc.jsp" extends="baselayout">
+		<definition name="leaveFeedback.jsp" extends="baselayout">
 		<put-attribute name="body" value="/displayFeedback.jsp" />
 		</definition>
 		
