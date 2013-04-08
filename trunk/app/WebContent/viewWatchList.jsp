@@ -35,13 +35,13 @@
 		
 	</div>
 
-	<div class="row" style="border-top: 1px solid #F5F5F5;margin-top:15px;">
+	<div class="row" style="background-color:#EEEEEE; font: bold 12pt/30px Arial;border-top: 1px solid #F5F5F5;margin-top:15px;">
 		
 		<div class="columns large-5">
-		
+		 &nbsp;
 		</div>
 		<div class="columns large-3">
-	
+		&nbsp;
 		</div>
 		<div class="columns large-2">
 			Price
