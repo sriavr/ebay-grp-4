@@ -106,6 +106,26 @@
 	<!--- End of Debargha Ganguly's code -->
 
 
+<!-- Start of Surya Pratap desai's code -->
+		
+		<!-- display the purchase history -->
+		
+		<definition name="xyz.jsp" extends="baselayout">
+		<put-attribute name="body" value="/displayPurchased.jsp" />
+		</definition>
+		
+		<definition name="abc.jsp" extends="baselayout">
+		<put-attribute name="body" value="/displayFeedback.jsp" />
+		</definition>
+		
+		
+		<definition name="submitFeedback.jsp" extends="baselayout">
+		<put-attribute name="body" value="/submitFeedback.jsp" />
+		</definition>
+	
+	<!--- End of Surya Pratap desai's code -->
+
+
 	<!--- Start of Sridhar Jammalamadaka's code -->
 	<definition name="browse" extends="baselayout">
 		<put-attribute name="body" value="/browse.jsp" />
