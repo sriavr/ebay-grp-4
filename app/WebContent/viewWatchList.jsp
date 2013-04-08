@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-    
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="styles/foundation/normalize.css" />
+ <link rel="stylesheet" href="styles/foundation/foundation.css" />
 <title>View WatchList</title>
 </head>
 <body>
@@ -15,15 +16,68 @@
 	<div class="row" style="border-top: 1px solid #F5F5F5;margin-top:5px;">
 	</div>
 	<div class="row" style="margin-top:10px;">
-		<em style="float:right;">Sort By&nbsp;&nbsp; 
-		<s:select label="" style="float:right;"
-					headerKey="-1" headerValue="-Select sort Option-"
+		<div class="columns large-3">
+		</div>
+		<div class="columns large-3">
+		</div>
+		<div class="columns large-3">
+			
+		</div>
+		<div class="columns large-3">
+			<s:select label="Sort By" 
+					headerKey="-1" headerValue="-sort Option-"
 					list="#{'1':'price : lowest', '2':'price : highest'}" 
 					name="course" value="-1" onchange="this.form.submit()" >
-		</s:select>
-		</em>
+			</s:select>
+		</div>
+		 
+		
+		
 	</div>
-	<div class="row" style="border-top: 1px solid #F5F5F5;margin-top:35px;">
+
+	<div class="row" style="border-top: 1px solid #F5F5F5;margin-top:15px;">
+		
+		<div class="columns large-5">
+		
+		</div>
+		<div class="columns large-3">
+	
+		</div>
+		<div class="columns large-2">
+			Price
+		</div>
+		<div class="columns large-2">
+			Actions
+		</div>
+		
 	</div>
+	<s:form  action="removeFromWatchList.action" method="post" theme="simple">
+		<s:iterator value="viewWatchListModel">
+			<div class="row" style="border-top: 1px solid #F5F5F5;margin-top:15px;">
+				<div class="columns large-5">
+					<s:checkbox value="" fieldValue="watchListId" name="watchListId" key="watchListId" />
+				
+					<a class="th radius" data-reveal-id="myModal" href="#"> <img
+								alt="<s:property value="description" />"
+								src="<%=request.getContextPath()%><s:property value="photo" />">
+					</a>
+				</div>
+				<div class="columns large-3">
+					<s:property value="productTitle" />
+				</div>
+				<div class="columns large-2">
+					<s:property value="price" />
+				</div>
+				<div class="columns large-2">
+					<s:property value="actions" />
+				</div>
+				
+			</div>
+		</s:iterator>
+		<div class="row">
+		 <s:submit  value="RemovefromList" name="fromSubmit" ></s:submit>
+		</div>
+	</s:form>
+	
 </body>
 </html>
