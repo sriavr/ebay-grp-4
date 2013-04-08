@@ -1,6 +1,5 @@
 package edu.iiitb.ebay.model.entity;
 
-
 /**
  * 
  * @author svkris, modified by Sridhar
@@ -141,5 +140,6 @@ public class UserModel {
 	private String password;
 	private String countryName;
 	private String stateName;
+	private String dob;
 
 }
