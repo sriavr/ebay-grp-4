@@ -112,7 +112,7 @@
 				<!-- display Purchase history of user  -->
 	
 				<action name="purchaseHistory" class="edu.iiitb.ebay.action.PurchaseHistoryAction">
-				<result name="success" type="tiles">xyz.jsp</result>
+				<result name="success" type="tiles">purchaseHistory.jsp</result>
 				<result name="failure" type="tiles">error.jsp</result>
 			</action>		
 			
@@ -120,7 +120,7 @@
 			<!-- Leave Feedback Page   -->
 			
 			<action name="leaveFeedback" class="edu.iiitb.ebay.action.LeaveFeedBackAction">
-				<result name="success" type="tiles">abc.jsp</result>
+				<result name="success" type="tiles">leaveFeedback.jsp</result>
 				<result name="failure" type="tiles">error.jsp</result>
 			</action>
 			
@@ -132,6 +132,7 @@
 			</action>
 			
 		<!--End of Addition by Surya Pratap  -->
+		
 		
 		
 
