@@ -103,6 +103,25 @@
 			<result name="failure" type="tiles">error.jsp</result>
 		</action>
 		
+		<!--view list of products sold by a seller -->
+		
+		<action name="viewMySoldProducts" class="edu.iiitb.ebay.action.ViewMySoldProductsAction">
+			<result name="success" type="tiles">viewMySoldProducts.jsp</result>
+			<result name="none" >notSeller.jsp</result>
+			<result name="failure" type="tiles">error.jsp</result>
+		</action>
+		
+		<action name="orderDetails" class="edu.iiitb.ebay.action.OrderDetailsAction">
+			<result name="success" type="tiles">orderDetails.jsp</result>
+			<result name="failure" type="tiles">error.jsp</result>
+		</action>
+		
+		<action name="updateToShipped" class="edu.iiitb.ebay.action.UpdateToShippedAction">
+			<result name="success" type="tiles">updateToShipped.jsp</result>
+			<result name="failure" type="tiles">error.jsp</result>
+		</action>
+		
+		
 		<!--- End of Ranadheer Kakkireni's code -->
 
 
