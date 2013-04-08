@@ -1,3 +1,4 @@
+
 package edu.iiitb.ebay.model.entity;
 
 public class SellerModel {
@@ -52,6 +53,13 @@ public class SellerModel {
 	int userId;
 	int sla;
 	
-	
+	private String sellerName;
+	public String getSellerName() {
+		return sellerName;
+	}
+	public void setSellerName(String sellerName) {
+		this.sellerName = sellerName;
+	}
 
 }
+
