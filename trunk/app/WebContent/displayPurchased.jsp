@@ -39,10 +39,8 @@
 				<a href="#" ><s:property value="%{sellers.get(#index).sellerName}"/>
 				</a>	
 				<br>					
-				<a href="url1" >Leave Feedback</a>
-				<s:url action="leaveFeedback.action" var="url1">
-				<s:param name="productId">products.get(#index).productId</s:param>
-			</s:url>
+				<a href="leaveFeedback?productId=<s:property value="%{products.get(#index).productId}"/>&userId=<s:property value="%{userId}"/>&sellerId=<s:property value="%{products.get(#index).sellerId}"/>">
+				Leave Feedback </a>
 				</div>		
 		
 		</div>
