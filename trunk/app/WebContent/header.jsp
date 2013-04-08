@@ -61,6 +61,7 @@
 							<li><a href="createSeller.action">Seller Central</a>
 							<li><a href="#">Seller Tools</a>
 							<li><a href="viewMyProducts.action">View My Products</a>
+							<li><a href="viewMySoldProducts.action">View My Sold Products</a>
 						</ul></li>
 					<li class="divider"></li>
 					<li class="has-dropdown"><a href="#">Community</a>
