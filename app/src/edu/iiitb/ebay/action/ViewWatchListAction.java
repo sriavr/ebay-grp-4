@@ -4,6 +4,7 @@
 package edu.iiitb.ebay.action;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -20,6 +21,8 @@ public class ViewWatchListAction extends ActionSupport {
 
 	private int watchListId;
 	private int productId;
+	private String fromSubmit;
+	private List<Integer> selectedCheckBox;
 	private ArrayList<ViewWatchListModel> viewWatchListModel;
 
 	/**
@@ -70,6 +73,7 @@ public class ViewWatchListAction extends ActionSupport {
 
 	// Method for get List of watchlist.
 	public String viewWatchList() {
+		// code for view watchlist.
 		Map<String, Object> session;
 		int userId = 0;
 		UserModel userModel;
@@ -86,6 +90,7 @@ public class ViewWatchListAction extends ActionSupport {
 		this.viewWatchListModel = ViewWatchListDAO.getWatchListModel(userId);
 		if (this.viewWatchListModel == null)
 			addActionMessage("There is no item in WatchList");
+
 		return "success";
 
 	}
