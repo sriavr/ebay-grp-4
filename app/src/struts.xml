@@ -106,6 +106,33 @@
 		<!--- End of Ranadheer Kakkireni's code -->
 
 
+
+		<!-- Added by Surya Pratap  -->
+				
+				<!-- display Purchase history of user  -->
+	
+				<action name="purchaseHistory" class="edu.iiitb.ebay.action.PurchaseHistoryAction">
+				<result name="success" type="tiles">xyz.jsp</result>
+				<result name="failure" type="tiles">error.jsp</result>
+			</action>		
+			
+			
+			<!-- Leave Feedback Page   -->
+			
+			<action name="leaveFeedback" class="edu.iiitb.ebay.action.LeaveFeedBackAction">
+				<result name="success" type="tiles">abc.jsp</result>
+				<result name="failure" type="tiles">error.jsp</result>
+			</action>
+			
+			<!-- Submit Feedback Page -->
+			
+			<action name="submitFeedback"  class="edu.iiitb.ebay.action.SubmitFeedBackAction">
+				<result name="success" type="tiles">submitFeedback.jsp</result>
+				<result name="failure" type="tiles">error.jsp</result>
+			</action>
+			
+		<!--End of Addition by Surya Pratap  -->
+		
 		
 
 		<!-- Added by Vamsi Krishna Srungarapu  -->
