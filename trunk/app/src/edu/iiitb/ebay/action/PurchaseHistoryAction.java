@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import edu.iiitb.ebay.dao.PurchaseHistoryDAO;
 import edu.iiitb.ebay.model.entity.ProductModel;
 import edu.iiitb.ebay.model.entity.SellerModel;
+import edu.iiitb.ebay.model.entity.UserModel;
 
 /**
  * 
@@ -36,11 +38,6 @@ public class PurchaseHistoryAction extends ActionSupport {
 		this.userId = userId;
 	}
 
-	
-
-	
-
-
 	public ArrayList<ProductModel> getProducts() {
 		return products;
 	}
@@ -49,9 +46,6 @@ public class PurchaseHistoryAction extends ActionSupport {
 	public void setProducts(ArrayList<ProductModel> products) {
 		this.products = products;
 	}
-
-
-	
 
 	
 	public ArrayList<Integer> getProductId() {
@@ -78,14 +72,16 @@ public class PurchaseHistoryAction extends ActionSupport {
 		
 		int i;
 		
-		userId=10;
+		//this.setUserId(10);
+		userId=((UserModel)ActionContext.getContext().getSession().get("user")).getUserId();
 		
 		logger.info("in execute() method of PurchaseHistoryAction class ");
 		
 		PurchaseHistoryDAO purchasehistoryDAO = new PurchaseHistoryDAO();
 		
 		if(userId!=0){
-			setProductId(purchasehistoryDAO.getProductId(userId));
+			//get the list of products brought by particular user.
+			setProductId(purchasehistoryDAO.getListOfProductId(userId));
 			
 		}
 		
