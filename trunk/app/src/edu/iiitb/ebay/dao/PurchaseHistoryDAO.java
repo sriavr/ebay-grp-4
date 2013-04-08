@@ -49,8 +49,8 @@ public class PurchaseHistoryDAO extends BaseDAO {
 	}
 
 	
-
-	public ArrayList<Integer> getProductId(int userId) {
+// To get list of products purchased by a particular user
+	public ArrayList<Integer> getListOfProductId(int userId) {
 		// TODO Auto-generated method stub
 		
 		ArrayList<Integer> productId =new ArrayList<Integer>();
@@ -81,7 +81,7 @@ public class PurchaseHistoryDAO extends BaseDAO {
 		SellerModel seller=new SellerModel();
 		
 		StringBuilder sqlQuery = new StringBuilder(
-				"select sellerName from eBay.seller where sellerId = " + sellerId);
+				"select firstName from eBay.user where userId = " + sellerId);
 		
 		logger.info("Query executed: " + sqlQuery);
 		
@@ -89,7 +89,7 @@ public class PurchaseHistoryDAO extends BaseDAO {
 		
 		try{
 			if(rs.next()){
-				//seller.setSellerName(rs.getString("sellerName"));
+				seller.setSellerName(rs.getString("firstName"));
 			}
 			}
 			catch(Exception e){
