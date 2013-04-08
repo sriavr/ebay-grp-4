@@ -51,12 +51,14 @@
 		</div>
 		
 	</div>
-	<s:form  action="removeFromWatchList.action" method="post" theme="simple">
+	<s:actionerror/>
+	<%-- <s:form  action="removewatchlist.action" method="post" theme="simple"> --%>
+		<%-- <s:checkboxlist list="viewWatchListModel" name="selectedCheckBox" listValue="watchListId" listKey="watchListId"></s:checkboxlist> --%>
 		<s:iterator value="viewWatchListModel">
 			<div class="row" style="border-top: 1px solid #F5F5F5;margin-top:15px;">
 				<div class="columns large-5">
-					<s:checkbox value="" fieldValue="watchListId" name="watchListId" key="watchListId" />
-				
+					<%-- <s:checkbox fieldValue="watchListId" name="selectedCheckBox" /> --%>
+					
 					<a class="th radius" data-reveal-id="myModal" href="#"> <img
 								alt="<s:property value="description" />"
 								src="<%=request.getContextPath()%><s:property value="photo" />">
@@ -65,19 +67,25 @@
 				<div class="columns large-3">
 					<s:property value="productTitle" />
 				</div>
-				<div class="columns large-2">
+				<div class="columns large-1">
 					<s:property value="price" />
 				</div>
-				<div class="columns large-2">
+				<div class="columns large-3">
 					<s:property value="actions" />
+					<a class="small button " href="<s:url action="removewatchlist">
+				<s:param name="selectedCheckBox" value="watchListId"/>
+			 	</s:url>">
+					Remove
+		</a>
 				</div>
 				
 			</div>
 		</s:iterator>
 		<div class="row">
-		 <s:submit  value="RemovefromList" name="fromSubmit" ></s:submit>
+		 <!-- <input type="submit" value="Remove" name="fromSubmit" class="small button " /> -->
+		 
 		</div>
-	</s:form>
+	<%-- </s:form> --%>
 	
 </body>
 </html>
