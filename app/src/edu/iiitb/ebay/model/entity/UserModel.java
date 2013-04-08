@@ -129,6 +129,21 @@ public class UserModel {
 		this.stateName = stateName;
 	}
 
+	/**
+	 * @return the dob
+	 */
+	public String getDob() {
+		return dob;
+	}
+
+	/**
+	 * @param dob
+	 *            the dob to set
+	 */
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
+
 	private String lastName;
 	private String homeAddress;
 	private String city;
