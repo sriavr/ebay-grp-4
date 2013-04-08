@@ -14,6 +14,8 @@ public class ViewWatchListModel {
 	private int quantityAvailable;
 	private int price;
 	private String actions;
+	private String photo;
+	private String description;
 
 	/**
 	 * @return the watchListId
@@ -103,6 +105,36 @@ public class ViewWatchListModel {
 	 */
 	public void setActions(String actions) {
 		this.actions = actions;
+	}
+
+	/**
+	 * @return the photo
+	 */
+	public String getPhoto() {
+		return photo;
+	}
+
+	/**
+	 * @param photo
+	 *            the photo to set
+	 */
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description
+	 *            the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }
