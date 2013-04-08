@@ -72,10 +72,10 @@
 				</div>
 				<div class="columns large-3">
 					<s:property value="actions" />
-					<a class="small button " href="<s:url action="removewatchlist">
+					<a class="tiny success button " href="<s:url action="removewatchlist">
 				<s:param name="selectedCheckBox" value="watchListId"/>
 			 	</s:url>">
-					Remove
+				Remove
 		</a>
 				</div>
 				
