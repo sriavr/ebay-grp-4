@@ -32,7 +32,7 @@ public class ViewMyProductsAction extends ActionSupport{
 			return NONE;
 		}
 		else{
-			//he is registered user - get the list of his own products 
+			//he is registered seller - get the list of his own products 
 			setProducts(sellerDAO.getProducts(SellerId));
 		}
 		return SUCCESS;
