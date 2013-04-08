@@ -236,6 +236,12 @@
 		<!--End Code: by Prartibind Jha  -->
 
 
+		<!--Start Code: by Pavan Kumar Yeleswarapu -->
+		<action name="deals" class="edu.iiitb.ebay.action.DealsAction">
+			<result name="success" type="tiles">deals.jsp</result>
+			<result name="error" type="tiles">error.jsp</result>
+		</action>
+		<!--Start Code: by Pavan Kumar Yeleswarapu -->
 	</package>
 
 </struts>

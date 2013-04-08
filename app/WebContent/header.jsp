@@ -125,6 +125,8 @@
 					</div>
 					<div class="columns large-2">
 						<input type="submit" value="Search" />
+<!-- 						<a href="deals">Deals</a> -->
+						<s:submit action="deals" value="Deals"></s:submit>
 						<%-- 						<s:submit label="Search" cssClass="small button" value="search"></s:submit> --%>
 					</div>
 				</div>
