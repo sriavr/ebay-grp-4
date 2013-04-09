@@ -42,6 +42,7 @@ public class AddToWatchListAction extends ActionSupport {
 		session = ActionContext.getContext().getSession();
 
 		String Role = (String) session.get("role");
+		System.out.println("role:"+Role);
 		if (Role == null) {
 			return "login";
 		}
