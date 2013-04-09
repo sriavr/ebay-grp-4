@@ -3,10 +3,14 @@
  */
 package edu.iiitb.ebay.action;
 
+import java.util.Map;
+
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import edu.iiitb.ebay.dao.UserFeedbackDAO;
 import edu.iiitb.ebay.model.entity.UserFeedbackModel;
+import edu.iiitb.ebay.model.entity.UserModel;
 import edu.iiitb.ebay.model.page.UserFeedbackModelPage;
 
 /**
@@ -87,14 +91,19 @@ public class ViewFeedbackAction extends ActionSupport {
 
 	public String viewFeedback() {
 		UserFeedbackModelPage pageModel = null;
-		/*
-		 * Map<String, Object> session; String role; int productId; // get the
-		 * user information from session object. session =
-		 * ActionContext.getContext().getSession(); role =
-		 * (String)session.get("role"); UserModel student =
-		 * (UserModel)session.get("user");
-		 */
-		int productId = this.getProductID();
+
+		Map<String, Object> session;
+		String role = "";
+		int productId;
+		// get the user information from session object.
+		session = ActionContext.getContext().getSession();
+		role = (String) session.get("role");
+		if (role == null) {
+			return "login";
+		}
+		UserModel student = (UserModel) session.get("user");
+
+		productId = this.getProductID();
 		System.out.println("productID " + productId);
 		if (productId == 0) {
 			addActionMessage("productId is not valid ");
