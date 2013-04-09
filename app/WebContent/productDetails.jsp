@@ -8,7 +8,7 @@
 	</a>
 </div>
 <div class="large-9 columns">
-	<div class=105"row">
+	<div class="row">
 		<h2>
 			<s:property value="product.title" />
 		</h2>
@@ -19,7 +19,7 @@
 	<div class="row">
 		<div class="columns large-8">
 			<s:hidden name="product.quantity" id="max_quantity" />
-			<b>Quantity:</b> <input type="text" name="quantity" id="quantity"
+			<b>Quantity:</b> <input type="text" name="quantity"
 				onkeyup="editCart_BuyLinks()" style="width: 30px" /> <label
 				id="Error" style="color: red;"></label>
 
@@ -44,11 +44,9 @@
 			<hr />
 		</div>
 		<div class="columns large-4">
-			<h4>
-				<span data-tooltip class="has-tip"
-					title="<s:property value="product.sellerId" />">Seller
-					Information</span>
-			</h4>
+			<h4><span data-tooltip class="has-tip"
+				title="<s:property value="product.sellerId" />" >Seller
+					Information</span></h4>
 			<%-- 				<s:property value="product.sellerId" /> --%>
 			<s:url var="url1"></s:url>
 
@@ -77,6 +75,4 @@
 					+ quantity;
 		}
 	}
-
-	
 </script>
