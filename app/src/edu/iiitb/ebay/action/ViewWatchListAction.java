@@ -82,6 +82,7 @@ public class ViewWatchListAction extends ActionSupport {
 		session = ActionContext.getContext().getSession();
 		String Role = "";
 		Role = (String) session.get("role");
+		System.out.println("Role " + Role);
 		if (Role == null) {
 			addActionMessage("Please Login");
 			return "fail";
@@ -95,7 +96,7 @@ public class ViewWatchListAction extends ActionSupport {
 		}
 
 		// hardcoded data
-		userId = 15;
+
 		this.viewWatchListModel = ViewWatchListDAO.getWatchListModel(userId);
 		if (this.viewWatchListModel == null)
 			addActionMessage("There is no item in WatchList");
