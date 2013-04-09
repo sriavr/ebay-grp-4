@@ -50,7 +50,6 @@ public class AddToWatchListAction extends ActionSupport {
 			userId = userModel.getUserId();
 		}
 
-		userId = 15;
 		if (userId != 0) {
 			result = ViewWatchListDAO.addToWatchListDAO(getProductId(), userId);
 			if (result == 0) {
