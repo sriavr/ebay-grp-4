@@ -15,6 +15,7 @@ public class LogoutAction extends ActionSupport {
 		LogMessage.log("Inside LogoutAction. Logging out...");
 		sessionMap.remove("user");
 		sessionMap.remove("admin");
+		sessionMap.remove("role");
 		sessionMap.clear();
 		return SUCCESS;
 	}
