@@ -48,7 +48,7 @@
 						<ul class="dropdown">
 							<li><a href="#">Summary</a></li>
 							<li><a href="#">Bids/Offers</a></li>
-							<li><a href="#">Watch List</a></li>
+							<li><a href="viewWatchList.action">Watch List</a></li>
 							<li><a href="#">All List</a></li>
 						</ul></li>
 					<li class="divider"></li>
