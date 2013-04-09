@@ -87,8 +87,10 @@ BEGIN
 END$$
 DELIMITER ;
 
+-- -----------------------------------------------------
+-- Procedure `eBay`.`getDeals`
+-- -----------------------------------------------------
 delimiter $$
-
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getDeals`(IN query VARCHAR(2000), IN catId INT, IN priceLower INT, IN priceHigher INT)
 BEGIN
     DECLARE temp INT DEFAULT catId;
@@ -143,4 +145,4 @@ BEGIN
     -- select queryString from dual;
     drop temporary table tmpcat;
 END$$
-
+DELIMITER ;
