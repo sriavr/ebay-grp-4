@@ -233,6 +233,7 @@
 		<action name="viewFeedback" class="edu.iiitb.ebay.action.ViewFeedbackAction" method="viewFeedback">
 			<result name="success" type="tiles">viewFeedback.jsp</result>
 			<result name="error" type="tiles">error.jsp</result>
+			<result name="login" type="redirectAction">login</result>
 		</action>
 		<action name="viewWatchList" class="edu.iiitb.ebay.action.ViewWatchListAction" method="viewWatchList">
 			<result name="success" type="tiles">viewWatchList.jsp</result>
@@ -251,6 +252,11 @@
 		<action name="addWatchList" class="edu.iiitb.ebay.action.AddToWatchListAction" method="addWatchList">
 			<result name="success" type="redirectAction">viewWatchList</result>
 			<result name="fail" type="redirectAction">login</result>
+			<result name="login" type="redirectAction">login</result>
+		</action>
+		<action name="viewUserInfo" class="edu.iiitb.ebay.action.ManageUserInfoAction" method="getUserInfoList">
+			<result name="success" type="tiles">viewUserInfo.jsp</result>
+			<result name="fail" type="tiles">error.jsp</result>
 		</action>
 		<!--End Code: by Prartibind Jha  -->
 
