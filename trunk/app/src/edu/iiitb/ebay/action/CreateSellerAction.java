@@ -13,7 +13,13 @@ public class CreateSellerAction extends ActionSupport {
 	
 	
 	String location;
-	
+	String sla;
+	public String getSla() {
+		return sla;
+	}
+	public void setSla(String sla) {
+		this.sla = sla;
+	}
 	public String getLocation() {
 		return location;
 	}
@@ -41,6 +47,7 @@ public class CreateSellerAction extends ActionSupport {
 			SellerModel sm = new SellerModel();
 			sm.setUserId(um.getUserId());
 			sm.setLocation(location);
+			sm.setSla(Integer.parseInt(sla));
 			dao.insertSeller(sm);
 		}
 		
