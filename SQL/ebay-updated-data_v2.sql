@@ -145,5 +145,20 @@ insert into deals (dealsId, productId, dealStartDate, dealEndDate, dealSellingPr
     (3012,212,'2013-03-03','2013-06-03',4300),
     (3013,213,'2013-04-01','2013-06-03',5200),
     (3014,214,'2013-04-10','2013-06-03',530);    
+    
+DELETE FROM userwishlist;
+INSERT INTO `userwishlist` (`userwishlistId`,`userId`,`productId`) VALUES
+  (1,10,200),
+  (2,10,201),
+  (3,10,203),
+  (4,11,200),
+  (5,12,205),
+  (6,13,207),
+  (7,13,208),
+  (9,15,201),
+  (10,15,202),
+  (11,15,203),
+  (12,15,204),
+  (13,15,205);
 
     
