@@ -3,26 +3,36 @@ package edu.iiitb.ebay.action;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class ForwardAction extends ActionSupport{
-	public String selectModeOfPayment(){
+public class ForwardAction extends ActionSupport {
+	public String selectModeOfPayment() {
 		return Action.SUCCESS;
 	}
-	public String debitCard(){
+
+	public String debitCard() {
 		return Action.SUCCESS;
 	}
-	public String creditCard(){
+
+	public String creditCard() {
 		return Action.SUCCESS;
 	}
-	public String cashOnDelivery(){
+
+	public String cashOnDelivery() {
 		return Action.SUCCESS;
 	}
-	public String debitCardBuy(){
+
+	public String debitCardBuy() {
 		return Action.SUCCESS;
 	}
-	public String creditCardBuy(){
+
+	public String creditCardBuy() {
 		return Action.SUCCESS;
 	}
-	public String cashOnDeliveryBuy(){
+
+	public String cashOnDeliveryBuy() {
+		return Action.SUCCESS;
+	}
+
+	public String register() {
 		return Action.SUCCESS;
 	}
 }
