@@ -47,7 +47,7 @@ public class MangeUserInfoDAO {
 			userModelObj.setCountryName(rs.getString("country"));
 			userModelObj.setStateName(rs.getString("state"));
 			userModelObj.setPinCode(rs.getInt("pinCode"));
-			userModelObj.setTelephoneNo(rs.getLong("telephoneNo"));
+			userModelObj.setTelephoneNo(rs.getString("telephoneNo"));
 			userModelObj.setEmail(rs.getString("email"));
 			userModelObj.setPassword(rs.getString("password"));
 			userModelObj.setDob(rs.getString("dob"));
