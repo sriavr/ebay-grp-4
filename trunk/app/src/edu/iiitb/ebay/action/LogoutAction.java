@@ -4,6 +4,7 @@ import java.util.Map;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+
 import edu.iiitb.ebay.util.LogMessage;
 
 public class LogoutAction extends ActionSupport {
@@ -14,7 +15,8 @@ public class LogoutAction extends ActionSupport {
 		LogMessage.log("Inside LogoutAction. Logging out...");
 		sessionMap.remove("user");
 		sessionMap.remove("admin");
+		sessionMap.clear();
 		return SUCCESS;
 	}
-	
+
 }
