@@ -8,8 +8,35 @@ package edu.iiitb.ebay.model.entity;
  */
 public class UserModel {
 	private Integer userId;
-
 	private String firstName;
+	private String lastName;
+	private String homeAddress;
+	private String city;
+	private long pinCode;
+	private String telephoneNo;
+	private String email;
+	private String password;
+	private String countryName;
+	private String stateName;
+	private String dob;
+	private Integer secretQnId;
+	private String secretAnswer;
+
+	public String getSecretAnswer() {
+		return secretAnswer;
+	}
+
+	public void setSecretAnswer(String secretAnswer) {
+		this.secretAnswer = secretAnswer;
+	}
+
+	public Integer getSecretQnId() {
+		return secretQnId;
+	}
+
+	public void setSecretQnId(Integer secretQnId) {
+		this.secretQnId = secretQnId;
+	}
 
 	public Integer getUserId() {
 		return userId;
@@ -51,22 +78,6 @@ public class UserModel {
 		this.city = city;
 	}
 
-	public Integer getCountryId() {
-		return countryId;
-	}
-
-	public void setCountryId(Integer countryId) {
-		this.countryId = countryId;
-	}
-
-	public Integer getStateId() {
-		return stateId;
-	}
-
-	public void setStateId(Integer stateId) {
-		this.stateId = stateId;
-	}
-
 	public long getPinCode() {
 		return pinCode;
 	}
@@ -75,11 +86,11 @@ public class UserModel {
 		this.pinCode = pinCode;
 	}
 
-	public long getTelephoneNo() {
+	public String getTelephoneNo() {
 		return telephoneNo;
 	}
 
-	public void setTelephoneNo(long telephoneNo) {
+	public void setTelephoneNo(String telephoneNo) {
 		this.telephoneNo = telephoneNo;
 	}
 
@@ -143,18 +154,5 @@ public class UserModel {
 	public void setDob(String dob) {
 		this.dob = dob;
 	}
-
-	private String lastName;
-	private String homeAddress;
-	private String city;
-	private Integer countryId;
-	private Integer stateId;
-	private long pinCode;
-	private long telephoneNo;
-	private String email;
-	private String password;
-	private String countryName;
-	private String stateName;
-	private String dob;
 
 }
