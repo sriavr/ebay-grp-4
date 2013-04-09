@@ -42,7 +42,7 @@ public class CreateSellerAccountDAO extends BaseDAO {
 	{
 		try
 		{
-		String updateQuery ="insert into seller(location,userId) values('"+sm.getLocation()+"',"+sm.getUserId()+")";
+		String updateQuery ="insert into seller(location,userId,sla) values('"+sm.getLocation()+"',"+sm.getUserId()+","+sm.getSla()+")";
 		LogMessage.log("Update query in insertSeller:"+updateQuery);
 		System.out.println(update(updateQuery));
 		}

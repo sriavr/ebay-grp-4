@@ -34,7 +34,7 @@ public class SellerProductUpdationDAO extends BaseDAO{
 	public ArrayList<ProductModel> getProducts(int sellerId) {
 		String query ;
 		ArrayList<ProductModel> products = new ArrayList<ProductModel>();
-		query = "select * from product where sellerId = " + sellerId;
+		query = "select * from product where sellerId = " + sellerId + " order by productId desc";
 		ResultSet rs = readFromDB(query);
 		try {
 			while (rs.next()) {
