@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import edu.iiitb.ebay.dao.ViewWatchListDAO;
@@ -77,13 +78,21 @@ public class ViewWatchListAction extends ActionSupport {
 		Map<String, Object> session;
 		int userId = 0;
 		UserModel userModel;
-		/*
-		 * session = ActionContext.getContext().getSession(); String Role = "";
-		 * Role = (String) session.get("role"); if (Role.equals("user")) {
-		 * userModel = (UserModel) session.get("user"); userId =
-		 * userModel.getUserId(); } else { addActionMessage("Please Login");
-		 * return "fail"; }
-		 */
+
+		session = ActionContext.getContext().getSession();
+		String Role = "";
+		Role = (String) session.get("role");
+		if (Role == null) {
+			addActionMessage("Please Login");
+			return "fail";
+		}
+		if (Role.equals("user")) {
+			userModel = (UserModel) session.get("user");
+			userId = userModel.getUserId();
+		} else {
+			addActionMessage("Please Login");
+			return "fail";
+		}
 
 		// hardcoded data
 		userId = 15;
