@@ -160,5 +160,7 @@ INSERT INTO `userwishlist` (`userwishlistId`,`userId`,`productId`) VALUES
   (11,15,203),
   (12,15,204),
   (13,15,205);
-
+   
+    
+insert into bank values(1,1,'1234','5678','4321','8765',10000);
     
