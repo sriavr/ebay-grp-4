@@ -41,6 +41,11 @@
 			<a id="cartLink"
 				href="cartAction.action?productId=<s:property value="%{product.productId}"/>&qty=">Add
 				to Cart</a>
+				
+			<a id="watchLink"
+				href="addWatchList.action?productId=<s:property value="%{product.productId}"/>">Add
+				to Watch List</a>	
+			<hr />	
 			<hr />
 		</div>
 		<div class="columns large-4">
