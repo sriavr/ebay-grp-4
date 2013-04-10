@@ -130,9 +130,11 @@
 							<s:iterator value="actionErrors">
 								<div data-alert class="alert-box success">
 								 <a href="#" class="close">&times;</a>
+								 
 									<s:property />
 								</div>
 							</s:iterator>
+							<a href="viewMyProducts" class="small button round">Continue</a>
 			</div>				
 						</s:if>
         <div class="panel">
