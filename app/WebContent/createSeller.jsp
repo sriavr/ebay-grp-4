@@ -12,7 +12,8 @@
    Location:
     <s:textfield name="location" placeholder="enter location,eg:city,State" theme="simple"></s:textfield><br>
    
-    
+    Percentage SLA
+    <s:textfield name="sla" placeholder="enter sla as percentage value(1-100)" theme="simple"></s:textfield><br>
    
   
    
