@@ -72,7 +72,7 @@
 							<li><a href="#">FeedBack To eBay</a>
 						</ul></li>
 					<li class="divider"></li>
-					<li><a href="#">Cart</a> <%
+					<li><a href="cartAction">Cart</a> <%
  	if (session.getAttribute("admin") != null) {
  %>
 					<li class="has-dropdown"><a href="#">Admin</a>
