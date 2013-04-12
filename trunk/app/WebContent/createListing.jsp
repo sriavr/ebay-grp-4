@@ -232,11 +232,11 @@
 		    <font size="2">Discount</font><br>
 		    <div class="row">
 		     <div class="small-2 columns">
-		      Rs.<s:textfield  theme="simple" name="discount"  tooltip="Enter Discount"/>
+		      <s:textfield  theme="simple" name="discount"  tooltip="Enter Discount" placeholder="Enter discount percentage"/>
 		    </div>
 		    </div>
 		</div>
-		
+		<s:hidden name="productId" value="%{productId}"/>
 	<div class="panel">
 	  <input type="submit" value="Save" name="save" class="small button"/>
 	</div>	
