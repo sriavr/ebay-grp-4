@@ -34,14 +34,14 @@
 			<s:hidden id="buyHiddenLink"
 				value="buyProduct.action?productId=%{product.productId}&qty="></s:hidden>
 			<a id="buyLink"
-				href="buyProduct.action?productId=<s:property value="%{product.productId}"/>&qty=">Buy
+				href="buyProsridhar.j@iiitb.orgduct.action?productId=<s:property value="%{product.productId}"/>&qty=">Buy
 				Now </a> <br>
 			<s:hidden id="cartHiddenLink"
 				value="cartAction.action?productId=%{product.productId}&qty="></s:hidden>
 			<a id="cartLink"
 				href="cartAction.action?productId=<s:property value="%{product.productId}"/>&qty=">Add
 				to Cart</a>
-				
+				<br>
 			<a id="watchLink"
 				href="addWatchList.action?productId=<s:property value="%{product.productId}"/>">Add
 				to Watch List</a>	
