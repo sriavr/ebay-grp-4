@@ -289,6 +289,17 @@
 		<action name="viewUserInfo" class="edu.iiitb.ebay.action.ManageUserInfoAction" method="getUserInfoList">
 			<result name="success" type="tiles">viewUserInfo.jsp</result>
 			<result name="fail" type="tiles">error.jsp</result>
+			<result name="login" type="redirectAction">login</result>
+		</action>
+		<action name="editUserInfo" class="edu.iiitb.ebay.action.ManageUserInfoAction" method="getUserInfo">
+			<result name="success" type="tiles">editUserInfo.jsp</result>
+			<result name="fail" type="tiles">error.jsp</result>
+			<result name="login" type="redirectAction">login</result>
+		</action>
+		<action name="saveUserInfo" class="edu.iiitb.ebay.action.ManageUserInfoAction" method="saveUserInfo">
+			<result name="success" type="redirectAction">viewUserInfo</result>
+			<result name="fail" type="tiles">error.jsp</result>
+			<result name="login" type="redirectAction">login</result>
 		</action>
 		<!--End Code: by Prartibind Jha  -->
 
