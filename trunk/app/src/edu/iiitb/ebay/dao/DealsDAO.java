@@ -223,5 +223,25 @@ public class DealsDAO extends BaseDAO {
 		}
 		return dm;
 	}
+	
+	
+	//Added by DEbargha to save deals
+	
+	
+	public void saveDeals(DealModel deal)
+	{
+		String query = "insert into deals(productId,productDiscountPercent,dealStartDate,dealEndDate,dealSellingPrice) values("+deal.getProductId()+","+deal.getProductDiscountPercent()+",'"+deal.getDealStartDate()+"','"+deal.getDealEndDate()+"',"+deal.getPrice()+")";
+		
+		System.out.println(query);
+		try
+		{
+			System.out.println(update(query));
+			
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+	}
 
 }
