@@ -79,7 +79,7 @@
 
 						<ul class="dropdown">
 							<li><a href="manageCategory.action">Manage Category</a>
-							<li><a href="#">Manage User </a>
+							<li><a href="viewUserInfo.action">Manage User </a>
 						</ul></li>
 					<li class="divider"></li>
 
