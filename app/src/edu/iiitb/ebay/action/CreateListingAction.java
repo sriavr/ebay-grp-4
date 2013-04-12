@@ -1,11 +1,6 @@
 package edu.iiitb.ebay.action;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -18,6 +13,8 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import edu.iiitb.ebay.dao.MakeListingDAO;
+import edu.iiitb.ebay.dao.ProductDetailsDAO;
+import edu.iiitb.ebay.model.entity.CategoryModel;
 import edu.iiitb.ebay.model.entity.ProductModel;
 import edu.iiitb.ebay.model.entity.ProductSpecModel;
 import edu.iiitb.ebay.model.entity.SellerModel;
@@ -30,6 +27,21 @@ public class CreateListingAction extends ActionSupport implements
 	String filename = "images/default-pic.jpg";
 	String upload = "";
 	String discount = "";
+	String productId="";
+	
+
+
+	
+
+	
+
+	public String getProductId() {
+		return productId;
+	}
+
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
 
 	public String getDiscount() {
 		return discount;
@@ -154,6 +166,16 @@ public class CreateListingAction extends ActionSupport implements
 	String propertyName = "";
 	String propertyValue = "";
 	String itemSpec = "";
+    String deal="";
+    
+    
+	public String getDeal() {
+		return deal;
+	}
+
+	public void setDeal(String deal) {
+		this.deal = deal;
+	}
 
 	public String getItemSpec() {
 		return itemSpec;
@@ -214,13 +236,36 @@ public class CreateListingAction extends ActionSupport implements
 	ArrayList<ProductSpecModel> itemspefics = new ArrayList<ProductSpecModel>();
 
 	public String execute() {
-		System.out.println("property name:" + propertyName);
-		System.out.println("category id:" + selectedCategoryId);
+		
 		Map<String, Object> sessionMap = ActionContext.getContext()
 		.getSession();
 		
-		if(sessionMap.get("seller")==null)
+		if(sessionMap.get("user")==null)
           return "initial";
+		
+		if(!productId.equals(""))
+		{
+			ProductDetailsDAO prodDao = new ProductDetailsDAO();
+			ProductModel pm=prodDao.getProductDetails(Integer.parseInt(productId));
+		    setTitle(pm.getTitle());
+		    setFilename(pm.getPhoto().substring(1));
+		    setDescription(pm.getDescription());
+		    setPrice(pm.getPrice()+"");
+		    setQuantity(pm.getQuantity()+"");
+		    pm.setProductId(Integer.parseInt(productId));
+		    
+		    CategoryModel cm=prodDao.getCategoryOfProduct(productId);
+		    selection = selection+cm.getCategoryName();
+		    while(!cm.getParentCategoryId().equals("0"))
+		    {
+		    	cm=prodDao.getCategory(cm.getParentCategoryId());
+		    	selection=cm.getCategoryName()+">>"+selection;
+		    }
+		    
+		    
+		    
+		}
+		
 		
 		SellerModel sm= (SellerModel) sessionMap.get("seller");
 		if (!itemSpec.equals("")) {
@@ -233,6 +278,12 @@ public class CreateListingAction extends ActionSupport implements
 			itemspefics.add(productSpecModel);
 			itemSpec = "";
 		}
+		
+		
+		
+		
+		
+		
 
 		if (userImage != null) {
 
@@ -262,14 +313,16 @@ public class CreateListingAction extends ActionSupport implements
 
 			try {
 				// Compute productId
+				if(productId.equals(""))
+				{	
 				MakeListingDAO dao = new MakeListingDAO();
-				int productId = dao.getProductId();
-				System.out.println(productId);
+				int pId = dao.getProductId();
+				System.out.println(pId);
 				ProductModel pm = new ProductModel();
-				pm.setProductId(productId);
+				pm.setProductId(pId);
 				pm.setTitle(title);
 				pm.setPrice(Integer.parseInt(price));
-				pm.setDescription("");
+				
 				pm.setQuantity(Integer.parseInt(quantity));
 				pm.setSellerId(sm.getSellerId());
 				pm.setPhoto("/" + filename);
@@ -289,7 +342,26 @@ public class CreateListingAction extends ActionSupport implements
 					catId = Integer.parseInt(selectedCategoryId);
 
 				dao.saveProduct(pm, itemspefics, catId + "");
-				addActionError("Item successfully Listed.Press ontinue to review the listings made by you");
+				addActionError("Item successfully Listed.Press continue to review the listings made by you");
+				}
+				
+				else
+				{
+					ProductModel pm = new ProductModel();
+					pm.setProductId(Integer.parseInt(productId));
+					pm.setTitle(title);
+					pm.setPrice(Integer.parseInt(price));
+					pm.setQuantity(Integer.parseInt(quantity));
+					pm.setPhoto("/" + filename);
+					pm.setDescription(description);
+					if (!discount.equals(""))
+						pm.setDiscount(Integer.parseInt(discount));
+					else
+						pm.setDiscount(0);
+					MakeListingDAO dao = new MakeListingDAO();
+					dao.updateProduct(pm);
+					addActionError("Product successfully updated");
+				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
