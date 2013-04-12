@@ -34,7 +34,7 @@
 			<s:hidden id="buyHiddenLink"
 				value="buyProduct.action?productId=%{product.productId}&qty="></s:hidden>
 			<a id="buyLink"
-				href="buyProsridhar.j@iiitb.orgduct.action?productId=<s:property value="%{product.productId}"/>&qty=">Buy
+				href="buyProduct.action?productId=<s:property value="%{product.productId}"/>&qty=">Buy
 				Now </a> <br>
 			<s:hidden id="cartHiddenLink"
 				value="cartAction.action?productId=%{product.productId}&qty="></s:hidden>
