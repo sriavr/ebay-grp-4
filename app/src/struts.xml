@@ -63,6 +63,14 @@
 			<result name="success" type="redirectAction">browse</result>
 			<result name="failure" type="tiles">error.jsp</result>
 		</action>
+		
+		<action name="addDeals" class="edu.iiitb.ebay.action.AddDealsAction">
+		    <result name="initial" type="tiles">login.jsp</result> 
+			<result name="success" type="tiles">addDeals.jsp</result>
+			<result name="viewProduct" type="redirectAction">viewMyProducts</result>
+			
+			
+		</action>
 		<!--- End of Debargha Ganguly's code -->
 
 		<!--- Start of Sridhar Jammalamadaka's code -->
