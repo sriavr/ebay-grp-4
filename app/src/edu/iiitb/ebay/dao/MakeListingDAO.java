@@ -91,6 +91,24 @@ public class MakeListingDAO extends BaseDAO {
 		}
 	}
 	
+	
+	public void updateProduct(ProductModel pm)
+	{
+		
+		try
+		{
+		String updateQuery = "update product set description='"+pm.getDescription()+"',title='"+pm.getTitle()+"',price="+pm.getPrice()+",quantity="+pm.getQuantity()+",photo='"+pm.getPhoto()+"',discount="+pm.getDiscount()+" where productId="+pm.getProductId();
+		System.out.println(updateQuery);
+		update(updateQuery);
+		
+		}
+		
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+	}
+	
 	public int getProductId()
 	{
 		String query = "select max(productId)+1 from product";

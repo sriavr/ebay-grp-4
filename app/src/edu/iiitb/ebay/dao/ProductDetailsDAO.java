@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
+import edu.iiitb.ebay.model.entity.CategoryModel;
 import edu.iiitb.ebay.model.entity.ProductModel;
 
 public class ProductDetailsDAO extends BaseDAO {
@@ -47,5 +48,54 @@ public class ProductDetailsDAO extends BaseDAO {
 		}
 		return product;
 	}
+
+	public CategoryModel getCategoryOfProduct(String productId) {
+		logger.info("Inside ProductDetailsDAO : getCategoryOfProduct(productId)");
+		logger.info("productId:" + productId);
+
+		String sqlQuery = "select p.categoryId,categoryName,parentCategoryId  from productcategorymapping pm,category p  where pm.productId="
+				+ productId + " and p.categoryId=pm.categoryId";
+		CategoryModel cat = new CategoryModel();
+		ResultSet rs = readFromDB(sqlQuery);
+		try {
+			if (rs.next()) {
+				cat.setCategoryID(rs.getInt(1)+"");
+				cat.setCategoryName(rs.getString(2)+"");
+				cat.setParentCategoryId(rs.getInt(3)+"");
+				
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+		
+		return cat;
+
+	}
+	
+	public CategoryModel getCategory(String categoryId) {
+		logger.info("Inside ProductDetailsDAO : getCategory(productId)");
+		logger.info("productId:" + categoryId);
+
+		String sqlQuery = "select * from category where categoryId ="+categoryId;
+		CategoryModel cat = new CategoryModel();
+		ResultSet rs = readFromDB(sqlQuery);
+		try {
+			if (rs.next()) {
+				cat.setCategoryID(rs.getInt(1)+"");
+				cat.setCategoryName(rs.getString(2)+"");
+				cat.setParentCategoryId(rs.getInt(3)+"");
+				
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+		
+		return cat;
+
+	}
+	
+	
 
 }
