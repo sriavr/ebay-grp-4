@@ -30,19 +30,8 @@ public class BuyProductAction extends ActionSupport {
 	}
 
 	public String execute() {
-		Map<String, Object> session;
-		session = ActionContext.getContext().getSession();
-
-		String Role = (String) session.get("role");
-		System.out.println("role:" + Role);
-		if (Role == null) {
-			return "login";
-		}
 		BuyProductDAO buyProductDAO = new BuyProductDAO();
-		System.out.println("ProductId: " + this.getProductId());
-		// Quantity was null so it was giving the null pointer exception
-		// so i chnaged it to 1, anyway it is not using in DAO.@pratibind
-		ProductModel product = buyProductDAO.getProduct(this.getProductId(), 1);
+		ProductModel product = buyProductDAO.getProduct(productId, qty);
 		ActionContext.getContext().getSession().put("buyProduct", product);
 		return Action.SUCCESS;
 	}
