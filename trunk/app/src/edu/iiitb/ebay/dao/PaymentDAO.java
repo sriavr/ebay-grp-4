@@ -151,9 +151,9 @@ public class PaymentDAO extends BaseDAO {
 	}
 
 	public int insertIntoOrderTable(int userId, int sellerId, int productId,
-			String string) {
+			String string, int quantity) {
 		// TODO Auto-generated method stub
-		String query = "INSERT INTO eBay.order(userId,sellerId,productId,currentStatus) VALUES("
+		String query = "INSERT INTO eBay.order(userId,sellerId,productId,currentStatus,statusUpdatedDate,orderPlacedDate,quantity) VALUES("
 				+ userId
 				+ ","
 				+ sellerId
@@ -161,7 +161,9 @@ public class PaymentDAO extends BaseDAO {
 				+ productId
 				+ ","
 				+ string
-				+ ")";
+				+ ",curdate(),curdate(),"
+				+quantity
+				+")";
 		update(query);
 		return ConstantValues.SUCCESS;
 	}

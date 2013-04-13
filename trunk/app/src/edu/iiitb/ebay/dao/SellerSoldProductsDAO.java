@@ -43,7 +43,7 @@ public class SellerSoldProductsDAO extends BaseDAO{
 				order.setProductId(rs.getInt("productId"));
 				order.setTransactionId(rs.getInt("transactionId"));
 				order.setOrderPlacedDate(rs.getDate("orderPlacedDate"));
-				order.setStatusUpdatedDate(rs.getDate("statusUpdatedDate"));
+				order.setStatusUpdateDate(rs.getDate("statusUpdatedDate"));
 				order.setShipped(rs.getDate("shipped"));
 				orders.add(order);
 				}
