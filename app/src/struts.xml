@@ -190,21 +190,25 @@
 			method="debitCardPay">
 			<result name="success" type="tiles">summary.jsp</result>
 			<result name="error" type="tiles">error.jsp</result>
+			<result name="insufficientMoney" type="tiles">insufficientMoney.jsp</result>
 		</action>
 		<action name="debitCardBuyPay" class="edu.iiitb.ebay.action.PaymentAction"
 			method="debitCardBuyPay">
 			<result name="success" type="tiles">summary.jsp</result>
 			<result name="error" type="tiles">error.jsp</result>
+			<result name="insufficientMoney" type="tiles">insufficientMoney.jsp</result>
 		</action>
 		<action name="creditCardPay" class="edu.iiitb.ebay.action.PaymentAction"
 			method="creditCardPay">
 			<result name="success" type="tiles">summary.jsp</result>
 			<result name="error" type="tiles">error.jsp</result>
+			<result name="insufficientMoney" type="tiles">insufficientMoney.jsp</result>
 		</action>
 		<action name="creditCardBuyPay" class="edu.iiitb.ebay.action.PaymentAction"
 			method="creditCardBuyPay">
 			<result name="success" type="tiles">summary.jsp</result>
 			<result name="error" type="tiles">error.jsp</result>
+			<result name="insufficientMoney" type="tiles">insufficientMoney.jsp</result>
 		</action>
 		<action name="notifySellersOutOfStockAction"
 			class="edu.iiitb.ebay.action.NotifySellersOutOfStockAction">
@@ -219,6 +223,10 @@
 		<action name="notifyAllSellersAction" class="edu.iiitb.ebay.action.NotifySellerAction"
 			method="notifyAllSellers">
 			<result name="success" type="tiles">successNotifyMessage.jsp</result>
+			<result name="error" type="tiles">error.jsp</result>
+		</action>
+		<action name="cancelOrderAction" class="edu.iiitb.ebay.action.CancelOrderAction">
+			<result name="success" type="tiles">successOrderCancel.jsp</result>
 			<result name="error" type="tiles">error.jsp</result>
 		</action>
 
