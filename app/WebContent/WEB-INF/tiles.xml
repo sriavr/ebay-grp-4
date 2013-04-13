@@ -28,6 +28,10 @@
 	<definition name="makeListing.jsp" extends="baselayout">
 		<put-attribute name="body" value="/makeListing.jsp" />
 	</definition>
+	
+	<definition name="addDeals.jsp" extends="baselayout">
+		<put-attribute name="body" value="/addDeals.jsp" />
+	</definition>
 
 
 	<!--Cart Page -->
@@ -96,11 +100,7 @@
 	<definition name="insufficientMoney.jsp" extends="baselayout">
 		<put-attribute name="body" value="/insufficientMoney.jsp" />
 	</definition>
-
-
-
-
-
+    
 	<definition name="createListing.jsp" extends="baselayout">
 		<put-attribute name="body" value="/createListing.jsp" />
 	</definition>
@@ -187,9 +187,9 @@
 				
 				<definition name="updateProdDetailsBySeller.jsp" extends="baselayout">
 					<put-attribute name="body" value="/updateProdDetailsBySeller.jsp" />
-				</definition>
 			<!--view list of products sold by a seller -->
 			
+				</definition>
 				<definition name="viewMySoldProducts.jsp" extends="baselayout">
 					<put-attribute name="body" value="/viewMySoldProducts.jsp" />
 				</definition>
