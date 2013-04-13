@@ -44,43 +44,36 @@
 				<!-- Left Nav Section -->
 				<ul class="left">
 					<li class="divider"></li>
+						
 					<li class="has-dropdown"><a href="#">My eBay</a>
 						<ul class="dropdown">
 							<li><a href="#">Summary</a></li>
-							<li><a href="#">Bids/Offers</a></li>
 							<li><a href="viewWatchList.action">Watch List</a></li>
 							<li><a href="purchaseHistory.action">Purchase History</a></li>
-							<li><a href="#">All List</a></li>
+							
 						</ul></li>
 					<li class="divider"></li>
-					<li><a href="#">My Paisa Pay</a></li>
+					<li><a href="#">My Details</a></li>
 					<li class="divider"></li>
 					<li class="has-dropdown"><a href="createSeller.action">Sell</a>
 
 						<ul class="dropdown">
 							<li><a href="#">How to Sell</a>
 							<li><a href="createSeller.action">Seller Central</a>
-							<li><a href="#">Seller Tools</a>
 							<li><a href="viewMyProducts.action">View My Products</a>
 							<li><a href="viewMySoldProducts.action">View My Sold Products</a>
 						</ul></li>
 					<li class="divider"></li>
-					<li class="has-dropdown"><a href="#">Community</a>
-
-						<ul class="dropdown">
-							<li><a href="#">News</a>
-							<li><a href="#">FeedBack forum</a>
-							<li><a href="#">FeedBack To eBay</a>
-						</ul></li>
-					<li class="divider"></li>
-					<li><a href="cartAction">Cart</a> <%
- 	if (session.getAttribute("admin") != null) {
- %>
+					
+					<li><a href="cartAction">Cart</a>
+					
+<% if (session.getAttribute("admin") != null) {%>
 					<li class="has-dropdown"><a href="#">Admin</a>
 
 						<ul class="dropdown">
 							<li><a href="manageCategory.action">Manage Category</a>
 							<li><a href="viewUserInfo.action">Manage User </a>
+							<li><a href="notifySellersOutOfStockAction.action">Notify Seller Out Of Stock</a>
 						</ul></li>
 					<li class="divider"></li>
 
