@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-
+<link rel="stylesheet" href="styles/easyzoom.css" />
 <script type="text/javascript">
 	function editCart_BuyLinks() {
 		quantity = document.getElementById("quantity").value;
@@ -27,13 +27,16 @@
 	}
 </script>
 <div class="large-3 columns">
-	<a class="th radius" data-reveal-id="myModal" href="#"> <img
-		alt="<s:property value="description" />"
-		src="<%=request.getContextPath()%><s:property value="product.photo" />">
-	</a>
+	<div class="zoom-container">
+		<a id="zoom-target"
+			href="<%=request.getContextPath()%><s:property value="product.photo" />">
+			<img class="zoom-image" width="300" height="250"
+			alt="<s:property value="description" />"
+			src="<%=request.getContextPath()%><s:property value="product.photo" />">
+		</a>
+	</div>
 </div>
 <div class="large-9 columns">
-
 	<div class="row">
 		<h2>
 			<s:property value="product.title" />
@@ -95,3 +98,10 @@
 		</div>
 	</div>
 </div>
+<script src="js/easyzoom.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(
+		function() {
+			$('#zoom-target').easyZoom();
+	});
+</script>
