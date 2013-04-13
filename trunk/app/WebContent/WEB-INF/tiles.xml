@@ -135,13 +135,17 @@
 
 
 	<!--- Start of Sridhar Jammalamadaka's code -->
-	<definition name="browse" extends="baselayout">
+	<definition name="browse.tiles" extends="baselayout">
 		<put-attribute name="body" value="/browse.jsp" />
 	</definition>
 
-	<definition name="productdetails" extends="baselayout">
+	<definition name="productdetails.tiles" extends="baselayout">
 		<put-attribute name="body" value="/productDetails.jsp" />
 	</definition>
+	
+	<definition name="sellerdetails.tiles" extends="baselayout">
+		<put-attribute name="body" value="/viewSellerDetails.jsp" />
+	</definition>	
 	<!--- End of Sridhar Jammalamadaka's code -->
 
 
