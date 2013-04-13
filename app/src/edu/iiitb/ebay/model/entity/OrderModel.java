@@ -7,7 +7,6 @@ public class OrderModel {
 	int userId;
 	int sellerId;
 	int productId;
-	int transactionId;
 	int quantity;
 	String currentStatus;
 	Date orderPlacedDate;
@@ -45,12 +44,7 @@ public class OrderModel {
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
-	public int getTransactionId() {
-		return transactionId;
-	}
-	public void setTransactionId(int transactionId) {
-		this.transactionId = transactionId;
-	}
+	
 	public String getCurrentStatus() {
 		return currentStatus;
 	}
