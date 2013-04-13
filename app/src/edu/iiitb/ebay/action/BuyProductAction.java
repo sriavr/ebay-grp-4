@@ -7,10 +7,10 @@ import com.opensymphony.xwork2.ActionSupport;
 import edu.iiitb.ebay.dao.BuyProductDAO;
 import edu.iiitb.ebay.model.entity.ProductModel;
 
-public class BuyProductAction extends ActionSupport{
+public class BuyProductAction extends ActionSupport {
 	Integer productId;
 	Integer qty;
-	
+
 	public Integer getQty() {
 		return qty;
 	}
@@ -27,9 +27,12 @@ public class BuyProductAction extends ActionSupport{
 		this.productId = productId;
 	}
 
-	public String execute(){
+	public String execute() {
 		BuyProductDAO buyProductDAO = new BuyProductDAO();
-		ProductModel product = buyProductDAO.getProduct(productId, qty);
+		System.out.println("ProductId: " + this.getProductId());
+		// Quantity was null so it was giving the null pointer exception
+		// so i chnaged it to 1, anyway it is not using in DAO.@pratibind
+		ProductModel product = buyProductDAO.getProduct(this.getProductId(), 1);
 		ActionContext.getContext().getSession().put("buyProduct", product);
 		return Action.SUCCESS;
 	}
