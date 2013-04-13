@@ -39,6 +39,7 @@ public class ViewMySoldProductsAction extends ActionSupport{
 		else{
 			//he is registered seller - get the list of sold products(i.e., ordered products) by a seller
 			setOrdersList(sellerProducts.getOrdersList(SellerId));
+			System.out.println("order size:"+ordersList.size());
 			for(i=0; i < ordersList.size(); i++){
 				products.add(productDetails.getProductDetails(ordersList.get(i).getProductId()));
 				user.add(userDetails.getUserDetails(ordersList.get(i).getUserId()));
