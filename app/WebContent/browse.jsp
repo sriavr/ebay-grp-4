@@ -78,7 +78,7 @@
 			</div>
 			<hr />
 		</s:iterator>
-		<div class="pagination-centered">
+	<!--  	<div class="pagination-centered">
 			<ul class="pagination">
 				<li class="arrow unavailable"><a href="?pageNum=1">&laquo;</a></li>
 				<li class="current"><a href="?pageNum=1">1</a></li>
@@ -90,6 +90,6 @@
 				<li><a href="">13</a></li>
 				<li class="arrow"><a href="">&raquo;</a></li>
 			</ul>
-		</div>
+		</div> -->
 	</div>
 </div>
