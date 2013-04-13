@@ -10,6 +10,7 @@
 </head>
 <body>
 	<div class="row">
+	
 		<s:iterator value="%{cartList}" var="cartItem">
 			<div class="row">
 				<div class="large-3 columns">
@@ -27,18 +28,21 @@
 				 <div class="columns large-4"> Quantity =
 				<s:property value="%{#cartItem.product.quantity}" />
 				</div>
-				<div class="columns large-4"> Total Price =
+				<div class="columns large-4"> Sub Total =Rs.
 				<s:property
 					value="%{#cartItem.product.price*#cartItem.product.quantity}" />
 				</div>
 				<a
-					href="removeFromCartAction?cartId=<s:property value="%{#cartItem.cartId}" />">Remove
-					From Cart</a>
+					href="removeFromCartAction?cartId=<s:property value="%{#cartItem.cartId}" />"><input type="button" style="display:inline;" class="tiny button" value="Remove From Cart"></a>
 				</div>
 			</div>
 		</s:iterator>
-		<a href="selectModeOfPaymentForward.action">Proceed to Buy</a>
-
+		<div style="float: right;">
+		Total Price=Rs.<s:property value="%{cartAmount}"/>
+		
+		<a href="selectModeOfPaymentForward.action"><input type="button"   value="Proceed to Buy" 	style="border: thick;background: gray;width: auto;text-align: center;text-transform: uppercase;font-weight: bold;padding: 0.875em;"></a>
+		</div>
 	</div>
+	<hr>
 </body>
 </html>

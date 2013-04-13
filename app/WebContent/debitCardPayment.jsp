@@ -10,10 +10,13 @@
 </head>
 
 <body>
-<s:form action="debitCardPay.action">
+<div style="text-align: center;padding-left: 25em;">
+<s:form action="debitCardPay.action" >
 	<s:textfield label="ATM Number" name="atmNumber"/><br>
-	<s:textfield label="ATM Pin Number" name="pinNumber" />
+	<s:password label="ATM Pin Number" name="pinNumber" />
 	<s:submit label="Pay"/>
 </s:form>
+</div>
+<hr>
 </body>
 </html>

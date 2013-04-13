@@ -10,10 +10,12 @@
 </head>
 
 <body>
+<div style="text-align: center;padding-left: 25em;">
 <s:form action="creditCardBuyPay.action">
 	<s:textfield label="Account Number" name="accountNumber"/><br>
-	<s:textfield label="Password" name="password" />
+	<s:password label="Password" name="password" />
 	<s:submit label="Pay"/>
 </s:form>
+</div>
 </body>
 </html>
