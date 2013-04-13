@@ -32,16 +32,16 @@ public class SellerSoldProductsDAO extends BaseDAO{
 		
 		String query;
 		ArrayList<OrderModel> orders = new ArrayList<OrderModel>();
-		query = "select * from eBay.order where sellerId = " + sellerId;
+		query = "select * from eBay.order where sellerId = " + sellerId+" and currentStatus not in('ORDER_CANCELLED','DELIVERED')";
 		ResultSet rs = readFromDB(query);
 		try {
 			while(rs.next()){
+				System.out.println("here");
 				OrderModel order = new OrderModel();
 				order.setOrderId(rs.getInt("orderId"));
 				order.setUserId(rs.getInt("userId"));
 				order.setSellerId(rs.getInt("sellerId"));
 				order.setProductId(rs.getInt("productId"));
-				order.setTransactionId(rs.getInt("transactionId"));
 				order.setOrderPlacedDate(rs.getDate("orderPlacedDate"));
 				order.setStatusUpdateDate(rs.getDate("statusUpdatedDate"));
 				order.setShipped(rs.getDate("shipped"));
@@ -115,7 +115,7 @@ public class SellerSoldProductsDAO extends BaseDAO{
 	public void updateToShipped(int orderId) {
 		
 		String query;
-		query = "update eBay.order set currentStatus = 'shipped' where orderId = " + orderId;
+		query = "update eBay.order set currentStatus = 'SHIPPED' where orderId = " + orderId +"and (currentStatus<>'ORDER_CANCELLED' || currentStatus<>'DELIVERED')";
 		BaseDAO.update(query);
 		return ;
 	}
