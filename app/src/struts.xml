@@ -75,12 +75,17 @@
 
 		<!--- Start of Sridhar Jammalamadaka's code -->
 		<action name="browse" class="edu.iiitb.ebay.action.BrowseAction">
-			<result name="success" type="tiles">browse</result>
+			<result name="success" type="tiles">browse.tiles</result>
 			<result name="error" type="tiles">error.jsp</result>
 		</action>
 
 		<action name="productdetails" class="edu.iiitb.ebay.action.ProductDetailsAction">
-			<result name="success" type="tiles">productdetails</result>
+			<result name="success" type="tiles">productdetails.tiles</result>
+			<result name="error" type="tiles">error.jsp</result>
+		</action>
+		
+		<action name="sellerdetails" class="edu.iiitb.ebay.action.SellerDetailsAction">
+			<result name="success" type="tiles">sellerdetails.tiles</result>
 			<result name="error" type="tiles">error.jsp</result>
 		</action>
 		<!--- End of Sridhar Jammalamadaka's code -->
