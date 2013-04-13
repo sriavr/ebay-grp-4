@@ -21,5 +21,5 @@ public class ConstantValues {
 	public static int INSUFFICIENT_MONEY=2;
 	public static int EbayUserID=1;
 	public static int productLimitForOutOfStock=3;
-
+	public static double reimbursedPercentage = 0.5;
 }
