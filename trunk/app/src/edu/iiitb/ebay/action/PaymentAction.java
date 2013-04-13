@@ -131,11 +131,11 @@ public class PaymentAction extends ActionSupport{
 			float moneyToBeCreditedIntoSeller = moneyToBeDeductedForThisCartItem-moneyToBeCreditedIntoEbay;
 			flag = paymentDAO.creditMoney(seller.getUserId(),moneyToBeCreditedIntoSeller);
 			//credit money into ebay account as per seller SLA
-			flag = paymentDAO.creditMoney(ConstantValues.EbayUserID,moneyToBeCreditedIntoSeller);
+			flag = paymentDAO.creditMoney(ConstantValues.EbayUserID,moneyToBeCreditedIntoEbay);
 			//make type of the item in cart 'B' which means it is bought
 			flag = paymentDAO.updateCartItemStatus(cartPageModel.getCartId(),'B');
 			//insert the bought cart item in order table
-			flag = paymentDAO.insertIntoOrderTable(userId,sellerId,cartPageModel.getProduct().getProductId(),"\"PAYMENT RECIEVED\"");
+			flag = paymentDAO.insertIntoOrderTable(userId,sellerId,cartPageModel.getProduct().getProductId(),"\"PAYMENT_RECEIVED\"",cartPageModel.getProduct().getQuantity());
 			//Decrement Product Quantity
 			flag = paymentDAO.decrementProductQuantity(cartPageModel.getProduct().getProductId(),cartPageModel.getProduct().getQuantity());			
 		}
@@ -169,11 +169,11 @@ public class PaymentAction extends ActionSupport{
 			float moneyToBeCreditedIntoSeller = moneyToBeDeductedForThisCartItem-moneyToBeCreditedIntoEbay;
 			flag = paymentDAO.creditMoney(seller.getUserId(),moneyToBeCreditedIntoSeller);
 			//credit money into ebay account as per seller SLA
-			flag = paymentDAO.creditMoney(ConstantValues.EbayUserID,moneyToBeCreditedIntoSeller);
+			flag = paymentDAO.creditMoney(ConstantValues.EbayUserID,moneyToBeCreditedIntoEbay);
 			//make type of the item in cart 'B' which means it is bought
 			flag = paymentDAO.updateCartItemStatus(cartPageModel.getCartId(),'B');
 			//insert the bought cart item in order table
-			flag = paymentDAO.insertIntoOrderTable(userId,sellerId,cartPageModel.getProduct().getProductId(),"PAYMENT RECIEVED");
+			flag = paymentDAO.insertIntoOrderTable(userId,sellerId,cartPageModel.getProduct().getProductId(),"PAYMENT_RECEIVED",cartPageModel.getProduct().getQuantity());
 			//Decrement Product Quantity
 			flag = paymentDAO.decrementProductQuantity(cartPageModel.getProduct().getProductId(),cartPageModel.getProduct().getQuantity());
 		}
@@ -206,10 +206,10 @@ public class PaymentAction extends ActionSupport{
 			float moneyToBeCreditedIntoSeller = moneyToBeDeductedForThisCartItem-moneyToBeCreditedIntoEbay;
 			flag = paymentDAO.creditMoney(seller.getUserId(),moneyToBeCreditedIntoSeller);
 			//credit money into ebay account as per seller SLA
-			flag = paymentDAO.creditMoney(ConstantValues.EbayUserID,moneyToBeCreditedIntoSeller);
+			flag = paymentDAO.creditMoney(ConstantValues.EbayUserID,moneyToBeCreditedIntoEbay);
 			
 			//insert the bought cart item in order table
-			flag = paymentDAO.insertIntoOrderTable(userId,sellerId,product.getProductId(),"\"PAYMENT RECIEVED\"");
+			flag = paymentDAO.insertIntoOrderTable(userId,sellerId,product.getProductId(),"\"PAYMENT_RECEIVED\"",product.getQuantity());
 			//Decrement Product Quantity
 			flag = paymentDAO.decrementProductQuantity(product.getProductId(),product.getQuantity());			
 		
@@ -244,10 +244,10 @@ public class PaymentAction extends ActionSupport{
 			float moneyToBeCreditedIntoSeller = moneyToBeDeductedForThisCartItem-moneyToBeCreditedIntoEbay;
 			flag = paymentDAO.creditMoney(seller.getUserId(),moneyToBeCreditedIntoSeller);
 			//credit money into ebay account as per seller SLA
-			flag = paymentDAO.creditMoney(ConstantValues.EbayUserID,moneyToBeCreditedIntoSeller);
+			flag = paymentDAO.creditMoney(ConstantValues.EbayUserID,moneyToBeCreditedIntoEbay);
 			
 			//insert the bought cart item in order table
-			flag = paymentDAO.insertIntoOrderTable(userId,sellerId,product.getProductId(),"\"PAYMENT RECIEVED\"");
+			flag = paymentDAO.insertIntoOrderTable(userId,sellerId,product.getProductId(),"\"PAYMENT_RECEIVED\"",product.getQuantity());
 			//Decrement Product Quantity
 			flag = paymentDAO.decrementProductQuantity(product.getProductId(),product.getQuantity());			
 		currentBalanceUser=PaymentDAO.getBalance(userId);
