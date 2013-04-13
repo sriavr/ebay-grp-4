@@ -1,5 +1,7 @@
 package edu.iiitb.ebay.model.entity;
 
+import java.util.ArrayList;
+
 /***
  * Used to store info about Category
  * 
@@ -8,10 +10,19 @@ package edu.iiitb.ebay.model.entity;
  */
 public class CategoryModel {
 
-	String categoryID;
-	boolean selected;
-	String categoryName;
-	String parentCategoryId;
+	private String categoryID;
+	private boolean selected;
+	private String categoryName;
+	private String parentCategoryId;
+	private ArrayList<CategoryModel> categories = new ArrayList<CategoryModel>();
+	
+	public ArrayList<CategoryModel> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(ArrayList<CategoryModel> categories) {
+		this.categories = categories;
+	}
 
 	public String getCategoryID() {
 		return categoryID;

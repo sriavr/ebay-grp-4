@@ -14,12 +14,24 @@
 		<div class="categories-box">
 			<h4>Categories</h4>
 			<ul class="side-nav">
-				<s:iterator value="categories">
+				<s:iterator value="categories" var="parent">
 					<li class="category-box"><s:url action="browse.action"
 							var="urlTag">
 							<s:param name="categoryId" value="categoryID"></s:param>
 						</s:url> <a href="<s:property value="#urlTag"></s:property>"> <s:text
-								name="categoryName"></s:text></a></li>
+								name="categoryName"></s:text></a>
+						<ul>
+							<s:iterator var="child" value="#parent.categories">
+								<li>
+									<s:url action="browse.action" var="urlTag">
+										<s:param name="categoryId" value="#child.categoryID"></s:param>
+									</s:url> 
+									<a href="<s:property value="#urlTag"></s:property>"> 
+									<s:text name="#child.categoryName"></s:text> </a>
+								</li>
+							</s:iterator>
+						</ul>
+					</li>
 				</s:iterator>
 			</ul>
 		</div>

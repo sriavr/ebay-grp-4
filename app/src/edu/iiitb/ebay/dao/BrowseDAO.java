@@ -36,6 +36,29 @@ public class BrowseDAO extends BaseDAO {
 				CategoryModel category = new CategoryModel();
 				category.setCategoryID(rs.getString("categoryId"));
 				category.setCategoryName(rs.getString("categoryName"));
+
+				StringBuilder sqlQuery = new StringBuilder(
+						"call getSubCategories(" + category.getCategoryID()
+								+ ");");
+				logger.debug("Running query " + sqlQuery);
+				ResultSet rs1 = readFromDB(sqlQuery.toString());
+				ArrayList<CategoryModel> subCategories = new ArrayList<CategoryModel>();
+				while (rs1.next()) {
+					CategoryModel subCategory = new CategoryModel();
+					if (!rs1.getString("categoryId").trim()
+							.equals(category.getCategoryID())) {
+						subCategory.setCategoryID(rs1.getString("categoryId"));
+						subCategory.setCategoryName(rs1
+								.getString("categoryName"));
+						logger.info("Added a subcategory");
+						subCategories.add(subCategory);
+					}
+					else{
+						logger.info("Skipping case where categoryId is redundant");
+					}
+				}
+				category.setCategories(subCategories);
+				logger.info("size of subcategories:" + subCategories.size());
 				categories.add(category);
 			}
 			logger.info("Size of categories list is " + categories.size());
