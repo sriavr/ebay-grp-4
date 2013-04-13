@@ -1,5 +1,7 @@
 package edu.iiitb.ebay.action;
 
+import java.util.Map;
+
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -28,6 +30,14 @@ public class BuyProductAction extends ActionSupport {
 	}
 
 	public String execute() {
+		Map<String, Object> session;
+		session = ActionContext.getContext().getSession();
+
+		String Role = (String) session.get("role");
+		System.out.println("role:" + Role);
+		if (Role == null) {
+			return "login";
+		}
 		BuyProductDAO buyProductDAO = new BuyProductDAO();
 		System.out.println("ProductId: " + this.getProductId());
 		// Quantity was null so it was giving the null pointer exception
