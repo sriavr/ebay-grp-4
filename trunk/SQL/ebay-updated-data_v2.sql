@@ -160,8 +160,7 @@ INSERT INTO `userwishlist` (`userwishlistId`,`userId`,`productId`) VALUES
   (11,15,203),
   (12,15,204),
   (13,15,205);
-   
-    
+
 insert into bank (`userId`,`accountNum`,`atmNum`,`pinNum`,`password`,`balance`) VALUES
 	(10,'1234','5678','4321','8765',10000),
 	(11,'1235','6678','4322','8766',10000),
@@ -171,3 +170,13 @@ insert into bank (`userId`,`accountNum`,`atmNum`,`pinNum`,`password`,`balance`) 
 	(15,'1239','4678','4326','8764',10000),
 	(16,'1233','3678','4327','8763',10000);
     
+	insert into eBay.order(userId,sellerId,productId,currentStatus) values(12,100,200,'PAYMENT RECIEVED');
+	insert into eBay.order(userId,sellerId,productId,currentStatus) values(13,100,200,'PAYMENT RECIEVED');
+	insert into eBay.order(userId,sellerId,productId,currentStatus) values(14,100,200,'PAYMENT RECIEVED');
+	insert into eBay.order(userId,sellerId,productId,currentStatus) values(13,106,208,'PAYMENT RECIEVED');
+	insert into eBay.order(userId,sellerId,productId,currentStatus) values(14,106,208,'PAYMENT RECIEVED');
+	insert into eBay.order(userId,sellerId,productId,currentStatus) values(12,104,209,'PAYMENT RECIEVED');
+	insert into eBay.order(userId,sellerId,productId,currentStatus) values(13,104,209,'PAYMENT RECIEVED');
+	insert into eBay.order(userId,sellerId,productId,currentStatus) values(16,104,210,'PAYMENT RECIEVED');
+	insert into eBay.order(userId,sellerId,productId,currentStatus) values(16,100,201,'PAYMENT RECIEVED');
+	insert into eBay.order(userId,sellerId,productId,currentStatus) values(14,100,202,'PAYMENT RECIEVED');    
