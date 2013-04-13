@@ -177,9 +177,9 @@
 			<result name="failure" type="tiles">error.jsp</result>
 		</action>
 		<action name="buyProduct" class="edu.iiitb.ebay.action.BuyProductAction">
-			<result name="success" type="tiles">selectModeOfPaymentBuyProduct.jsp
-			</result>
+			<result name="success" type="tiles">selectModeOfPaymentBuyProduct.jsp</result>
 			<result name="failure" type="tiles">error.jsp</result>
+			<result name="login" type="redirectAction">login</result>
 		</action>
 		<action name="removeFromCartAction" class="edu.iiitb.ebay.action.CartAction"
 			method="removeFromCart">
