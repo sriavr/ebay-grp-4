@@ -21,7 +21,7 @@ BEGIN
     END WHILE;
     insert into tmpcat values (catId, 1);
     delete from tmpcat where categoryId = 0;
-    select categoryId from tmpcat;
+    select t.categoryId, c.categoryName from tmpcat t, category c where t.categoryId = c.categoryId;
     -- select categoryId from tmpcat;
     drop temporary table tmpcat;
 END$$
