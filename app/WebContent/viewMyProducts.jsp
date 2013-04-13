@@ -20,7 +20,12 @@
 					<s:url action="createListing" var="urlTag2">
 						<s:param name="productId" value="productId"></s:param>
 					</s:url>
+					<!-- Added by Pratibind .Need to move it to view SOld products -->
+					<s:url action="viewFeedback" var="urlTag3">
+						<s:param name="productID" value="productId"></s:param>
+					</s:url>
 					
+					<!-- End of addition -->
 					<a class="th radius" data-reveal-id="myModal" href="#"> <img
 						alt="<s:property value="description" />"
 						src="<%=request.getContextPath()%><s:property value="photo" />">
@@ -43,6 +48,8 @@
 					<a href="<s:property value="#urlTag1"></s:property>" class="small button round">Add Deal</a>
 					<br>
 					<a href="<s:property value="#urlTag2"></s:property>" class="small button round">Modify </a>
+					<br>
+					<a href="<s:property value="#urlTag3"></s:property>">View Feedback </a>
 				</div>
 			</div>
 			<hr />
