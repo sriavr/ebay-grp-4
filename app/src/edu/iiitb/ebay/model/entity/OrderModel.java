@@ -1,25 +1,26 @@
 package edu.iiitb.ebay.model.entity;
 
-import java.util.Date;
-
-/**
- * @author Ranadheer K
- * @version 1.0
- */
+import java.sql.Date;
 
 public class OrderModel {
-
-	private int orderId;
-	private int userId;
-	private int sellerId;
-	private int productId;
-	private int transactionId;
-	private String currentStatus;
-	private Date orderPlacedDate;
-	private Date statusUpdatedDate;
-	private Date shipped;
+	int orderId;
+	int userId;
+	int sellerId;
+	int productId;
+	int transactionId;
+	int quantity;
+	String currentStatus;
+	Date orderPlacedDate;
+	Date statusUpdateDate;
+	Date shipped;
 	
 	
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 	public int getOrderId() {
 		return orderId;
 	}
@@ -62,11 +63,11 @@ public class OrderModel {
 	public void setOrderPlacedDate(Date orderPlacedDate) {
 		this.orderPlacedDate = orderPlacedDate;
 	}
-	public Date getStatusUpdatedDate() {
-		return statusUpdatedDate;
+	public Date getStatusUpdateDate() {
+		return statusUpdateDate;
 	}
-	public void setStatusUpdatedDate(Date statusUpdatedDate) {
-		this.statusUpdatedDate = statusUpdatedDate;
+	public void setStatusUpdateDate(Date statusUpdateDate) {
+		this.statusUpdateDate = statusUpdateDate;
 	}
 	public Date getShipped() {
 		return shipped;
