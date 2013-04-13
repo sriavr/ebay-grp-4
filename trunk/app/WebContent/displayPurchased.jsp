@@ -12,9 +12,14 @@
 <h5>Title</h5>
 </div>
 <div class="large-3 columns">
-</div>
 <h5>Price</h5>
+</div>
+<div class="large-3 columns">
+<h5>Current Status</h5>
+</div>
+<div class="large-3 columns">
 <h5>Seller Name</h5>
+</div>
 </div>
 </div>
 <hr/>
@@ -31,18 +36,27 @@
 		<div class="row">
 			
 				<div class="large-3 columns">
-				<s:property value="%{products.get(#index).title}"/>
-				<s:property value="%{products.get(#index).description}"/>
+					<s:property value="%{products.get(#index).title}"/>
+					<s:property value="%{products.get(#index).description}"/>
 				</div>
 				<div class="large-3 columns">
-				<s:property value="%{products.get(#index).price}"/>
-				<a href="#" ><s:property value="%{sellers.get(#index).sellerName}"/>
-				</a>	
-				<br>					
-				<a href="leaveFeedback?productId=<s:property value="%{products.get(#index).productId}"/>&userId=<s:property value="%{userId}"/>&sellerId=<s:property value="%{products.get(#index).sellerId}"/>">
-				Leave Feedback </a>
+					<s:property value="%{products.get(#index).price}"/>
+					<a href="#" >
+						<s:property value="%{sellers.get(#index).sellerName}"/>
+					</a>	
+				
 				</div>		
-		
+				<div class="large-3 columns">
+					<s:property value="%{ordersList.get(#index).currentStatus}"/>
+				</div>
+				<div class="large-3 columns">
+					<s:if test="%{!(ordersList.get(#index).currentStatus.equals(\"SHIPPED\")||ordersList.get(#index).currentStatus.equals(\"DELIVERED\")||ordersList.get(#index).currentStatus.equals(\"ORDER_CANCELLED\"))}">
+						<a href="cancelOrderAction.action?orderId=<s:property value="ordersList.get(#index).orderId"/>">Cancel Order</a>
+					</s:if>
+					<br>					
+					<a href="leaveFeedback?productId=<s:property value="%{products.get(#index).productId}"/>&userId=<s:property value="%{userId}"/>&sellerId=<s:property value="%{products.get(#index).sellerId}"/>">
+					Leave Feedback </a>
+				</div>
 		</div>
 		
 	</div>

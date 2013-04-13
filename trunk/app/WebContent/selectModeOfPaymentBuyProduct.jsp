@@ -7,15 +7,17 @@
 <title>Select Mode of Payment</title>
 </head>
 <body>
-	<label>Choose Mode of Payment</label>
+	<label style="font: bolder;font-size: large;">Choose Mode of Payment:</label>
+	<div class="row" style="text-align: center;text-indent: 0.875em;text-transform: uppercase;">
 	<div class="modeOfPayment">
-		<a href="debitCardBuyForward.action">Debit Card</a>
+		<a style="color: #2ba6cb;" href="debitCardBuyForward.action">Debit Card</a>
 	</div><br>
-	<div class="modeOfPayment">
+	<div style="color: #2ba6cb;" class="modeOfPayment">
 		<a href="creditCardBuyForward.action">Credit Card</a>
 	</div><br>
 	<div class="modeOfPayment">
-		<a href="cashOnDeliveryBuyForward.action">Cash on Delivery</a>
+		<a style="color: #2ba6cb;" href="cashOnDeliveryBuyForward.action">Cash on Delivery</a>
+	</div>
 	</div>
 </body>
 </html>
