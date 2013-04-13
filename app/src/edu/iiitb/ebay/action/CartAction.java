@@ -15,7 +15,14 @@ public class CartAction extends ActionSupport{
 	int productId;
 	int qty;
 	ArrayList<CartPageModel> cartList ;
+	float cartAmount;
 	
+	public float getCartAmount() {
+		return cartAmount;
+	}
+	public void setCartAmount(float cartAmount) {
+		this.cartAmount = cartAmount;
+	}
 	public int getCartId() {
 		return cartId;
 	}
@@ -55,7 +62,10 @@ public class CartAction extends ActionSupport{
 		}
 		
 		cartList = cartDAO.getUserCartList(userId);
-		
+		cartAmount=0;
+		for (CartPageModel cart : cartList) {
+			cartAmount+=(cart.getProduct().getPrice()*cart.getProduct().getQuantity());
+		}
 		ActionContext.getContext().getSession().put("cartList", cartList);
 		
 		
