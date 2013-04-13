@@ -88,7 +88,14 @@
 	<definition name="successNotifyMessage.jsp" extends="baselayout">
 		<put-attribute name="body" value="/successNotifyMessage.jsp" />
 	</definition>
-
+	
+	<definition name="successOrderCancel.jsp" extends="baselayout">
+		<put-attribute name="body" value="/successOrderCancel.jsp" />
+	</definition>
+	
+	<definition name="insufficientMoney.jsp" extends="baselayout">
+		<put-attribute name="body" value="/insufficientMoney.jsp" />
+	</definition>
 
 
 
