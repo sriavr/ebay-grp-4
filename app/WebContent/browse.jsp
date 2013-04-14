@@ -94,8 +94,9 @@
 
 				</div>
 				<div class="large-6 columns">
-					<a href="<s:property value="#urlTag"></s:property>"> <s:text
-							name="title"></s:text></a> (Product Code:
+					<a href="<s:property value="#urlTag"></s:property>"><span
+						style="font-size: 1.5em"> <s:text
+							name="title"></s:text></span></a><br/>(Product Code:
 					<s:property value="productId" />)
 					<br> <i><s:property value="description" /></i> <br> <b><span
 						style="font-size: 1.2em">Rs. <s:property value="price" /></span></b>
