@@ -17,7 +17,7 @@
 		<a style="color: #2ba6cb;" href="creditCardForward.action">Credit Card</a>
 	</div><br>
 	<div >
-		<a style="color: #2ba6cb;" href="cashOnDeliveryForward.action">Cash on Delivery</a>
+		<!-- <a style="color: #2ba6cb;" href="cashOnDeliveryForward.action">Cash on Delivery</a> -->
 	</div>
 	</div>
 	<hr>
