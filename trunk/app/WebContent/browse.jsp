@@ -65,13 +65,13 @@
 				</s:iterator>
 			</ul>
 		</div>
-		<s:form action="browse.action" method="get" theme="simple">
+		<s:form action="browse.action" id="browseForm" method="get"
+			theme="simple">
 			<div class="price-box">
-				<h4>Price</h4>
-				From Rs
-				<s:textfield name="priceLower" cssClass="price-text"></s:textfield>
-				to Rs
-				<s:textfield name="priceHigher" cssClass="price-text"></s:textfield>
+				<h4>Price Range</h4>
+				From Rs <input type="text" class="price-text" name="priceLower"
+					id="priceLower" /> to Rs <input type="text" class="price-text"
+					name="priceHigher" id="priceHigher" />
 				<s:submit class="button small" value=">>"></s:submit>
 			</div>
 		</s:form>
@@ -81,6 +81,7 @@
 		<s:if test="products.size() == 0">
 			<h2>Your search returned no results!</h2>
 		</s:if>
+		<s:actionerror />
 		<s:iterator value="products">
 			<div class="row padding-4">
 
@@ -95,10 +96,10 @@
 				</div>
 				<div class="large-6 columns">
 					<a href="<s:property value="#urlTag"></s:property>"><span
-						style="font-size: 1.5em"> <s:text
-							name="title"></s:text></span></a><br/>(Product Code:
-					<s:property value="productId" />)
-					<br> <i><s:property value="description" /></i> <br> <b><span
+						style="font-size: 1.5em"> <s:text name="title"></s:text></span></a><br />(Product
+					Code:
+					<s:property value="productId" />
+					) <br> <i><s:property value="description" /></i> <br> <b><span
 						style="font-size: 1.2em">Rs. <s:property value="price" /></span></b>
 					<s:url action="sellerdetails" var="urlTag2">
 						<s:param name="sellerId" value="sellerId"></s:param>
@@ -110,7 +111,7 @@
 			</div>
 			<hr />
 		</s:iterator>
-	<!--	<div class="pagination-centered">
+		<!--	<div class="pagination-centered">
 			<ul class="pagination">
 				<li class="arrow unavailable"><a href="?pageNum=1">&laquo;</a></li>
 				<li class="current"><a href="?pageNum=1">1</a></li>
@@ -131,5 +132,24 @@
 		$('.ex2').zoom({
 			on : 'grab'
 		});
+
+		$("#browseForm").validate({
+			onkeyup : true,
+			rules : {
+				priceLower : {
+					number : true,
+					required : true,
+				},
+
+				priceHigher : {
+					number : true,
+					required : true
+				}
+			},
+			messages : {
+
+			}
+		});
+
 	});
 </script>

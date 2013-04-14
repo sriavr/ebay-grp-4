@@ -1,6 +1,9 @@
 package edu.iiitb.ebay.action;
 
+import java.sql.SQLException;
 import java.util.Date;
+
+import org.apache.log4j.Logger;
 
 import com.opensymphony.xwork2.ActionSupport;
 import edu.iiitb.ebay.model.*;
@@ -22,7 +25,7 @@ public class RegisterAction extends ActionSupport {
 	private String rePassword;
 	private String dob;
 	private String action;
-
+	private Logger logger = Logger.getLogger(this.getClass().getName());
 	public String execute() {
 
 		UserModel userRegister = new UserModel();
@@ -40,7 +43,13 @@ public class RegisterAction extends ActionSupport {
 		userRegister.setPassword(getPassword());
 		userRegister.setDob(getDob());
 		UserDAO userDAO = new UserDAO();
-		userDAO.insertNewUser(userRegister);
+		try {
+			userDAO.insertNewUser(userRegister);
+		} catch (SQLException e) {
+			logger.error("Error occurred", e);
+			e.printStackTrace();
+			return ERROR;
+		}
 		return SUCCESS;
 	}
 
