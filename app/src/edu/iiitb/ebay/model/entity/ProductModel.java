@@ -16,7 +16,16 @@ public class ProductModel {
 	private int quantity;
 	private String photo;
     private int discount;
-	
+    //This is not in DB but included it here for convenience of displaying Seller Name along with Product
+	private String sellerName;
+
+	public String getSellerName() {
+		return sellerName;
+	}
+
+	public void setSellerName(String sellerName) {
+		this.sellerName = sellerName;
+	}
 
 	public int getDiscount() {
 		return discount;

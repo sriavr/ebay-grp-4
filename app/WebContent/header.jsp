@@ -44,13 +44,13 @@
 				<!-- Left Nav Section -->
 				<ul class="left">
 					<li class="divider"></li>
-						
+
 					<li class="has-dropdown"><a href="#">My eBay</a>
 						<ul class="dropdown">
 							<li><a href="#">Summary</a></li>
 							<li><a href="viewWatchList.action">Watch List</a></li>
 							<li><a href="purchaseHistory.action">Purchase History</a></li>
-							
+
 						</ul></li>
 					<li class="divider"></li>
 					<li><a href="#">My Details</a></li>
@@ -61,19 +61,21 @@
 							<li><a href="#">How to Sell</a>
 							<li><a href="createSeller.action">Seller Central</a>
 							<li><a href="viewMyProducts.action">View My Products</a>
-							<li><a href="viewMySoldProducts.action">View My Sold Products</a>
+							<li><a href="viewMySoldProducts.action">View My Sold
+									Products</a>
 						</ul></li>
 					<li class="divider"></li>
-					
-					<li><a href="cartAction">Cart</a>
-					
-<% if (session.getAttribute("admin") != null) {%>
+
+					<li><a href="cartAction">Cart</a> <%
+ 	if (session.getAttribute("admin") != null) {
+ %>
 					<li class="has-dropdown"><a href="#">Admin</a>
 
 						<ul class="dropdown">
 							<li><a href="manageCategory.action">Manage Category</a>
 							<li><a href="viewUserInfo.action">Manage User </a>
-							<li><a href="notifySellersOutOfStockAction.action">Notify Seller Out Of Stock</a>
+							<li><a href="notifySellersOutOfStockAction.action">Notify
+									Seller Out Of Stock</a>
 						</ul></li>
 					<li class="divider"></li>
 
@@ -112,15 +114,14 @@
 							%>
 							<option value="<%=categories.get(i).getCategoryID()%>"><%=categories.get(i).getCategoryName()%></option>
 							<%
-								i++;
-									}
+								}
 							%>
 						</select>
 
 					</div>
 					<div class="columns large-2">
 						<input type="submit" value="Search" />
-<!-- 						<a href="deals">Deals</a> -->
+						<!-- 						<a href="deals">Deals</a> -->
 						<s:submit action="deals" value="Deals"></s:submit>
 						<%-- 						<s:submit label="Search" cssClass="small button" value="search"></s:submit> --%>
 					</div>

@@ -1,7 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<style>
+.zoom {
+	display: inline-block;
+	position: relative;
+}
 
+/* magnifying glass icon */
+.zoom:after {
+	content: '';
+	display: block;
+	width: 33px;
+	height: 33px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: url(js/icon.png);
+}
+
+.zoom img {
+	display: block;
+}
+
+.zoom img::selection {
+	background-color: transparent;
+}
+
+#ex2 img:hover {
+	cursor: url(js/grab.cur), default;
+}
+
+#ex2 img:active {
+	cursor: url(js/grabbed.cur), default;
+}
+</style>
 <div class="row">
 	<s:if test="!query.isEmpty()">
 		<b><s:property value="products.size()" /></b>
@@ -22,16 +55,13 @@
 								name="categoryName"></s:text></a>
 						<ul>
 							<s:iterator var="child" value="#parent.categories">
-								<li>
-									<s:url action="browse.action" var="urlTag">
+								<li><s:url action="browse.action" var="urlTag">
 										<s:param name="categoryId" value="#child.categoryID"></s:param>
-									</s:url> 
-									<a href="<s:property value="#urlTag"></s:property>"> 
-									<s:text name="#child.categoryName"></s:text> </a>
-								</li>
+									</s:url> <a href="<s:property value="#urlTag"></s:property>"> <s:text
+											name="#child.categoryName"></s:text>
+								</a></li>
 							</s:iterator>
-						</ul>
-					</li>
+						</ul></li>
 				</s:iterator>
 			</ul>
 		</div>
@@ -54,31 +84,32 @@
 		<s:iterator value="products">
 			<div class="row padding-4">
 
-				<div class="large-3 columns">
+				<div class="large-5 columns">
 					<s:url action="productdetails" var="urlTag">
 						<s:param name="productId" value="productId"></s:param>
 					</s:url>
-					<a class="th radius" data-reveal-id="myModal" href="#"> <img
+					<span class='zoom ex2'><img
 						alt="<s:property value="description" />"
-						src="<%=request.getContextPath()%><s:property value="photo" />">
-					</a> <img id="myModal" class="reveal-modal large"
-						alt="<s:property value="description" />"
-						src="<%=request.getContextPath()%><s:property value="photo" />">
+						src="<%=request.getContextPath()%><s:property value="photo" />"></span>
 
 				</div>
 				<div class="large-6 columns">
-					Name: <a href="<s:property value="#urlTag"></s:property>"> <s:text
-							name="title"></s:text></a> <br> Product ID:
-					<s:property value="productId" />
-					<br> Description:
-					<s:property value="description" />
-					<br> Price:
-					<s:property value="price" />
+					<a href="<s:property value="#urlTag"></s:property>"> <s:text
+							name="title"></s:text></a> (Product Code:
+					<s:property value="productId" />)
+					<br> <i><s:property value="description" /></i> <br> <b><span
+						style="font-size: 1.2em">Rs. <s:property value="price" /></span></b>
+					<s:url action="sellerdetails" var="urlTag2">
+						<s:param name="sellerId" value="sellerId"></s:param>
+					</s:url>
+					<br /> <span style="font-size: 0.9em">Seller Name: <a
+						href="<s:property value="#urlTag2"></s:property>"> <s:text
+								name="sellerName"></s:text></a></span>
 				</div>
 			</div>
 			<hr />
 		</s:iterator>
-	<!--  	<div class="pagination-centered">
+	<!--	<div class="pagination-centered">
 			<ul class="pagination">
 				<li class="arrow unavailable"><a href="?pageNum=1">&laquo;</a></li>
 				<li class="current"><a href="?pageNum=1">1</a></li>
@@ -93,3 +124,11 @@
 		</div> -->
 	</div>
 </div>
+<script src='js/jquery.zoom-min.js'></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.ex2').zoom({
+			on : 'grab'
+		});
+	});
+</script>
