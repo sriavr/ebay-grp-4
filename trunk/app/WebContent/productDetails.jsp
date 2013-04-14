@@ -56,7 +56,7 @@
 			</div>
 			<label id="Error" style="color: red;"></label>
 
-			<hr />
+		 	<hr />
 			<b style="font-size: large;"> Price: <s:property
 					value="product.price"></s:property>
 			</b>

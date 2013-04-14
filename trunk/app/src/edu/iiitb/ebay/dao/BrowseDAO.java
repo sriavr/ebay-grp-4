@@ -52,8 +52,7 @@ public class BrowseDAO extends BaseDAO {
 								.getString("categoryName"));
 						logger.info("Added a subcategory");
 						subCategories.add(subCategory);
-					}
-					else{
+					} else {
 						logger.info("Skipping case where categoryId is redundant");
 					}
 				}
@@ -229,6 +228,8 @@ public class BrowseDAO extends BaseDAO {
 				product.setProductId(rs.getInt("productId"));
 				product.setDescription(rs.getString("description"));
 				product.setSellerId(rs.getInt("sellerId"));
+				product.setSellerName(rs.getString("firstName") + " "
+						+ rs.getString("lastName"));
 				product.setQuantity(rs.getInt("quantity"));
 				product.setTitle(rs.getString("title"));
 				String photoUrl = rs.getString("photo");
