@@ -16,7 +16,7 @@
 		<a href="creditCardBuyForward.action">Credit Card</a>
 	</div><br>
 	<div class="modeOfPayment">
-		<a style="color: #2ba6cb;" href="cashOnDeliveryBuyForward.action">Cash on Delivery</a>
+		<!--  <a style="color: #2ba6cb;" href="cashOnDeliveryBuyForward.action">Cash on Delivery</a>-->
 	</div>
 	</div>
 </body>
