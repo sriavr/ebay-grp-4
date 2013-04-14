@@ -28,7 +28,7 @@
 	<definition name="makeListing.jsp" extends="baselayout">
 		<put-attribute name="body" value="/makeListing.jsp" />
 	</definition>
-	
+
 	<definition name="addDeals.jsp" extends="baselayout">
 		<put-attribute name="body" value="/addDeals.jsp" />
 	</definition>
@@ -92,15 +92,15 @@
 	<definition name="successNotifyMessage.jsp" extends="baselayout">
 		<put-attribute name="body" value="/successNotifyMessage.jsp" />
 	</definition>
-	
+
 	<definition name="successOrderCancel.jsp" extends="baselayout">
 		<put-attribute name="body" value="/successOrderCancel.jsp" />
 	</definition>
-	
+
 	<definition name="insufficientMoney.jsp" extends="baselayout">
 		<put-attribute name="body" value="/insufficientMoney.jsp" />
 	</definition>
-    
+
 	<definition name="createListing.jsp" extends="baselayout">
 		<put-attribute name="body" value="/createListing.jsp" />
 	</definition>
@@ -114,23 +114,23 @@
 	<!--- End of Debargha Ganguly's code -->
 
 
-<!-- Start of Surya Pratap desai's code -->
-		
-		<!-- display the purchase history -->
-		
-		<definition name="purchaseHistory.jsp" extends="baselayout">
+	<!-- Start of Surya Pratap desai's code -->
+
+	<!-- display the purchase history -->
+
+	<definition name="purchaseHistory.jsp" extends="baselayout">
 		<put-attribute name="body" value="/displayPurchased.jsp" />
-		</definition>
-		
-		<definition name="leaveFeedback.jsp" extends="baselayout">
+	</definition>
+
+	<definition name="leaveFeedback.jsp" extends="baselayout">
 		<put-attribute name="body" value="/displayFeedback.jsp" />
-		</definition>
-		
-		
-		<definition name="submitFeedback.jsp" extends="baselayout">
+	</definition>
+
+
+	<definition name="submitFeedback.jsp" extends="baselayout">
 		<put-attribute name="body" value="/submitFeedback.jsp" />
-		</definition>
-	
+	</definition>
+
 	<!--- End of Surya Pratap desai's code -->
 
 
@@ -142,10 +142,10 @@
 	<definition name="productdetails.tiles" extends="baselayout">
 		<put-attribute name="body" value="/productDetails.jsp" />
 	</definition>
-	
+
 	<definition name="sellerdetails.tiles" extends="baselayout">
 		<put-attribute name="body" value="/viewSellerDetails.jsp" />
-	</definition>	
+	</definition>
 	<!--- End of Sridhar Jammalamadaka's code -->
 
 
@@ -181,33 +181,35 @@
 	</definition>
 	<!--update price,discount,quantity of a product by its seller -->
 
-				<definition name="viewMyProducts.jsp" extends="baselayout">
-					<put-attribute name="body" value="/viewMyProducts.jsp" />
-				</definition>
-				
-				<definition name="perticularSellerProductDetails.jsp" extends="baselayout">
-					<put-attribute name="body" value="/perticularSellerProductDetails.jsp" />
-				</definition>
-				
-				<definition name="updateProdDetailsBySeller.jsp" extends="baselayout">
-					<put-attribute name="body" value="/updateProdDetailsBySeller.jsp" />
-			<!--view list of products sold by a seller -->
-			
-				</definition>
-				<definition name="viewMySoldProducts.jsp" extends="baselayout">
-					<put-attribute name="body" value="/viewMySoldProducts.jsp" />
-				</definition>
-				
-				<definition name="orderDetails.jsp" extends="baselayout">
-					<put-attribute name="body" value="/orderDetails.jsp" />
-				</definition>
-				
-				<definition name="updateToShipped.jsp" extends="baselayout">
-					<put-attribute name="body" value="/updateToShipped.jsp" />
-				</definition>
-				
+	<definition name="viewMyProducts.jsp" extends="baselayout">
+		<put-attribute name="body" value="/viewMyProducts.jsp" />
+	</definition>
+
+	<definition name="perticularSellerProductDetails.jsp"
+		extends="baselayout">
+		<put-attribute name="body"
+			value="/perticularSellerProductDetails.jsp" />
+	</definition>
+
+	<definition name="updateProdDetailsBySeller.jsp" extends="baselayout">
+		<put-attribute name="body" value="/updateProdDetailsBySeller.jsp" />
+		<!--view list of products sold by a seller -->
+
+	</definition>
+	<definition name="viewMySoldProducts.jsp" extends="baselayout">
+		<put-attribute name="body" value="/viewMySoldProducts.jsp" />
+	</definition>
+
+	<definition name="orderDetails.jsp" extends="baselayout">
+		<put-attribute name="body" value="/orderDetails.jsp" />
+	</definition>
+
+	<definition name="updateToShipped.jsp" extends="baselayout">
+		<put-attribute name="body" value="/updateToShipped.jsp" />
+	</definition>
+
 	<!-- Ended by Ranadheer -->
-	
+
 	<!-- Added by Pavan Kumar Yeleswarapu -->
 	<definition name="deals.jsp" extends="baselayout">
 		<put-attribute name="body" value="/deals.jsp" />

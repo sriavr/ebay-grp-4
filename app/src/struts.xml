@@ -4,13 +4,34 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<package name="default" extends="struts-default">
+	<!-- Turn this flag on if you want to see detailed exceptions -->
+	<constant name="struts.devMode" value="false" />
 
+	<package name="default" extends="struts-default">
 		<result-types>
 			<result-type name="tiles"
 				class="org.apache.struts2.views.tiles.TilesResult" />
-
 		</result-types>
+
+		<interceptors>
+			<interceptor-stack name="appDefault">
+				<interceptor-ref name="defaultStack">
+					<param name="exception.logEnabled">true</param>
+					<param name="exception.logLevel">ERROR</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="appDefault" />
+
+		<global-results>
+			<result name="error" type="tiles">error.jsp</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+		</global-exception-mappings>
 
 		<!--- Start of Debargha Ganguly's code -->
 		<action name="home" class="edu.iiitb.ebay.action.HomeAction">
@@ -63,13 +84,13 @@
 			<result name="success" type="redirectAction">browse</result>
 			<result name="failure" type="tiles">error.jsp</result>
 		</action>
-		
+
 		<action name="addDeals" class="edu.iiitb.ebay.action.AddDealsAction">
-		    <result name="initial" type="tiles">login.jsp</result> 
+			<result name="initial" type="tiles">login.jsp</result>
 			<result name="success" type="tiles">addDeals.jsp</result>
 			<result name="viewProduct" type="redirectAction">viewMyProducts</result>
-			
-			
+
+
 		</action>
 		<!--- End of Debargha Ganguly's code -->
 
@@ -83,7 +104,7 @@
 			<result name="success" type="tiles">productdetails.tiles</result>
 			<result name="error" type="tiles">error.jsp</result>
 		</action>
-		
+
 		<action name="sellerdetails" class="edu.iiitb.ebay.action.SellerDetailsAction">
 			<result name="success" type="tiles">sellerdetails.tiles</result>
 			<result name="error" type="tiles">error.jsp</result>
@@ -125,20 +146,20 @@
 			</result>
 			<result name="failure" type="tiles">error.jsp</result>
 		</action>
-		
+
 		<!--view list of products sold by a seller -->
-		
+
 		<action name="viewMySoldProducts" class="edu.iiitb.ebay.action.ViewMySoldProductsAction">
 			<result name="success" type="tiles">viewMySoldProducts.jsp</result>
-			<result name="none" >notSeller.jsp</result>
+			<result name="none">notSeller.jsp</result>
 			<result name="failure" type="tiles">error.jsp</result>
 		</action>
-		
+
 		<action name="orderDetails" class="edu.iiitb.ebay.action.OrderDetailsAction">
 			<result name="success" type="tiles">orderDetails.jsp</result>
 			<result name="failure" type="tiles">error.jsp</result>
 		</action>
-		
+
 		<action name="updateToShipped" class="edu.iiitb.ebay.action.UpdateToShippedAction">
 			<result name="success" type="tiles">updateToShipped.jsp</result>
 			<result name="failure" type="tiles">error.jsp</result>
@@ -148,31 +169,31 @@
 
 
 
-		<!-- Added by Surya Pratap  -->
-				
-				<!-- display Purchase history of user  -->
-	
-				<action name="purchaseHistory" class="edu.iiitb.ebay.action.PurchaseHistoryAction">
-				<result name="success" type="tiles">purchaseHistory.jsp</result>
-				<result name="failure" type="tiles">error.jsp</result>
-			</action>		
-			
-			
-			<!-- Leave Feedback Page   -->
-			
-			<action name="leaveFeedback" class="edu.iiitb.ebay.action.LeaveFeedBackAction">
-				<result name="success" type="tiles">leaveFeedback.jsp</result>
-				<result name="failure" type="tiles">error.jsp</result>
-			</action>
-			
-			<!-- Submit Feedback Page -->
-			
-			<action name="submitFeedback"  class="edu.iiitb.ebay.action.SubmitFeedBackAction">
-				<result name="success" type="tiles">submitFeedback.jsp</result>
-				<result name="failure" type="tiles">error.jsp</result>
-			</action>
-			
-		<!--End of Addition by Surya Pratap  -->
+		<!-- Added by Surya Pratap -->
+
+		<!-- display Purchase history of user -->
+
+		<action name="purchaseHistory" class="edu.iiitb.ebay.action.PurchaseHistoryAction">
+			<result name="success" type="tiles">purchaseHistory.jsp</result>
+			<result name="failure" type="tiles">error.jsp</result>
+		</action>
+
+
+		<!-- Leave Feedback Page -->
+
+		<action name="leaveFeedback" class="edu.iiitb.ebay.action.LeaveFeedBackAction">
+			<result name="success" type="tiles">leaveFeedback.jsp</result>
+			<result name="failure" type="tiles">error.jsp</result>
+		</action>
+
+		<!-- Submit Feedback Page -->
+
+		<action name="submitFeedback" class="edu.iiitb.ebay.action.SubmitFeedBackAction">
+			<result name="success" type="tiles">submitFeedback.jsp</result>
+			<result name="failure" type="tiles">error.jsp</result>
+		</action>
+
+		<!--End of Addition by Surya Pratap -->
 
 
 		<!-- Added by Vamsi Krishna Srungarapu -->
@@ -182,7 +203,8 @@
 			<result name="failure" type="tiles">error.jsp</result>
 		</action>
 		<action name="buyProduct" class="edu.iiitb.ebay.action.BuyProductAction">
-			<result name="success" type="tiles">selectModeOfPaymentBuyProduct.jsp</result>
+			<result name="success" type="tiles">selectModeOfPaymentBuyProduct.jsp
+			</result>
 			<result name="failure" type="tiles">error.jsp</result>
 			<result name="login" type="redirectAction">login</result>
 		</action>
@@ -195,25 +217,29 @@
 			method="debitCardPay">
 			<result name="success" type="tiles">summary.jsp</result>
 			<result name="error" type="tiles">error.jsp</result>
-			<result name="insufficientMoney" type="tiles">insufficientMoney.jsp</result>
+			<result name="insufficientMoney" type="tiles">insufficientMoney.jsp
+			</result>
 		</action>
 		<action name="debitCardBuyPay" class="edu.iiitb.ebay.action.PaymentAction"
 			method="debitCardBuyPay">
 			<result name="success" type="tiles">summary.jsp</result>
 			<result name="error" type="tiles">error.jsp</result>
-			<result name="insufficientMoney" type="tiles">insufficientMoney.jsp</result>
+			<result name="insufficientMoney" type="tiles">insufficientMoney.jsp
+			</result>
 		</action>
 		<action name="creditCardPay" class="edu.iiitb.ebay.action.PaymentAction"
 			method="creditCardPay">
 			<result name="success" type="tiles">summary.jsp</result>
 			<result name="error" type="tiles">error.jsp</result>
-			<result name="insufficientMoney" type="tiles">insufficientMoney.jsp</result>
+			<result name="insufficientMoney" type="tiles">insufficientMoney.jsp
+			</result>
 		</action>
 		<action name="creditCardBuyPay" class="edu.iiitb.ebay.action.PaymentAction"
 			method="creditCardBuyPay">
 			<result name="success" type="tiles">summary.jsp</result>
 			<result name="error" type="tiles">error.jsp</result>
-			<result name="insufficientMoney" type="tiles">insufficientMoney.jsp</result>
+			<result name="insufficientMoney" type="tiles">insufficientMoney.jsp
+			</result>
 		</action>
 		<action name="notifySellersOutOfStockAction"
 			class="edu.iiitb.ebay.action.NotifySellersOutOfStockAction">
@@ -274,47 +300,54 @@
 			<result name="failure" type="tiles">error.jsp</result>
 		</action>
 
-		<!--Start Code: by Prartibind Jha  -->
-		<action name="viewFeedback" class="edu.iiitb.ebay.action.ViewFeedbackAction" method="viewFeedback">
+		<!--Start Code: by Prartibind Jha -->
+		<action name="viewFeedback" class="edu.iiitb.ebay.action.ViewFeedbackAction"
+			method="viewFeedback">
 			<result name="success" type="tiles">viewFeedback.jsp</result>
 			<result name="error" type="tiles">error.jsp</result>
 			<result name="login" type="redirectAction">login</result>
 		</action>
-		<action name="viewWatchList" class="edu.iiitb.ebay.action.ViewWatchListAction" method="viewWatchList">
+		<action name="viewWatchList" class="edu.iiitb.ebay.action.ViewWatchListAction"
+			method="viewWatchList">
 			<result name="success" type="tiles">viewWatchList.jsp</result>
 			<result name="fail" type="redirectAction">login</result>
-			
-			
+
+
 		</action>
-		<action name="removewatchlist" class="edu.iiitb.ebay.action.RemoveWatchListAction"  method="removeFromList">
+		<action name="removewatchlist" class="edu.iiitb.ebay.action.RemoveWatchListAction"
+			method="removeFromList">
 			<result name="success" type="redirectAction">viewWatchList</result>
 			<result name="fail" type="tiles">error.jsp</result>
 			<result name="input" type="redirectAction">
-				<param name="action" >viewWatchList</param>
+				<param name="action">viewWatchList</param>
 				<param name="selectedCheckBox">%{selectedCheckBox}</param>
 			</result>
 		</action>
-		<action name="addWatchList" class="edu.iiitb.ebay.action.AddToWatchListAction" method="addWatchList">
+		<action name="addWatchList" class="edu.iiitb.ebay.action.AddToWatchListAction"
+			method="addWatchList">
 			<result name="success" type="redirectAction">viewWatchList</result>
 			<result name="fail" type="redirectAction">login</result>
 			<result name="login" type="redirectAction">login</result>
 		</action>
-		<action name="viewUserInfo" class="edu.iiitb.ebay.action.ManageUserInfoAction" method="getUserInfoList">
+		<action name="viewUserInfo" class="edu.iiitb.ebay.action.ManageUserInfoAction"
+			method="getUserInfoList">
 			<result name="success" type="tiles">viewUserInfo.jsp</result>
 			<result name="fail" type="tiles">error.jsp</result>
 			<result name="login" type="redirectAction">login</result>
 		</action>
-		<action name="editUserInfo" class="edu.iiitb.ebay.action.ManageUserInfoAction" method="getUserInfo">
+		<action name="editUserInfo" class="edu.iiitb.ebay.action.ManageUserInfoAction"
+			method="getUserInfo">
 			<result name="success" type="tiles">editUserInfo.jsp</result>
 			<result name="fail" type="tiles">error.jsp</result>
 			<result name="login" type="redirectAction">login</result>
 		</action>
-		<action name="saveUserInfo" class="edu.iiitb.ebay.action.ManageUserInfoAction" method="saveUserInfo">
+		<action name="saveUserInfo" class="edu.iiitb.ebay.action.ManageUserInfoAction"
+			method="saveUserInfo">
 			<result name="success" type="redirectAction">viewUserInfo</result>
 			<result name="fail" type="tiles">error.jsp</result>
 			<result name="login" type="redirectAction">login</result>
 		</action>
-		<!--End Code: by Prartibind Jha  -->
+		<!--End Code: by Prartibind Jha -->
 
 
 		<!--Start Code: by Pavan Kumar Yeleswarapu -->

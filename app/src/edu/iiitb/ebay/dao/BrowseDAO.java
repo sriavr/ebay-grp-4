@@ -26,45 +26,42 @@ public class BrowseDAO extends BaseDAO {
 	/***
 	 * This method is called to load the categories on the left hand side of
 	 * browse page.
+	 * 
+	 * @throws SQLException
 	 */
-	public ArrayList<CategoryModel> getRelevantCategories() {
+	public ArrayList<CategoryModel> getRelevantCategories() throws SQLException {
 		logger.info("Inside BrowseDAO : getRelevantCategories()");
 		ArrayList<CategoryModel> categories = new ArrayList<CategoryModel>();
 		ResultSet rs = readFromDB("select * from category where parentCategoryId = 0");
-		try {
-			while (rs.next()) {
-				CategoryModel category = new CategoryModel();
-				category.setCategoryID(rs.getString("categoryId"));
-				category.setCategoryName(rs.getString("categoryName"));
 
-				StringBuilder sqlQuery = new StringBuilder(
-						"call getSubCategories(" + category.getCategoryID()
-								+ ");");
-				logger.debug("Running query " + sqlQuery);
-				ResultSet rs1 = readFromDB(sqlQuery.toString());
-				ArrayList<CategoryModel> subCategories = new ArrayList<CategoryModel>();
-				while (rs1.next()) {
-					CategoryModel subCategory = new CategoryModel();
-					if (!rs1.getString("categoryId").trim()
-							.equals(category.getCategoryID())) {
-						subCategory.setCategoryID(rs1.getString("categoryId"));
-						subCategory.setCategoryName(rs1
-								.getString("categoryName"));
-						logger.info("Added a subcategory");
-						subCategories.add(subCategory);
-					} else {
-						logger.info("Skipping case where categoryId is redundant");
-					}
+		while (rs.next()) {
+			CategoryModel category = new CategoryModel();
+			category.setCategoryID(rs.getString("categoryId"));
+			category.setCategoryName(rs.getString("categoryName"));
+
+			StringBuilder sqlQuery = new StringBuilder("call getSubCategories("
+					+ category.getCategoryID() + ");");
+			logger.debug("Running query " + sqlQuery);
+			ResultSet rs1 = readFromDB(sqlQuery.toString());
+			ArrayList<CategoryModel> subCategories = new ArrayList<CategoryModel>();
+			while (rs1.next()) {
+				CategoryModel subCategory = new CategoryModel();
+				if (!rs1.getString("categoryId").trim()
+						.equals(category.getCategoryID())) {
+					subCategory.setCategoryID(rs1.getString("categoryId"));
+					subCategory.setCategoryName(rs1.getString("categoryName"));
+					logger.info("Added a subcategory");
+					subCategories.add(subCategory);
+				} else {
+					logger.info("Skipping case where categoryId is redundant");
 				}
-				category.setCategories(subCategories);
-				logger.info("size of subcategories:" + subCategories.size());
-				categories.add(category);
 			}
-			logger.info("Size of categories list is " + categories.size());
-		} catch (SQLException e) {
-			logger.error("Error occurred", e);
-			e.printStackTrace();
+			category.setCategories(subCategories);
+			logger.info("size of subcategories:" + subCategories.size());
+			categories.add(category);
 		}
+		logger.info("Size of categories list is " + categories.size());
+
 		return categories;
 	}
 
@@ -195,7 +192,7 @@ public class BrowseDAO extends BaseDAO {
 	// }
 
 	public ArrayList<ProductModel> getProducts(String query, int categoryId,
-			int priceLower, int priceHigher) {
+			int priceLower, int priceHigher) throws SQLException {
 		if (query.contains(",")) {
 			query.replace("'", "");
 		}
@@ -207,44 +204,28 @@ public class BrowseDAO extends BaseDAO {
 		StringBuilder sqlQuery = new StringBuilder("call getProducts('" + query
 				+ "'," + categoryId + "," + priceLower + "," + priceHigher
 				+ ");");
-		// if (!query.isEmpty()) {
-		// sqlQuery = sqlQuery.append(" and title like '%" + query + "%'");
-		// }
-		//
-		// if (categoryId != 0) {
-		// System.out.println("don't worry we added categoryId");
-		// // sqlQuery = sqlQuery.append(" and categoryId=" + categoryId);
-		// }
-		//
-		// if (priceHigher > priceLower) {
-		// sqlQuery = sqlQuery.append(" and price between " + priceLower
-		// + " and " + priceHigher);
-		// }
 		logger.info("Query executed: " + sqlQuery);
 		ResultSet rs = readFromDB(sqlQuery.toString());
-		try {
-			while (rs.next()) {
-				ProductModel product = new ProductModel();
-				product.setProductId(rs.getInt("productId"));
-				product.setDescription(rs.getString("description"));
-				product.setSellerId(rs.getInt("sellerId"));
-				product.setSellerName(rs.getString("firstName") + " "
-						+ rs.getString("lastName"));
-				product.setQuantity(rs.getInt("quantity"));
-				product.setTitle(rs.getString("title"));
-				String photoUrl = rs.getString("photo");
-				if (photoUrl == null || photoUrl.isEmpty())
-					product.setPhoto("/images/default-pic.jpg");
-				else
-					product.setPhoto(photoUrl);
-				product.setPrice(rs.getInt("price"));
-				products.add(product);
-			}
-			logger.info("Size of products list is " + products.size());
-		} catch (SQLException e) {
-			logger.error("Error occurred", e);
-			e.printStackTrace();
+
+		while (rs.next()) {
+			ProductModel product = new ProductModel();
+			product.setProductId(rs.getInt("productId"));
+			product.setDescription(rs.getString("description"));
+			product.setSellerId(rs.getInt("sellerId"));
+			product.setSellerName(rs.getString("firstName") + " "
+					+ rs.getString("lastName"));
+			product.setQuantity(rs.getInt("quantity"));
+			product.setTitle(rs.getString("title"));
+			String photoUrl = rs.getString("photo");
+			if (photoUrl == null || photoUrl.isEmpty())
+				product.setPhoto("/images/default-pic.jpg");
+			else
+				product.setPhoto(photoUrl);
+			product.setPrice(rs.getInt("price"));
+			products.add(product);
 		}
+		logger.info("Size of products list is " + products.size());
+
 		return products;
 	}
 }

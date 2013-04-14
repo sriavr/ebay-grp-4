@@ -103,33 +103,30 @@ public class UserDAO extends BaseDAO {
 		return user;
 	}
 
-	public void insertNewUser(UserModel user) {
+	public void insertNewUser(UserModel user) throws SQLException {
 		// TODO should remove hardcodings
 		logger.info("Inside insertUser method");
+		logger.debug("user details are \n"+ user);
 		String insertQuery = "INSERT INTO `user` ( `firstName`, `lastName`, `homeAddress`, `city`, `pinCode`, "
 				+ "`telephoneNo`, `email`, `password`, `secretQId`, `secretAnswer`, `dob`) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-		logger.info("Query to be run:" + insertQuery);
-		try {
-			PreparedStatement ps = getConnection()
-					.prepareStatement(insertQuery);
-			ps.setString(1, user.getFirstName());
-			ps.setString(2, user.getLastName());
-			ps.setString(3, user.getHomeAddress());
-			ps.setString(4, user.getCity());
-			ps.setLong(5, user.getPinCode());
-			ps.setString(6, user.getTelephoneNo());
-			ps.setString(7, user.getEmail());
-			ps.setString(8, user.getPassword());
-			ps.setInt(9, 1);
-			ps.setString(10, "tommy");
-			// ps.setInt(10, user.getSecretQnId());
-			// ps.setString(11, user.getSecretAnswer());
-			ps.setDate(11, new java.sql.Date(0));
-			// ps.setDate(12, );
-			update(ps);
-		} catch (SQLException e) {
-			logger.error("Error occurred", e);
-			e.printStackTrace();
-		}
+		logger.debug("Query to be run:" + insertQuery);
+
+		PreparedStatement ps = getConnection().prepareStatement(insertQuery);
+		ps.setString(1, user.getFirstName());
+		ps.setString(2, user.getLastName());
+		ps.setString(3, user.getHomeAddress());
+		ps.setString(4, user.getCity());
+		ps.setLong(5, user.getPinCode());
+		ps.setString(6, user.getTelephoneNo());
+		ps.setString(7, user.getEmail());
+		ps.setString(8, user.getPassword());
+		ps.setInt(9, 1);
+		ps.setString(10, "tommy");
+		// ps.setInt(10, user.getSecretQnId());
+		// ps.setString(11, user.getSecretAnswer());
+		ps.setDate(11, new java.sql.Date(0));
+		// ps.setDate(12, );
+		update(ps);
+
 	}
 }

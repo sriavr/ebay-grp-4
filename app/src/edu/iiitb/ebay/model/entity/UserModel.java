@@ -12,16 +12,23 @@ public class UserModel {
 	private String lastName;
 	private String homeAddress;
 	private String city;
+	private String stateName;
 	private long pinCode;
 	private String telephoneNo;
 	private String email;
 	private String password;
-	private String countryName;
-	private String stateName;
 	private String dob;
 	private Integer secretQnId;
 	private String secretAnswer;
 
+	@Override
+	public String toString() {
+		String temp = "firstName:"+ firstName + " lastName:"+ lastName + " homeAddress:"+ homeAddress+
+				" city:" + city + " state:" + stateName + " email:" + email + " password:"+ password +
+				" dob:" + dob + " secretQnId:"+ secretQnId + " secretAnswer:"+ secretAnswer;
+		return temp;
+	}
+	
 	public String getSecretAnswer() {
 		return secretAnswer;
 	}
@@ -111,21 +118,6 @@ public class UserModel {
 	}
 
 	/**
-	 * @return the countryName
-	 */
-	public String getCountryName() {
-		return countryName;
-	}
-
-	/**
-	 * @param countryName
-	 *            the countryName to set
-	 */
-	public void setCountryName(String countryName) {
-		this.countryName = countryName;
-	}
-
-	/**
 	 * @return the stateName
 	 */
 	public String getStateName() {
@@ -154,5 +146,6 @@ public class UserModel {
 	public void setDob(String dob) {
 		this.dob = dob;
 	}
+	
 
 }
