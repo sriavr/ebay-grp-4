@@ -53,8 +53,15 @@
 
 						</ul></li>
 					<li class="divider"></li>
-					<li><a href="#">My Details</a></li>
+					<% 	if (session.getAttribute("user") != null) { %>
+					<li class="has-dropdown"><a href="#">My Details</a>
+						<ul class="dropdown">
+							<li><a href="myInfoDetails.action">My Info</a></li>
+							<li><a href="viewMyAccountInfo.action">My Account</a></li>
+						</ul>
+					</li>
 					<li class="divider"></li>
+					<%} %>
 					<li class="has-dropdown"><a href="createSeller.action">Sell</a>
 
 						<ul class="dropdown">
