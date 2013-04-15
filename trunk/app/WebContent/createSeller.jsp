@@ -4,6 +4,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <head>
    <script type="text/javascript">
+  
 	$(document)
 			.ready(
 					function() {
@@ -43,6 +44,8 @@
 
 					
 					});
+	
+	
 	</script>
 </head>
 <div class="row">
