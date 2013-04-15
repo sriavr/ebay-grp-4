@@ -23,9 +23,9 @@
 <s:form action = "updateProdDetailsBySeller.action" method="post" theme="simple">
 <div class="large-9 columns">
 	<div class="row">
-		<h5>
+		<h3>
 			Order Details : 
-		</h5>
+		</h3>
 		Product Name : <s:property value="product.title" /><br>
 		
 		Product Description :
@@ -39,20 +39,24 @@
 		Order Id :
 		<s:property value="orderId" /><br>
 		
-		Order Status :
-		<s:property value="currentStatus" /><br>
+		<h5>Order Status :</h5>
+		<P style="color:red"> <s:property value="currentStatus" /><br></P>
 		
 		<s:if test="hiddenStatus != 1">
 			<s:checkbox name="updateStatus" id ="updateStatus" onclick="check(this.name)" /> Make Status Shipped
 			<P style="color:red">* Check the above box to make the product shipped</P>
 		</s:if>
-		<h5>
+		<s:else>
+		<h5> Shipped DateTime :</h5> <P style="color:red"><s:property value ="shippedDateTime"/></P>
+		</s:else>
+		<h3>
 		
-		Customer Information : 
-		</h5>		
+		Customer Details : 
+		</h3>		
 		Name : <s:property value="user.firstName" /><br>
 		Address : <s:property value="user.homeAddress" /><br>
 		City : <s:property value="user.city" /><br>
+		<br><br>
 	</div>
 </div>
 </s:form>
