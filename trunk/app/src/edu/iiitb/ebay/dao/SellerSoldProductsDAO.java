@@ -115,7 +115,7 @@ public class SellerSoldProductsDAO extends BaseDAO{
 	public void updateToShipped(int orderId) {
 		
 		String query;
-		query = "update eBay.order set currentStatus = 'SHIPPED' where orderId = " + orderId +"and (currentStatus<>'ORDER_CANCELLED' || currentStatus<>'DELIVERED')";
+		query = "update eBay.order set currentStatus = 'SHIPPED' where orderId = " + orderId +" and (currentStatus<>'ORDER_CANCELLED' || currentStatus<>'DELIVERED')";
 		BaseDAO.update(query);
 		return ;
 	}
