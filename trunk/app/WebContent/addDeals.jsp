@@ -8,22 +8,65 @@
   
 <script language="javascript" type="text/javascript"
 	src="js/datetimepicker.js"></script>
+	
+ <script type="text/javascript">
+ 
+ jQuery.validator.addMethod("mydate", function(value, element) { 
+	   return this.optional(element) || /^\d\d?-\w\w\w-\d\d\d\d/.test(value); 
+	 }, "Please specify the date in DD-MMM-YYYY format");
+ 
+	$(document)
+			.ready(
+					function() {
+						$("#myForm")
+								.validate(
+										{
+											onkeyup : true,
+											rules : {
+												
+												endDate : {
+													mydate : true
+												},
+												
+												startDate : {
+													 mydate : true
+										            },
+
+												price :  {
+													
+													required : true,
+													digits : true,
+												},
+												
+												
+												
+											},
+											messages : {
+												
+												
+												price : {
+													
+									                  digits : "Price should be numeric",
+									                  required : "Price is mandatory to add deals"
+												}
+												
+											}
+										});
+
+					
+					});
+	</script>	
+	
 </head>
+
+
 
 <div class="row">
 	<div class="small-6 columns">
 		<div class="panel">
-			<s:form name="dealform" action="addDeals" theme="simple">
+			<s:form name="dealform" action="addDeals" theme="simple" id="myForm">
 
-				<s:label value="Discount Percentage" />
-
-				<br>
-				<s:textfield name="deal.productDiscountPercent"
-					value="%{deal.productDiscountPercent}">
-				</s:textfield>
-
-
-				<br>
+				
 
 				<s:label value="Deal Start Date" />
 				<br>
@@ -53,7 +96,7 @@
 
 				<s:label value="Deal Seling Price" />
 				<br>
-                <s:textfield name="deal.price"
+                <s:textfield name="deal.price" id="price"
 					value="%{deal.price}">
 				</s:textfield>
 				
