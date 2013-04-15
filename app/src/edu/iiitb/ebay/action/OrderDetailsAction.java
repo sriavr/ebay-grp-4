@@ -22,6 +22,7 @@ public class OrderDetailsAction extends ActionSupport{
 	public  OrderModel ordersList = new OrderModel();
 	private ProductModel product=new ProductModel();
 	private UserModel user =new UserModel();
+	String shippedDateTime ;
 	
 	
 	public String execute(){
@@ -38,6 +39,8 @@ public class OrderDetailsAction extends ActionSupport{
 		productId =sellerDAO.getProductId(getOrderId());
 		userId =sellerDAO.getUserId(getOrderId());
 		currentStatus = sellerDAO.getCurrentStatus(getOrderId());
+		shippedDateTime	= sellerDAO.getShippedDateTime(getOrderId());
+		System.out.println("shiipped datetime : " + shippedDateTime);
 		System.out.println("product id :" +productId +"userId: " + userId +"status:" + currentStatus);
 		 
 		//if the product is not shipped ... make the hiddenStatus as 0 if not to 1
@@ -113,5 +116,13 @@ public class OrderDetailsAction extends ActionSupport{
 
 	public void setHiddenStatus(int hiddenStatus) {
 		this.hiddenStatus = hiddenStatus;
+	}
+
+	public String getShippedDateTime() {
+		return shippedDateTime;
+	}
+
+	public void setShippedDateTime(String shippedDateTime) {
+		this.shippedDateTime = shippedDateTime;
 	}
 }
