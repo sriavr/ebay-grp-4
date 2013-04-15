@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import edu.iiitb.ebay.model.entity.UserModel;
 
 /**
@@ -14,6 +16,7 @@ import edu.iiitb.ebay.model.entity.UserModel;
  * 
  */
 public class MangeUserInfoDAO {
+	private static Logger logger = Logger.getLogger(MangeUserInfoDAO.class);
 
 	// get arraylist of user model object
 	public static ArrayList<UserModel> getUserModelList(String whereClouse) {
@@ -79,6 +82,7 @@ public class MangeUserInfoDAO {
 			ps.setInt(9, userModel.getUserId());
 			System.out.println("query:  " + ps.toString());
 			status = BaseDAO.update(ps);
+			logger.info("Status " + status);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
