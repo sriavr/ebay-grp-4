@@ -21,7 +21,10 @@ public class ViewMySoldProductsAction extends ActionSupport{
 	public String execute(){
 		
 		int i;
-		//get the user id of the user 
+		//get the user id of the user
+		if((String) ActionContext.getContext().getSession().get("role") == null){
+			return "fail";
+		}
 		int userId = ((UserModel)ActionContext.getContext().getSession().get("user")).getUserId();
 		System.out.println("user id : " + userId);
 		
