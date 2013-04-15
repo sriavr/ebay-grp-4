@@ -119,11 +119,75 @@
         } 
         
     </script>
+    
+    <script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+						$("#myForm")
+								.validate(
+										{
+											onkeyup : true,
+											rules : {
+												title : {
+													required : true
+												},
+
+												description :  {
+													required : true
+												},
+												
+												quantity : {
+													
+													digits : true,
+													required : true
+												},
+												
+                                                price : {
+													
+													digits : true,
+													required : true
+												},
+
+												discount : {
+													
+													min: 0,
+													max: 100,
+													digits : true,
+												}
+												
+												
+											},
+											messages : {
+												title : {
+													required: "Title is mandatory"
+												},
+												description : {
+													required: "Description is mandatory"
+												},
+												quantity : {
+													
+													required : "Quantity is mandatory",
+													digits : "Please enter number here",
+												},
+												discount : {
+													
+													min : "Discount percent should be within 0 and 100",
+													max : "Discount percent should be within 0 and 100",
+												    digits : "discount should be a percentage value"
+												}
+												
+											}
+										});
+
+					
+					});
+</script>
  
 </head>
 
  <div class="row">
-  <s:form theme="simple" action="createListing.action" enctype="multipart/form-data">
+  <s:form theme="simple" action="createListing.action" enctype="multipart/form-data" id="myForm">
   <s:if test="hasActionErrors()">
 			<div class="panel">
 							<br />
@@ -156,7 +220,7 @@
 		 <font size="3"><b>Help buyers find your item with a great title </b></font> 
 		 
 		 <s:label value="Title"/>
-		 <s:textfield name="title"></s:textfield>
+		 <s:textfield name="title" id="title"></s:textfield>
 		</div>
 		
 		<div class="panel">
@@ -166,7 +230,7 @@
 		 <s:iterator value="itemspefics" status="stat">
 		   
 		     <tr>
-		       <td><s:textfield name = "itemspefics[%{#stat.index}].property"/> </td>
+		       <td><s:textfield name = "itemspefics[%{#stat.index}].property" /> </td>
 		       
 		        <td><s:textfield name = "itemspefics[%{#stat.index}].value"/> </td>
 		     </tr>
@@ -201,7 +265,7 @@
 		<div class="panel">
 		  <font size="3"><b>Bring your Item to life with pictures</b></font><br>
 		    <s:file name="userImage" label="User Image" />
-            <s:submit value="Upload" align="center" name="upload"/>
+            <s:submit value="Upload" align="center" name="upload" id="upload"/>
 
             <a class="th radius" href="#" style="width:100px">
               <img src='<s:property value="filename"/>'>
@@ -211,14 +275,14 @@
 		</div>
 		<div class="panel">
 		<font size="3"><b>Describe your Item in Words</b></font><br>
-		 <s:textarea  theme="simple" name="description"/>
+		 <s:textarea  theme="simple" name="description" id="description"/>
 		</div>
 		<div class="panel">
 		   <font size="3"><b>Fixed Price</b></font><br>
 		    <font size="2">Buy It Now price*</font><br>
 		    <div class="row">
 		   <div class="small-2 columns">
-		    Rs.<s:textfield cssClass="label" theme="simple" name="price"  tooltip="Enter Price"></s:textfield> <br>
+		    Rs.<s:textfield cssClass="label" theme="simple" name="price"  tooltip="Enter Price" id="price"></s:textfield> <br>
 		    </div>
 		    </div>
 		    
@@ -226,13 +290,13 @@
 		    <font  size="2">Quantity*</font><br>
 		    <div class="row">
 		    <div class="small-2 columns">
-		    <s:textfield  theme="simple" name="quantity" tooltip="Quantity" size="4"></s:textfield>
+		    <s:textfield  theme="simple" name="quantity" tooltip="Quantity" size="4" id="quantity"></s:textfield>
 		    </div>
 		    </div>
 		    <font size="2">Discount</font><br>
 		    <div class="row">
 		     <div class="small-2 columns">
-		      <s:textfield  theme="simple" name="discount"  tooltip="Enter Discount" placeholder="Enter discount percentage"/>
+		      <s:textfield  theme="simple" name="discount"  tooltip="Enter Discount" placeholder="Enter discount percentage" id="discount"/>
 		    </div>
 		    </div>
 		</div>
