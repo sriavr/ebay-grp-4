@@ -111,11 +111,30 @@ public class SellerSoldProductsDAO extends BaseDAO{
 		return Status;
 	}
 	
+	//get ShippedDateTime of particular order
+	public String getShippedDateTime(int orderId) {
+		
+		String query;
+		String ShippedDateTime = "";
+		query = "select shipped from eBay.order where orderId = " + orderId;
+		ResultSet rs = readFromDB(query);
+		try {
+			while(rs.next()){
+				ShippedDateTime = rs.getString("shipped");
+			}
+		} 
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ShippedDateTime;
+	}
+	
 	//update the status to shipped.
 	public void updateToShipped(int orderId) {
 		
 		String query;
-		query = "update eBay.order set currentStatus = 'SHIPPED' where orderId = " + orderId +" and (currentStatus<>'ORDER_CANCELLED' || currentStatus<>'DELIVERED')";
+		query = "update eBay.order set currentStatus = 'SHIPPED' , statusUpdatedDate = now() , shipped = now() where orderId = " + orderId +" and (currentStatus<>'ORDER_CANCELLED' || currentStatus<>'DELIVERED')";
 		BaseDAO.update(query);
 		return ;
 	}
