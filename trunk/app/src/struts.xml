@@ -130,7 +130,7 @@
 		<action name="viewMyProducts" class="edu.iiitb.ebay.action.ViewMyProductsAction">
 			<result name="success" type="tiles">viewMyProducts.jsp</result>
 			<result name="none">notSeller.jsp</result>
-			<result name="failure" type="tiles">error.jsp</result>
+			<result name="fail" type="redirectAction">login</result>
 		</action>
 
 		<action name="perticularSellerProductDetails"
@@ -152,7 +152,7 @@
 		<action name="viewMySoldProducts" class="edu.iiitb.ebay.action.ViewMySoldProductsAction">
 			<result name="success" type="tiles">viewMySoldProducts.jsp</result>
 			<result name="none">notSeller.jsp</result>
-			<result name="failure" type="tiles">error.jsp</result>
+			<result name="fail" type="redirectAction">login</result>
 		</action>
 
 		<action name="orderDetails" class="edu.iiitb.ebay.action.OrderDetailsAction">
