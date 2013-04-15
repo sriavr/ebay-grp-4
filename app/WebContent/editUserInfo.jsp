@@ -71,11 +71,14 @@
 													minlength : "Your HomeAddress should be of at lease 5 character long"
 													
 												},
+												telephoneNo:{
+													required : "Please Provide telephone no."
+												},
 												email : "Please enter a valid email address",
 											}
 										});
 
-						$("#phone").mask("(999) 999-9999");
+						$("#phone").mask("999-999-9999");
 					});
 </script>
 </head>
@@ -187,7 +190,7 @@
 		    	<span class="label" style="padding:8.2px;width:150px;">Telephone</span>
 		    </div>
 		    <div class="columns large-5">
-		    	<s:textfield name="telephoneNo" ></s:textfield>
+		    	<s:textfield name="telephoneNo" id="phone" ></s:textfield>
 		    </div>
 		    <div class="columns large-2">
 		    	&nbsp;&nbsp;
