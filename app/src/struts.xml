@@ -347,6 +347,24 @@
 			<result name="fail" type="tiles">error.jsp</result>
 			<result name="login" type="redirectAction">login</result>
 		</action>
+		<action name="myInfoDetails" class="edu.iiitb.ebay.action.MyInfoDetailsAction"
+			method="getUserInfo">
+			<result name="success" type="tiles">myInfoDetails.jsp</result>
+			<result name="fail" type="tiles">error.jsp</result>
+			<result name="login" type="redirectAction">login</result>
+		</action>
+		<action name="saveMyInfoDetails" class="edu.iiitb.ebay.action.MyInfoDetailsAction"
+			method="saveMyInfoDetails">
+			<result name="success" type="tiles">myInfoDetails.jsp</result>
+			<result name="fail" type="tiles">error.jsp</result>
+			<result name="login" type="redirectAction">login</result>
+		</action>
+		<action name="viewMyAccountInfo" class="edu.iiitb.ebay.action.MyAccountInfoAction"
+			method="getBankDetails">
+			<result name="success" type="tiles">viewMyAccountInfo.jsp</result>
+			<result name="fail" type="tiles">error.jsp</result>
+			<result name="login" type="redirectAction">login</result>
+		</action>
 		<!--End Code: by Prartibind Jha -->
 
 
