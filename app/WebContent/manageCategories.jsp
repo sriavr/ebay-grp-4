@@ -17,7 +17,7 @@
 	}
 	function tryFunc(node){
 	    var root = node.parentNode.parentNode;
-	    alert(root);
+	   
 	    var allRows = root.getElementsByTagName('tr');
 	    var cRow = allRows[2].cloneNode(true);
 	    root.appendChild(cRow);
@@ -75,13 +75,13 @@
 	{
 		
 		var elements=checkId.split("_");
-		alert(elements);
+		
 		var select = document.getElementById(checkId);
 		
 		if(select.checked==true)
 	    {
 			
-		    alert(document.getElementById("namein["+elements[2]+"]").value);
+		   
 			document.getElementById("namein["+elements[2]+"]").disabled = false;
 			
 			
@@ -120,11 +120,11 @@
 		<tr>
 				
 			
-		    <td><s:checkbox value="%{selected}" name="categoryList[%{#stat.index}].selected" cssClass="label"
+		    <td width="2"><s:checkbox value="%{selected}" name="categoryList[%{#stat.index}].selected"
 								theme="simple" onclick="javascript:onSelect(this.id);"/></td>
 			<td><s:textfield id="namein[%{#stat.index}]"
 								name="categoryList[%{#stat.index}].categoryName"
-								value="%{categoryName}" cssClass="label" theme="simple" disabled="true" size="100" />
+								value="%{categoryName}"  theme="simple" disabled="true" size="100" />
 								
 			
 								
@@ -135,7 +135,7 @@
 		 
 		 
 		   <td>
-		     <s:select  headerKey="0" headerValue="--Select--" list="categoryList" id="catList"   listKey="categoryID" listValue="categoryName" name="categoryList[%{#stat.index}].parentCategoryId" cssClass="label" theme="simple"/>
+		     <s:select  headerKey="0" headerValue="--Select--" list="categoryList" id="catList"   listKey="categoryID" listValue="categoryName" name="categoryList[%{#stat.index}].parentCategoryId"  theme="simple"/>
 		      <s:hidden name="categoryList[%{#stat.index}].categoryID" value="%{categoryID}" />
 		   </td>
 		   

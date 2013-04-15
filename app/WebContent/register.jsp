@@ -106,7 +106,7 @@
 			<input type="text" name="phNumber" id="phone" />
 
 			<b>Email :</b> 
-			<input id="email" name="email" type="email" /> 
+			<input id="email" name="emailId" type="email" /> 
 			
 			<b>Password :</b> 
 			<input id="password" name="password" type="password" /> 
