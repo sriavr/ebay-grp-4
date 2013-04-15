@@ -206,7 +206,7 @@ public class ManageUserInfoAction extends ActionSupport {
 			return "login";
 		}
 		if (Role.equals("user")) {
-			return "fail";
+			return "login";
 		}
 		String whereClouse = " WHERE userId=" + this.getUserId();
 		System.out.println("UserId: " + this.getUserId());
@@ -224,7 +224,7 @@ public class ManageUserInfoAction extends ActionSupport {
 			return "login";
 		}
 		if (Role.equals("user")) {
-			return "fail";
+			return "login";
 		}
 		UserModel userModel = new UserModel();
 		userModel.setUserId(this.getUserId());
