@@ -162,6 +162,12 @@
 	<definition name="editUserInfo.jsp" extends="baselayout">
 		<put-attribute name="body" value="/editUserInfo.jsp"></put-attribute>
 	</definition>
+	<definition name="myInfoDetails.jsp" extends="baselayout">
+		<put-attribute name="body" value="/myInfoDetails.jsp"></put-attribute>
+	</definition>
+	<definition name="viewMyAccountInfo.jsp" extends="baselayout">
+		<put-attribute name="body" value="/viewMyAccountInfo.jsp"></put-attribute>
+	</definition>
 	<!--End of code: by Pratibind Jha -->
 
 	<!-- Added by Ranadheer -->
