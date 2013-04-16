@@ -18,6 +18,11 @@ public class SubmitFeedBackDAO extends BaseDAO{
 				+ submitFeedbackModel.getDescription() + "');";
 		
 		        BaseDAO.update(query);
+		        
+		String query1="update eBay.order set currentStatus='"+submitFeedbackModel.getStatus()+"'";
+		query1+=" where orderId="+submitFeedbackModel.getOrderId();
+		
+				BaseDAO.update(query1);
 	}
 
 }
