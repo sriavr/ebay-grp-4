@@ -26,12 +26,14 @@ public class RegisterAction extends ActionSupport {
 	private String dob;
 	private String action;
 	private Logger logger = Logger.getLogger(this.getClass().getName());
+	private String subject = "eBay Registration Mail" ;
+	private String  message = "Successfully Registered to eBay." ;
 	public String execute() {
 
 		UserModel userRegister = new UserModel();
 
 		System.out.println("first name : " + getFirstName() + "pin code : "
-				+ getPinCode());
+				+ getPinCode() +" dob: " + getDob());
 		userRegister.setFirstName(getFirstName());
 		userRegister.setLastName(getLastName());
 		userRegister.setHomeAddress(getHomeAddress());
@@ -45,7 +47,8 @@ public class RegisterAction extends ActionSupport {
 		UserDAO userDAO = new UserDAO();
 		try {
 			userDAO.insertNewUser(userRegister);
-		} catch (SQLException e) {
+			userDAO.sendEmail(getEmailId(), subject, message);
+		} catch (Exception e) {
 			logger.error("Error occurred", e);
 			e.printStackTrace();
 			return ERROR;
