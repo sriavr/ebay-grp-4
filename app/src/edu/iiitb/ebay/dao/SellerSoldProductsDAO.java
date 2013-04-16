@@ -130,6 +130,25 @@ public class SellerSoldProductsDAO extends BaseDAO{
 		return ShippedDateTime;
 	}
 	
+	//get email id of customer  for a particular order
+		public String getEmailId(int orderId) {
+			
+			String query;
+			String emailId = "";
+			query =  "select email from user where userId = (select userId from eBay.order where orderId = " + orderId + ");";
+			ResultSet rs = readFromDB(query);
+			try {
+				while(rs.next()){
+					emailId = rs.getString("email");
+				}
+			} 
+			catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return emailId;
+		}
+	
 	//update the status to shipped.
 	public void updateToShipped(int orderId) {
 		
