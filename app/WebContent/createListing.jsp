@@ -120,7 +120,7 @@
         
     </script>
     
-    <script type="text/javascript">
+   <!--  <script type="text/javascript">
 	$(document)
 			.ready(
 					function() {
@@ -186,7 +186,7 @@
 	$('#save').click(function() {
 	    $("#form1").valid();
 	});
-</script>
+</script> -->
  
 </head>
 
@@ -269,7 +269,7 @@
 		<div class="panel">
 		  <font size="3"><b>Bring your Item to life with pictures</b></font><br>
 		    <s:file name="userImage" label="User Image" />
-           
+            <s:submit value="Upload" align="center" name="upload" id="upload" class="cancel"/>
 
             <a class="th radius" href="#" style="width:100px">
               <img src='<s:property value="filename"/>'>
