@@ -12,6 +12,15 @@ public class LeaveFeedBackAction extends ActionSupport {
 	private int productId;
 	private int userId;
 	private int sellerId;
+	private int orderId;
+	public int getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
+
 	public int getSellerId() {
 		return sellerId;
 	}

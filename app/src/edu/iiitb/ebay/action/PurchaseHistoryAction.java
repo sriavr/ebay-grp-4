@@ -29,7 +29,7 @@ public class PurchaseHistoryAction extends ActionSupport {
 	private ArrayList<ProductModel> products=new ArrayList<ProductModel>();
 	private ArrayList<SellerModel> sellers=new ArrayList<SellerModel>();
 	private ArrayList<OrderModel> ordersList = new ArrayList<OrderModel>();
-
+	
 	public ArrayList<OrderModel> getOrdersList() {
 		return ordersList;
 	}

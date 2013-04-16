@@ -15,8 +15,16 @@ public class SubmitFeedBackAction extends ActionSupport {
 	private int productId;
 	private int userId;
 	private int sellerId;
-	
-	
+	private String currentStatus="DELIVERED";
+	private int orderId;
+
+	public int getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
 
 	public int getRate1() {
 		return rate1;
@@ -93,6 +101,8 @@ public class SubmitFeedBackAction extends ActionSupport {
 		submitfeedbackmodel.setRate2(rate2);
 		submitfeedbackmodel.setRate3(rate3);
 		submitfeedbackmodel.setDescription(description);
+		submitfeedbackmodel.setStatus(currentStatus);
+		submitfeedbackmodel.setOrderId(orderId);
 		
 		SubmitFeedBackDAO submitfeedbackDAO=new SubmitFeedBackDAO();
 		
