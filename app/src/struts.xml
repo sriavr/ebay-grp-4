@@ -100,8 +100,18 @@
 			<result name="error" type="tiles">error.jsp</result>
 		</action>
 
+		<action name="browsedeals" class="edu.iiitb.ebay.action.BrowseDealsAction">
+			<result name="success" type="tiles">browseDeals.tiles</result>
+			<result name="error" type="tiles">error.jsp</result>
+		</action>
+
 		<action name="productdetails" class="edu.iiitb.ebay.action.ProductDetailsAction">
 			<result name="success" type="tiles">productdetails.tiles</result>
+			<result name="error" type="tiles">error.jsp</result>
+		</action>
+		
+		<action name="productdealdetails" class="edu.iiitb.ebay.action.ProductDealDetailsAction">
+			<result name="success" type="tiles">productdealdetails.tiles</result>
 			<result name="error" type="tiles">error.jsp</result>
 		</action>
 

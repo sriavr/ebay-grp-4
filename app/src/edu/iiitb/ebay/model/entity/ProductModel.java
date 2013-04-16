@@ -8,16 +8,17 @@ package edu.iiitb.ebay.model.entity;
  * @version 1.0
  */
 public class ProductModel {
-	private int productId;
-	private int sellerId;
-	private String title;
-	private String description;
-	private int price;
-	private int quantity;
-	private String photo;
-    private int discount;
+	protected int productId;
+	protected int sellerId;
+	protected String title;
+	protected String description;
+	protected int price;
+	protected int quantity;
+	protected String photo;
+    protected int discount;
+
     //This is not in DB but included it here for convenience of displaying Seller Name along with Product
-	private String sellerName;
+	protected String sellerName;
 
 	public String getSellerName() {
 		return sellerName;

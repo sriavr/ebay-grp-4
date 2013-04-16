@@ -1,5 +1,6 @@
 package edu.iiitb.ebay.dao;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
 import edu.iiitb.ebay.model.entity.CategoryModel;
+import edu.iiitb.ebay.model.entity.DealModel;
 import edu.iiitb.ebay.model.entity.ProductModel;
 
 public class ProductDetailsDAO extends BaseDAO {
@@ -48,7 +50,54 @@ public class ProductDetailsDAO extends BaseDAO {
 		}
 		return product;
 	}
+	public DealModel getProductDealDetails(int productId) {
+		logger.info("Inside ProductDetailsDAO : getProductDealDetails(productId)");
+		logger.info("productId:" + productId);
 
+		DealModel product = new DealModel ();
+
+		StringBuilder sqlQuery = new StringBuilder(
+				"select * from product p left outer join deals d on d.productId = p.productId where p.productId = " + productId);
+
+		logger.info("Query executed: " + sqlQuery);
+		ResultSet rs = readFromDB(sqlQuery.toString());
+		try {
+			if (rs.next()) {
+				product.setProductId(rs.getInt("productId"));
+				product.setDescription(rs.getString("description"));
+				product.setSellerId(rs.getInt("sellerId"));
+				product.setQuantity(rs.getInt("quantity"));
+				product.setTitle(rs.getString("title"));
+				String photoUrl = rs.getString("photo");
+				if (photoUrl == null || photoUrl.isEmpty())
+					product.setPhoto("/images/default-pic.jpg");
+				else
+					product.setPhoto(photoUrl);
+				product.setPrice(rs.getInt("price"));
+				product.setDiscount(rs.getInt("discount"));
+				product.setDealsId(rs.getInt("dealsId"));
+				if (rs.getDate("dealStartDate") != null)
+					product.setDealStartDate(rs.getDate("dealStartDate"));
+				else
+					product.setDealStartDate(new Date(1111, 11, 11));
+				if (rs.getDate("dealEndDate") != null)
+					product.setDealEndDate(rs.getDate("dealEndDate"));
+				else
+					product.setDealEndDate(new Date(1111, 11, 11));
+				product.setDealEndDate(rs.getDate("dealEndDate"));
+				product.setDealSellingPrice(rs.getInt("dealSellingPrice"));
+				logger.info("Fetched a product: " + product);				
+			} else {
+				logger.warn("no product with matching productId found");
+			}
+
+		} catch (SQLException e) {
+			logger.error("Error occurred", e);
+			e.printStackTrace();
+		}
+		return product;
+	}
+	
 	public CategoryModel getCategoryOfProduct(String productId) {
 		logger.info("Inside ProductDetailsDAO : getCategoryOfProduct(productId)");
 		logger.info("productId:" + productId);
@@ -95,7 +144,5 @@ public class ProductDetailsDAO extends BaseDAO {
 		return cat;
 
 	}
-	
-	
 
 }
