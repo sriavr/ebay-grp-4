@@ -36,7 +36,8 @@
 													
 													min : "Discount percent should be within 0 and 100",
 													max : "Discount percent should be within 0 and 100",
-												    digits : "sla shouled be a percentage value"
+												    digits : "sla shouled be a percentage value",
+												    required: "sla is mandatory"
 												}
 												
 											}

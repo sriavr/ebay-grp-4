@@ -182,6 +182,10 @@
 
 					
 					});
+	
+	$('#save').click(function() {
+	    $("#form1").valid();
+	});
 </script>
  
 </head>
@@ -265,7 +269,7 @@
 		<div class="panel">
 		  <font size="3"><b>Bring your Item to life with pictures</b></font><br>
 		    <s:file name="userImage" label="User Image" />
-            <s:submit value="Upload" align="center" name="upload" id="upload"/>
+           
 
             <a class="th radius" href="#" style="width:100px">
               <img src='<s:property value="filename"/>'>
@@ -302,7 +306,7 @@
 		</div>
 		<s:hidden name="productId" value="%{productId}"/>
 	<div class="panel">
-	  <input type="submit" value="Save" name="save" class="small button"/>
+	  <input type="submit" value="Save" name="save" class="small button" id="save"/>
 	</div>	
 	</s:form>	
 </div>		
