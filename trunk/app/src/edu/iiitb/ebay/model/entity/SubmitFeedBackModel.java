@@ -10,6 +10,20 @@ public class SubmitFeedBackModel {
 	private int productId;
 	private int userId;
 	private int sellerId;
+	private int orderId;
+	public int getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
+	private String status;
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public int getRate1() {
 		return rate1;
 	}
