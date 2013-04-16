@@ -26,7 +26,8 @@ public class DealsDAO extends BaseDAO {
 		logger.info("Inside getProductsGroup method");
 		ArrayList<CategoryProductsModel> productGroups = new ArrayList<CategoryProductsModel>();
 		logger.info("Created empty list of productGroups");
-
+		// cartList.add(cpm);
+		// productList.add(catName);
 		ArrayList<CategoryModel> categoryList = parentCategoryIdList();
 		logger.info("Retrieved parentCategoryList size:" + categoryList.size());
 		for (int i = 0; i < categoryList.size(); i++) {
@@ -53,19 +54,17 @@ public class DealsDAO extends BaseDAO {
 		try {
 			while (rs.next()) {
 				DealModel deal = new DealModel();
-				deal.setDealsId(rs.getInt("dealsId"));
 				deal.setProductId(rs.getInt("productId"));
-				deal.setProductDiscountPercent(rs
-						.getInt("productDiscountPercent"));
-				deal.setDealStartDate(rs.getDate("dealStartDate"));
-				deal.setDealEndDate(rs.getDate("dealEndDate"));
-				deal.setDealSellingPrice(rs.getInt("dealSellingPrice"));
 				deal.setTitle(rs.getString("title"));
 				deal.setQuantity(rs.getInt("quantity"));
 				deal.setPrice(rs.getInt("price"));
 				deal.setPhoto(rs.getString("photo"));
 				deal.setDiscount(rs.getInt("discount"));
 				deal.setSellerId(rs.getInt("sellerId"));
+				deal.setDealsId(rs.getInt("dealsId"));
+				deal.setDealStartDate(rs.getDate("dealStartDate"));
+				deal.setDealEndDate(rs.getDate("dealEndDate"));
+				deal.setDealSellingPrice(rs.getInt("dealSellingPrice"));
 				deals.add(deal);
 				logger.info("Added a deal with dealId:" + deal.getDealsId());
 			}
@@ -171,26 +170,19 @@ public class DealsDAO extends BaseDAO {
 		// Integer catName;
 		try {
 			// productList=new ArrayList<Integer>();
-			while (rs.next()) {
-				dm.setDealsId(rs.getInt("dealsId"));
+			if (rs.next()) {
 				dm.setProductId(productNo);
-				dm.setProductDiscountPercent(rs
-						.getInt("productDiscountPercent"));
+				dm.setProductId(productNo);
+				dm.setTitle(rs.getString("title"));
+				dm.setQuantity(rs.getInt("quantity"));
+				dm.setPrice(rs.getInt("price"));
+				dm.setPhoto(rs.getString("photo"));
+				dm.setDiscount(rs.getInt("discount"));
+				dm.setSellerId(rs.getInt("sellerId"));
+				dm.setDealsId(rs.getInt("dealsId"));
 				dm.setDealStartDate(rs.getDate("dealStartDate"));
 				dm.setDealEndDate(rs.getDate("dealEndDate"));
 				dm.setDealSellingPrice(rs.getInt("dealSellingPrice"));
-				ProductModel product = new ProductModel();
-				product.setProductId(productNo);
-				product.setTitle(rs.getString("title"));
-				product.setQuantity(rs.getInt("quantity"));
-				product.setPrice(rs.getInt("price"));
-				product.setPhoto(rs.getString("photo"));
-				product.setDiscount(rs.getInt("discount"));
-				product.setSellerId(rs.getInt("sellerId"));
-				dm.setProduct(product);
-				// cartList.add(cpm);
-				// productList.add(catName);
-
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -217,29 +209,27 @@ public class DealsDAO extends BaseDAO {
 
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			// sellPrice = -1;
+			logger.error("Error occurred", e);
 			e.printStackTrace();
 		}
 		return dm;
 	}
-	
-	
-	//Added by DEbargha to save deals
-	
-	
-	public void saveDeals(DealModel deal)
-	{
-		String query = "insert into deals(productId,productDiscountPercent,dealStartDate,dealEndDate,dealSellingPrice) values("+deal.getProductId()+","+deal.getProductDiscountPercent()+",'"+deal.getDealStartDate()+"','"+deal.getDealEndDate()+"',"+deal.getPrice()+")";
-		
+
+	// Added by DEbargha to save deals
+
+	public void saveDeals(DealModel deal) {
+		String query = "insert into deals(productId,dealStartDate,dealEndDate,dealSellingPrice) values("
+				+ deal.getProductId()
+				+ ","
+				+ deal.getDealStartDate()
+				+ "','"
+				+ deal.getDealEndDate() + "'," + deal.getPrice() + ")";
+
 		System.out.println(query);
-		try
-		{
+		try {
 			System.out.println(update(query));
-			
-		}
-		catch(Exception ex)
-		{
+
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}

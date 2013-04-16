@@ -9,7 +9,7 @@
 
 <div class="row">
 	<div class="large-2 columns">
-		<a href="browse.action"><img src="images/ebay.jpg"></a>
+		<a href="browsedeals.action"><img src="images/ebay.jpg"></a>
 	</div>
 	<div class="large-3 columns">
 		<%
@@ -104,7 +104,7 @@
 	<nav class="top-bar">
 		<section class="top-bar-section">
 			<!-- Right Nav Section -->
-			<s:form action="browse.action" method="get" theme="simple">
+			<s:form action="browsedeals.action" method="get" theme="simple">
 				<jsp:useBean id="obj" class="edu.iiitb.ebay.dao.BrowseDAO"
 					scope="page" />
 				<div class="row">

@@ -19,14 +19,14 @@ DELETE FROM user;
 	(16, 'Ranadheer', 'Kakkireni', '22-456', 'Kodad', 567920,'9845665323', 'randheer.kakkireni@iiitb.org', 'randheer123', 31, 'cricket', '1989-04-15');
 
 DELETE FROM seller;
-insert into seller (sellerId, dateOfRegistration, location, userId) values 
-    (100, curdate(),'hyderabad',10),
-    (101, curdate(),'patna',11),
-    (102, curdate(),'jharkand',12),
-    (103, curdate(),'himachal pradesh',13),
-    (104, curdate(),'ranchi',14),
-    (105, curdate(),'vijayawada',15),
-    (106, curdate(),'ananthapur',16);
+insert into seller (sellerId, dateOfRegistration, location, userId, sla) values 
+    (100, curdate(),'hyderabad',10, 2.5),
+    (101, curdate(),'patna',11, 5),
+    (102, curdate(),'jharkand',12, 3),
+    (103, curdate(),'himachal pradesh',13, 6),
+    (104, curdate(),'ranchi',14, 2.5),
+    (105, curdate(),'vijayawada',15, 3),
+    (106, curdate(),'ananthapur',16, 1);
 
 DELETE FROM product;
 insert into product (productId, sellerId, title, description, price, photo, quantity) values
