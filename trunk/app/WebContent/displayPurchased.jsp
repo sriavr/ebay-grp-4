@@ -53,9 +53,11 @@
 					<s:if test="%{!(ordersList.get(#index).currentStatus.equals(\"SHIPPED\")||ordersList.get(#index).currentStatus.equals(\"DELIVERED\")||ordersList.get(#index).currentStatus.equals(\"ORDER_CANCELLED\"))}">
 						<a href="cancelOrderAction.action?orderId=<s:property value="ordersList.get(#index).orderId"/>">Cancel Order</a>
 					</s:if>
-					<br>					
-					<a href="leaveFeedback?productId=<s:property value="%{products.get(#index).productId}"/>&userId=<s:property value="%{userId}"/>&sellerId=<s:property value="%{products.get(#index).sellerId}"/>">
-					Leave Feedback </a>
+					<br>	
+					<s:if test="%{!(ordersList.get(#index).currentStatus.equals(\"PAYMENT_RECEIVED\")||ordersList.get(#index).currentStatus.equals(\"DELIVERED\")||ordersList.get(#index).currentStatus.equals(\"ORDER_CANCELLED\"))}">				
+					<a href="leaveFeedback?productId=<s:property value="%{products.get(#index).productId}"/>&userId=<s:property value="%{userId}"/>&sellerId=<s:property value="%{products.get(#index).sellerId}"/>&orderId=<s:property value="%{ordersList.get(#index).orderId}"/>">
+					Update Status as Delivered & Leave Feedback </a>
+					</s:if>
 				</div>
 		</div>
 		

@@ -147,6 +147,8 @@
 </s:hidden>
 <s:hidden name="sellerId" value="%{sellerId}">
 </s:hidden>
+<s:hidden name="orderId" value="%{orderId}">
+</s:hidden>
 	<div >
 	Feedback:
 		<s:radio name="rate" list="ratings" value="defaultValue" theme="simple"></s:radio>
