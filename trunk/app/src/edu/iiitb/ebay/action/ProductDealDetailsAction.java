@@ -1,5 +1,7 @@
 package edu.iiitb.ebay.action;
 
+import java.util.Date;
+
 import org.apache.log4j.Logger;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -18,6 +20,15 @@ public class ProductDealDetailsAction extends ActionSupport {
 	private DealModel product = new DealModel();
 	private SellerModel seller = new SellerModel();
 	private UserModel user = new UserModel();
+	private boolean offerExpired = false;
+
+	public boolean isOfferExpired() {
+		return offerExpired;
+	}
+
+	public void setOfferExpired(boolean offerExpired) {
+		this.offerExpired = offerExpired;
+	}
 
 	public SellerModel getSeller() {
 		return seller;
@@ -61,6 +72,14 @@ public class ProductDealDetailsAction extends ActionSupport {
 			setProduct(productDetailsDAO.getProductDealDetails(productId));
 			setSeller(sellerDAO.getSeller(getProduct().getSellerId()));
 			setUser(userDAO.getUserDetails(seller.getUserId()));
+			java.util.Date dealEndDate = product.getDealEndDate();
+			if (dealEndDate.before(new java.util.Date()) ) {
+				offerExpired = true;
+				logger.debug("Deal expired");
+			} else {
+				offerExpired = false;
+				logger.debug("Deal is still active, it has not expired yet");
+			}
 		} else
 			logger.warn("productId is 0");
 		return SUCCESS;
