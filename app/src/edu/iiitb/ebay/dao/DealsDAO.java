@@ -217,13 +217,28 @@ public class DealsDAO extends BaseDAO {
 
 	// Added by DEbargha to save deals
 
-	public void saveDeals(DealModel deal) {
+	public boolean saveDeals(DealModel deal) {
+		
+		ProductDetailsDAO dao=new ProductDetailsDAO();
+		
+		ProductModel pm = dao.getProductDetails(deal.getProductId());
+		System.out.println("price discount:"+pm.getPrice()+" "+pm.getDiscount());
+		System.out.println(deal.getDealSellingPrice());
+		if(deal.getDealSellingPrice()> (pm.getPrice()-pm.getDiscount()))
+		{
+			System.out.println("here");
+			return false;
+		}
+		
+		String query1="DELETE FROM deals WHERE productId="+deal.getProductId();
+		update(query1);
+		
 		String query = "insert into deals(productId,dealStartDate,dealEndDate,dealSellingPrice) values("
 				+ deal.getProductId()
 				+ ",'"
 				+ deal.getDealStartDate()
 				+ "','"
-				+ deal.getDealEndDate() + "'," + deal.getPrice() + ")";
+				+ deal.getDealEndDate() + "'," + deal.getDealSellingPrice() + ")";
 
 		System.out.println(query);
 		try {
@@ -232,6 +247,8 @@ public class DealsDAO extends BaseDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+		
+		return true;
 	}
 
 }
