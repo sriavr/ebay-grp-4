@@ -73,13 +73,14 @@ public class ProductDealDetailsAction extends ActionSupport {
 			setSeller(sellerDAO.getSeller(getProduct().getSellerId()));
 			setUser(userDAO.getUserDetails(seller.getUserId()));
 			java.util.Date dealEndDate = product.getDealEndDate();
-			if (dealEndDate.before(new java.util.Date()) ) {
-				offerExpired = true;
-				logger.debug("Deal expired");
-			} else {
-				offerExpired = false;
-				logger.debug("Deal is still active, it has not expired yet");
-			}
+			if (this.getProduct().getDealsId() != 0)
+				if (dealEndDate.before(new java.util.Date())) {
+					offerExpired = true;
+					logger.debug("Deal expired");
+				} else {
+					offerExpired = false;
+					logger.debug("Deal is still active, it has not expired yet");
+				}
 		} else
 			logger.warn("productId is 0");
 		return SUCCESS;
