@@ -11,16 +11,30 @@
 		<param-value>/WEB-INF/tiles.xml</param-value>
 	</context-param>
 	<filter>
+		<filter-name>LoginFilter</filter-name>
+		<filter-class>edu.iiitb.ebay.util.LoginFilter</filter-class>
+		<init-param>
+			<param-name>excludePages</param-name>
+			<param-value>login.jsp,logout.jsp,login.action,login,login,index.jsp,browsedeals,browsedeals.action,productdetails,productdetails.action,productdealdetails,productdealdetails.action,register,register.action,sellerdetails.action,sellerdetails</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>LoginFilter</filter-name>
+		<url-pattern>
+		/*
+		</url-pattern>
+
+	</filter-mapping>
+	<filter>
 		<filter-name>struts2</filter-name>
 		<filter-class>
-			org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
-		</filter-class>
+			org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>struts2</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+
 	<servlet>
 		<servlet-name>Log4JInitServlet</servlet-name>
 		<servlet-class>edu.iiitb.ebay.util.Log4JInitServlet</servlet-class>
