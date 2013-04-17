@@ -220,7 +220,7 @@ public class DealsDAO extends BaseDAO {
 	public void saveDeals(DealModel deal) {
 		String query = "insert into deals(productId,dealStartDate,dealEndDate,dealSellingPrice) values("
 				+ deal.getProductId()
-				+ ","
+				+ ",'"
 				+ deal.getDealStartDate()
 				+ "','"
 				+ deal.getDealEndDate() + "'," + deal.getPrice() + ")";
