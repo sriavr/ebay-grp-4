@@ -35,8 +35,8 @@ public class LoginFilter implements Filter {
 				LogMessage.log("All well.. continuing..");
 				chain.doFilter(req, resp);
 			} else {
-				if ((session.getAttribute("student") == null)
-						&& (session.getAttribute("admin") == null)) {
+				if ((session.getAttribute("user") == null)
+						&& (session.getAttribute("admin") == null) && (session.getAttribute("seller") == null)) {
 					LogMessage.log("Redirecting to login page...");
 					response.sendRedirect("login.action");
 				} else {
