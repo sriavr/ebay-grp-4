@@ -78,9 +78,19 @@ public class AddDealsAction extends ActionSupport {
                     {
                     	ex.printStackTrace();
                     }
-					new DealsDAO().saveDeals(deal);
-					addActionError("Saved successfully");
-					return "viewProduct";
+					boolean value=new DealsDAO().saveDeals(deal);
+					System.out.println("value:"+value);
+					if(value)
+					{	
+					 addActionError("Saved successfully");
+					 return "viewProduct";
+					} 
+					else
+					{	
+					  addActionError("Deal selling price cannot be greater than actual price");
+					  return "success";
+					} 
+					
 				}
 				
 				
