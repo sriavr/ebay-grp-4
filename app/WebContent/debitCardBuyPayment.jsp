@@ -11,6 +11,7 @@
 
 <body>
 <div style="text-align: center;padding-left: 25em;">
+<s:actionerror/>
 <s:form action="debitCardBuyPay.action">
 	<s:textfield label="ATM Number" name="atmNumber"/><br>
 	<s:password label="ATM Pin Number" name="pinNumber" />

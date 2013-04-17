@@ -11,6 +11,7 @@
 
 <body>
 <div style="text-align: center;padding-left: 25em;">
+<s:actionerror/>
 <s:form action="creditCardBuyPay.action">
 	<s:textfield label="Account Number" name="accountNumber"/><br>
 	<s:password label="Password" name="password" />
