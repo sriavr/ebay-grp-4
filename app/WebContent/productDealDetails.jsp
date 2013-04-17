@@ -68,11 +68,11 @@
 				<label id="Error" style="color: red;"></label>
 
 				<hr />
-				<span class="<s:if test="product.dealsId!=0">discount</s:if>"
+				<span class="<s:if test="(product.dealsId!=0)&&(offerExpired==false)">discount</s:if>"
 					style="font-weight: bold; font-size: 1.2em;">Price: Rs. <s:property
 						value="product.price"></s:property>
 				</span> &nbsp; &nbsp;
-				<s:if test="product.dealsId!=0">
+				<s:if test="(product.dealsId!=0)&&(offerExpired==false)">
 					<span style="font-weight: bold; font-size: 1.2em;"> After
 						Discount: Rs. <s:property value="product.dealSellingPrice" />
 					</span>
