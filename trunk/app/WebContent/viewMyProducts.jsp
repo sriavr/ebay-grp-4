@@ -48,8 +48,7 @@
 					<a href="<s:property value="#urlTag1"></s:property>" class="small button round">Add Deal</a>
 					<br>
 					<a href="<s:property value="#urlTag2"></s:property>" class="small button round">Modify </a>
-					<br>
-					<a href="<s:property value="#urlTag3"></s:property>">View Feedback </a>
+					
 				</div>
 			</div>
 			<hr />
