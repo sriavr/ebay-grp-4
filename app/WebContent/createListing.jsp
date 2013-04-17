@@ -120,73 +120,80 @@
         
     </script>
     
-   <!--  <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
-						$("#myForm")
-								.validate(
-										{
-											onkeyup : true,
-											rules : {
-												title : {
-													required : true
-												},
-
-												description :  {
-													required : true
-												},
-												
-												quantity : {
-													
-													digits : true,
-													required : true
-												},
-												
-                                                price : {
-													
-													digits : true,
-													required : true
-												},
-
-												discount : {
-													
-													min: 0,
-													max: 100,
-													digits : true,
-												}
-												
-												
-											},
-											messages : {
-												title : {
-													required: "Title is mandatory"
-												},
-												description : {
-													required: "Description is mandatory"
-												},
-												quantity : {
-													
-													required : "Quantity is mandatory",
-													digits : "Please enter number here",
-												},
-												discount : {
-													
-													min : "Discount percent should be within 0 and 100",
-													max : "Discount percent should be within 0 and 100",
-												    digits : "discount should be a percentage value"
-												}
-												
-											}
-										});
-
-					
-					});
-	
-	$('#save').click(function() {
-	    $("#form1").valid();
-	});
-</script> -->
+    <script type="text/javascript">
+    
+      function formValidate()
+      {
+    	 
+    	  var title = document.getElementById("title").value;
+    	  
+    	  if(title == null || title=="")
+    	  {
+    		  alert("Title cannot be blank");
+    		  return false;
+    	  }
+    	  
+    	  var description = document.getElementById("description").value;
+    	  if(description == null || description=="")
+    	  {
+    		  alert("Description cannot be blank");
+    		  return false;
+    	  }
+    	  
+    	  var price = document.getElementById("price").value;
+    	  if(price == null || price=="")
+    	  {
+    		  alert("Price cannot be blank");
+    		  return false;
+    	  }
+    	  
+    	  var quantity = document.getElementById("quantity").value;
+    	  var discount = document.getElementById("discount").value;
+    	  if(quantity == null || quantity=="")
+    	  {
+    		  alert("Quantity cannot be blank");
+    		  return false;
+    	  }
+    	  
+    	  if(isNaN(price))
+    	  {
+    		  alert("PLease enter numeric value in price field");
+    		  return false;
+    	  }
+    	  
+    	  if(isNaN(quantity))
+    	  {
+    		  alert("PLease enter numeric value in quantity field");
+    		  return false;
+    	  }
+    	  
+    	  if(isNaN(discount))
+    	  {
+    		  alert("PLease enter numeric value in discount field");
+    		  return false;
+    	  }
+    	  
+    	  if(quantity<0)
+    	  {
+    		  alert("Quantity cannit be negative");
+    		  return false;
+    	  }
+    	  if(discount<0 || discount>100)
+    	  {
+    		  alert("Please enter discount percentage between 1 to 100");
+    		  return false;
+    	  }
+    	  
+    	  
+    	  
+    	  return true;
+    	  
+    	  
+      }
+    
+    </script>
+    
+  
  
 </head>
 
@@ -306,7 +313,7 @@
 		</div>
 		<s:hidden name="productId" value="%{productId}"/>
 	<div class="panel">
-	  <input type="submit" value="Save" name="save" class="small button" id="save"/>
+	  <input type="submit" value="Save" name="save" class="small button" id="save" onclick="return formValidate();"/>
 	</div>	
 	</s:form>	
 </div>		
