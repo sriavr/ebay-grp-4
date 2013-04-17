@@ -5,9 +5,9 @@
 
 <struts>
 	<!-- Turn this flag on if you want to see detailed exceptions -->
-	<constant name="struts.devMode" value="false" />
+	<constant name="struts.devMode" value="true" />
 
-	<package name="default" extends="struts-default">
+	<package name="default" extends="struts-default" namespace="/">
 		<result-types>
 			<result-type name="tiles"
 				class="org.apache.struts2.views.tiles.TilesResult" />
@@ -76,7 +76,7 @@
 
 		<action name="login" class="edu.iiitb.ebay.action.LoginAction">
 			<result name="initial" type="tiles">login.jsp</result>
-			<result name="success" type="redirectAction">browse</result>
+			<result name="success" type="redirectAction">browsedeals</result>
 			<result name="failure" type="tiles">login.jsp</result>
 		</action>
 
@@ -226,28 +226,28 @@
 		<action name="debitCardPay" class="edu.iiitb.ebay.action.PaymentAction"
 			method="debitCardPay">
 			<result name="success" type="tiles">summary.jsp</result>
-			<result name="error" type="tiles">error.jsp</result>
+			<result name="error" type="tiles">debitCardPayment.jsp</result>
 			<result name="insufficientMoney" type="tiles">insufficientMoney.jsp
 			</result>
 		</action>
 		<action name="debitCardBuyPay" class="edu.iiitb.ebay.action.PaymentAction"
 			method="debitCardBuyPay">
 			<result name="success" type="tiles">summary.jsp</result>
-			<result name="error" type="tiles">error.jsp</result>
+			<result name="error" type="tiles">debitCardBuyPayment.jsp</result>
 			<result name="insufficientMoney" type="tiles">insufficientMoney.jsp
 			</result>
 		</action>
 		<action name="creditCardPay" class="edu.iiitb.ebay.action.PaymentAction"
 			method="creditCardPay">
 			<result name="success" type="tiles">summary.jsp</result>
-			<result name="error" type="tiles">error.jsp</result>
+			<result name="error" type="tiles">creditCardPayment.jsp</result>
 			<result name="insufficientMoney" type="tiles">insufficientMoney.jsp
 			</result>
 		</action>
 		<action name="creditCardBuyPay" class="edu.iiitb.ebay.action.PaymentAction"
 			method="creditCardBuyPay">
 			<result name="success" type="tiles">summary.jsp</result>
-			<result name="error" type="tiles">error.jsp</result>
+			<result name="error" type="tiles">creditCardBuyPayment.jsp</result>
 			<result name="insufficientMoney" type="tiles">insufficientMoney.jsp
 			</result>
 		</action>
