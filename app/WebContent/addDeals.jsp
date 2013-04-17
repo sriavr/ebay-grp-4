@@ -66,7 +66,19 @@
 		<div class="panel">
 			<s:form name="dealform" action="addDeals" theme="simple" id="myForm">
 
-				
+				<s:if test="hasActionErrors()">
+			   <div class="panel">
+							<br />
+							<s:iterator value="actionErrors">
+								<div data-alert class="alert-box success">
+								 <a href="#" class="close">&times;</a>
+								 
+									<s:property />
+								</div>
+							</s:iterator>
+						
+			</div>				
+						</s:if>
 
 				<s:label value="Deal Start Date" />
 				<br>
@@ -96,8 +108,8 @@
 
 				<s:label value="Deal Seling Price" />
 				<br>
-                <s:textfield name="deal.price" id="price"
-					value="%{deal.price}">
+                <s:textfield name="deal.dealSellingPrice" id="price"
+					value="%{deal.dealSellingPrice}">
 				</s:textfield>
 				
 				<s:hidden name="deal.productId" value="%{productId}"/>
