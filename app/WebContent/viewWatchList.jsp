@@ -73,7 +73,7 @@
 				<div class="columns large-3">
 					<%-- <s:property value="actions" /> --%>
 					<a id="buyLink"
-				href="productdetails.action?productId=<s:property value="productId"/>">Buy Now </a>
+				href="productdealdetails.action?productId=<s:property value="productId"/>">Buy Now </a>
 					<a class="tiny success button " href="<s:url action="removewatchlist">
 				<s:param name="selectedCheckBox" value="watchListId"/>
 			 	</s:url>">
