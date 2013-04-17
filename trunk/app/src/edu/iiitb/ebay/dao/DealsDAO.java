@@ -162,7 +162,7 @@ public class DealsDAO extends BaseDAO {
 	}
 
 	public DealModel getDealModel(int productNo) {
-		String query = "SELECT dealsId,productDiscountPercent,dealStartDate,dealEndDate,dealSellingPrice,title,quantity,price,photo,discount FROM deals, product WHERE product.productId="
+		String query = "SELECT sellerId,dealsId,dealStartDate,dealEndDate,dealSellingPrice,title,quantity,price,photo,discount FROM deals, product WHERE product.productId="
 				+ productNo + " AND deals.productId=" + productNo;
 		ResultSet rs = readFromDB(query);
 		// int sellPrice = 0;
