@@ -1,31 +1,34 @@
 package edu.iiitb.ebay.action;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
+import edu.iiitb.ebay.dao.DealsDAO;
 import edu.iiitb.ebay.dao.PaymentDAO;
+import edu.iiitb.ebay.model.entity.DealModel;
 import edu.iiitb.ebay.model.entity.ProductModel;
 import edu.iiitb.ebay.model.entity.SellerModel;
 import edu.iiitb.ebay.model.entity.UserModel;
 import edu.iiitb.ebay.model.page.CartPageModel;
 import edu.iiitb.ebay.util.ConstantValues;
 
-public class PaymentAction extends ActionSupport{
+public class PaymentAction extends ActionSupport {
 	String atmNumber;
 	String pinNumber;
 	String accountNumber;
 	String password;
-	
+
 	float initialBalanceUser;
-//	int initialBalanceSeller;
+	// int initialBalanceSeller;
 	float initialBalanceEbay;
 	float currentBalanceUser;
-//	int currentBalanceSeller;
+	// int currentBalanceSeller;
 	float currentBalanceEbay;
-	
+
 	public float getInitialBalanceUser() {
 		return initialBalanceUser;
 	}
@@ -34,13 +37,13 @@ public class PaymentAction extends ActionSupport{
 		this.initialBalanceUser = initialBalanceUser;
 	}
 
-//	public int getInitialBalanceSeller() {
-//		return initialBalanceSeller;
-//	}
+	// public int getInitialBalanceSeller() {
+	// return initialBalanceSeller;
+	// }
 
-//	public void setInitialBalanceSeller(int initialBalanceSeller) {
-//		this.initialBalanceSeller = initialBalanceSeller;
-//	}
+	// public void setInitialBalanceSeller(int initialBalanceSeller) {
+	// this.initialBalanceSeller = initialBalanceSeller;
+	// }
 
 	public float getInitialBalanceEbay() {
 		return initialBalanceEbay;
@@ -58,13 +61,13 @@ public class PaymentAction extends ActionSupport{
 		this.currentBalanceUser = currentBalanceUser;
 	}
 
-//	public int getCurrentBalanceSeller() {
-//		return currentBalanceSeller;
-//	}
-//
-//	public void setCurrentBalanceSeller(int currentBalanceSeller) {
-//		this.currentBalanceSeller = currentBalanceSeller;
-//	}
+	// public int getCurrentBalanceSeller() {
+	// return currentBalanceSeller;
+	// }
+	//
+	// public void setCurrentBalanceSeller(int currentBalanceSeller) {
+	// this.currentBalanceSeller = currentBalanceSeller;
+	// }
 
 	public float getCurrentBalanceEbay() {
 		return currentBalanceEbay;
@@ -106,152 +109,321 @@ public class PaymentAction extends ActionSupport{
 		this.pinNumber = pinNumber;
 	}
 
-	public String debitCardPay(){
+	public String debitCardPay() {
 		PaymentDAO paymentDAO = new PaymentDAO();
-		int userId = ((UserModel)ActionContext.getContext().getSession().get("user")).getUserId();
-		//int userId =2;
-		boolean isValidated = paymentDAO.validateDebitCard(userId,atmNumber,pinNumber);
-		if(!isValidated)
+		int userId = ((UserModel) ActionContext.getContext().getSession()
+				.get("user")).getUserId();
+		// int userId =2;
+		boolean isValidated = paymentDAO.validateDebitCard(userId, atmNumber,
+				pinNumber);
+		if (!isValidated) {
+			addActionError("Invalid Credentials. Please try again");
 			return Action.ERROR;
-		initialBalanceUser=PaymentDAO.getBalance(userId);
-		initialBalanceEbay=PaymentDAO.getBalance(ConstantValues.EbayUserID);
-		ArrayList<CartPageModel> cartList = (ArrayList<CartPageModel>)ActionContext.getContext().getSession().get("cartList");
-		for (CartPageModel cartPageModel : cartList) {
-			float moneyToBeDeductedForThisCartItem = (cartPageModel.getProduct().getPrice()-cartPageModel.getProduct().getDiscount())*cartPageModel.getProduct().getQuantity();
-			int sellerId = paymentDAO.getSellerId(cartPageModel.getProduct().getProductId());
-			SellerModel seller = paymentDAO.getSeller(sellerId);
-			
-			//deduct Money from buyer account
-			int flag = paymentDAO.deduceMoney(userId,moneyToBeDeductedForThisCartItem);
-				//if there is no sufficient Money, inform the user that he has insufficient funds to buy
-				if (flag == ConstantValues.INSUFFICIENT_MONEY)
-					return "insufficientMoney";
-			//credit money into sellers account
-			float moneyToBeCreditedIntoEbay =(seller.getSla()*moneyToBeDeductedForThisCartItem)/100;
-			float moneyToBeCreditedIntoSeller = moneyToBeDeductedForThisCartItem-moneyToBeCreditedIntoEbay;
-			flag = paymentDAO.creditMoney(seller.getUserId(),moneyToBeCreditedIntoSeller);
-			//credit money into ebay account as per seller SLA
-			flag = paymentDAO.creditMoney(ConstantValues.EbayUserID,moneyToBeCreditedIntoEbay);
-			//make type of the item in cart 'B' which means it is bought
-			flag = paymentDAO.updateCartItemStatus(cartPageModel.getCartId(),'B');
-			//insert the bought cart item in order table
-			flag = paymentDAO.insertIntoOrderTable(userId,sellerId,cartPageModel.getProduct().getProductId(),"\"PAYMENT_RECEIVED\"",cartPageModel.getProduct().getQuantity());
-			//Decrement Product Quantity
-			flag = paymentDAO.decrementProductQuantity(cartPageModel.getProduct().getProductId(),cartPageModel.getProduct().getQuantity());			
 		}
-		currentBalanceUser=PaymentDAO.getBalance(userId);
-		currentBalanceEbay=PaymentDAO.getBalance(ConstantValues.EbayUserID);
-		return Action.SUCCESS;
-	} 
-	
-	public String creditCardPay(){
-		PaymentDAO paymentDAO = new PaymentDAO();
-		int userId = ((UserModel)ActionContext.getContext().getSession().get("user")).getUserId();
-		//int userId =2;
-		boolean isValidated = paymentDAO.validateCreditCard(userId,accountNumber,password);
-		if(!isValidated)
-			return Action.ERROR;
-		ArrayList<CartPageModel> cartList = (ArrayList<CartPageModel>)ActionContext.getContext().getSession().get("cartList");
-		initialBalanceUser=PaymentDAO.getBalance(userId);
-		initialBalanceEbay=PaymentDAO.getBalance(ConstantValues.EbayUserID);
+		initialBalanceUser = PaymentDAO.getBalance(userId);
+		initialBalanceEbay = PaymentDAO.getBalance(ConstantValues.EbayUserID);
+		ArrayList<CartPageModel> cartList = (ArrayList<CartPageModel>) ActionContext
+				.getContext().getSession().get("cartList");
 		for (CartPageModel cartPageModel : cartList) {
-			float moneyToBeDeductedForThisCartItem = (cartPageModel.getProduct().getPrice()-cartPageModel.getProduct().getDiscount())*cartPageModel.getProduct().getQuantity();
-			int sellerId = paymentDAO.getSellerId(cartPageModel.getProduct().getProductId());
+			/**
+			 * //Get deal for this product
+			 * 
+			 * //Check if the deal is valid i.e if current date is less than
+			 * deal end date //If yes set moneyToBeDeductedForThisCartItem to
+			 * the deal selling price //If not do nothing
+			 */
+			// Get deal for this product
+			//DealModel deal = new DealsDAO().getDealModel(cartPageModel
+//					.getProduct().getProductId());
+//			Date currentDate = new Date();
+			float moneyToBeDeductedForThisCartItem;
+			// Check if the deal is valid i.e if current date is less than deal
+			// end date
+//			if (deal.getDealsId() != 0
+//					&& deal.getDealEndDate().after(currentDate)) {
+//				// set moneyToBeDeductedForThisCartItem to the deal selling
+//				// price
+//				moneyToBeDeductedForThisCartItem = deal.getDealSellingPrice()
+//						* cartPageModel.getProduct().getQuantity();
+//			} else {
+//				moneyToBeDeductedForThisCartItem = (cartPageModel.getProduct()
+//						.getPrice() - cartPageModel.getProduct().getDiscount())
+//						* cartPageModel.getProduct().getQuantity();
+//			}
+
+			moneyToBeDeductedForThisCartItem = cartPageModel.getProduct()
+					.getPrice() * cartPageModel.getProduct().getQuantity();
+
+			int sellerId = paymentDAO.getSellerId(cartPageModel.getProduct()
+					.getProductId());
 			SellerModel seller = paymentDAO.getSeller(sellerId);
-			
-			//deduct Money from buyer account
-			int flag = paymentDAO.deduceMoney(userId,moneyToBeDeductedForThisCartItem);
-				//if there is no sufficient Money, inform the user that he has insufficient funds to buy
-				if (flag == ConstantValues.INSUFFICIENT_MONEY)
-					return "insufficientMoney";
-			//credit money into sellers account
-			float moneyToBeCreditedIntoEbay =(seller.getSla()*moneyToBeDeductedForThisCartItem)/100;
-			float moneyToBeCreditedIntoSeller = moneyToBeDeductedForThisCartItem-moneyToBeCreditedIntoEbay;
-			flag = paymentDAO.creditMoney(seller.getUserId(),moneyToBeCreditedIntoSeller);
-			//credit money into ebay account as per seller SLA
-			flag = paymentDAO.creditMoney(ConstantValues.EbayUserID,moneyToBeCreditedIntoEbay);
-			//make type of the item in cart 'B' which means it is bought
-			flag = paymentDAO.updateCartItemStatus(cartPageModel.getCartId(),'B');
-			//insert the bought cart item in order table
-			flag = paymentDAO.insertIntoOrderTable(userId,sellerId,cartPageModel.getProduct().getProductId(),"PAYMENT_RECEIVED",cartPageModel.getProduct().getQuantity());
-			//Decrement Product Quantity
-			flag = paymentDAO.decrementProductQuantity(cartPageModel.getProduct().getProductId(),cartPageModel.getProduct().getQuantity());
+
+			// deduct Money from buyer account
+			int flag = paymentDAO.deduceMoney(userId,
+					moneyToBeDeductedForThisCartItem);
+			// if there is no sufficient Money, inform the user that he has
+			// insufficient funds to buy
+			if (flag == ConstantValues.INSUFFICIENT_MONEY)
+				return "insufficientMoney";
+			// credit money into sellers account
+			float moneyToBeCreditedIntoEbay = (seller.getSla() * moneyToBeDeductedForThisCartItem) / 100;
+			float moneyToBeCreditedIntoSeller = moneyToBeDeductedForThisCartItem
+					- moneyToBeCreditedIntoEbay;
+			flag = paymentDAO.creditMoney(seller.getUserId(),
+					moneyToBeCreditedIntoSeller);
+			// credit money into ebay account as per seller SLA
+			flag = paymentDAO.creditMoney(ConstantValues.EbayUserID,
+					moneyToBeCreditedIntoEbay);
+			// make type of the item in cart 'B' which means it is bought
+			flag = paymentDAO.updateCartItemStatus(cartPageModel.getCartId(),
+					'B');
+			// insert the bought cart item in order table
+			flag = paymentDAO.insertIntoOrderTable(userId, sellerId,
+					cartPageModel.getProduct().getProductId(),
+					"\"PAYMENT_RECEIVED\"", cartPageModel.getProduct()
+							.getQuantity());
+			// Decrement Product Quantity
+			flag = paymentDAO.decrementProductQuantity(cartPageModel
+					.getProduct().getProductId(), cartPageModel.getProduct()
+					.getQuantity());
 		}
-		currentBalanceUser=PaymentDAO.getBalance(userId);
-		currentBalanceEbay=PaymentDAO.getBalance(ConstantValues.EbayUserID);
+		currentBalanceUser = PaymentDAO.getBalance(userId);
+		currentBalanceEbay = PaymentDAO.getBalance(ConstantValues.EbayUserID);
 		return Action.SUCCESS;
 	}
-	public String debitCardBuyPay(){
+
+	public String creditCardPay() {
 		PaymentDAO paymentDAO = new PaymentDAO();
-		int userId = ((UserModel)ActionContext.getContext().getSession().get("user")).getUserId();
-		//int userId =2;
-		boolean isValidated = paymentDAO.validateDebitCard(userId,atmNumber,pinNumber);
-		if(!isValidated)
+		int userId = ((UserModel) ActionContext.getContext().getSession()
+				.get("user")).getUserId();
+		// int userId =2;
+		boolean isValidated = paymentDAO.validateCreditCard(userId,
+				accountNumber, password);
+		if (!isValidated) {
+			addActionError("Invalid Credentials. Please try again");
 			return Action.ERROR;
-		initialBalanceUser=PaymentDAO.getBalance(userId);
-		initialBalanceEbay=PaymentDAO.getBalance(ConstantValues.EbayUserID);
-		ProductModel product = (ProductModel)ActionContext.getContext().getSession().get("buyProduct");
-		
-			float moneyToBeDeductedForThisCartItem = (product.getPrice()-product.getDiscount())*product.getQuantity();
-			int sellerId = paymentDAO.getSellerId(product.getProductId());
+		}
+		ArrayList<CartPageModel> cartList = (ArrayList<CartPageModel>) ActionContext
+				.getContext().getSession().get("cartList");
+		initialBalanceUser = PaymentDAO.getBalance(userId);
+		initialBalanceEbay = PaymentDAO.getBalance(ConstantValues.EbayUserID);
+		for (CartPageModel cartPageModel : cartList) {
+			/**
+			 * //Get deal for this product
+			 * 
+			 * //Check if the deal is valid i.e if current date is less than
+			 * deal end date //If yes set moneyToBeDeductedForThisCartItem to
+			 * the deal selling price //If not do nothing
+			 */
+			// Get deal for this product
+//			DealModel deal = new DealsDAO().getDealModel(cartPageModel
+//					.getProduct().getProductId());
+//			Date currentDate = new Date();
+			float moneyToBeDeductedForThisCartItem;
+//			// Check if the deal is valid i.e if current date is less than deal
+//			// end date
+//			if (deal.getDealsId() != 0
+//					&& deal.getDealEndDate().after(currentDate)) {
+//				// set moneyToBeDeductedForThisCartItem to the deal selling
+//				// price
+//				moneyToBeDeductedForThisCartItem = deal.getDealSellingPrice()
+//						* cartPageModel.getProduct().getQuantity();
+//			} else {
+//				moneyToBeDeductedForThisCartItem = (cartPageModel.getProduct()
+//						.getPrice() - cartPageModel.getProduct().getDiscount())
+//						* cartPageModel.getProduct().getQuantity();
+//			}
+
+			moneyToBeDeductedForThisCartItem = cartPageModel.getProduct().getPrice() * cartPageModel.getProduct().getQuantity();
+			
+			// float moneyToBeDeductedForThisCartItem =
+			// (cartPageModel.getProduct().getPrice()-cartPageModel.getProduct().getDiscount())*cartPageModel.getProduct().getQuantity();
+			int sellerId = paymentDAO.getSellerId(cartPageModel.getProduct()
+					.getProductId());
 			SellerModel seller = paymentDAO.getSeller(sellerId);
-			
-			//deduct Money from buyer account
-			int flag = paymentDAO.deduceMoney(userId,moneyToBeDeductedForThisCartItem);
-				//if there is no sufficient Money, inform the user that he has insufficient funds to buy
-				if (flag == ConstantValues.INSUFFICIENT_MONEY)
-					return "insufficientMoney";
-			//credit money into sellers account
-			float moneyToBeCreditedIntoEbay =(seller.getSla()*moneyToBeDeductedForThisCartItem)/100;
-			float moneyToBeCreditedIntoSeller = moneyToBeDeductedForThisCartItem-moneyToBeCreditedIntoEbay;
-			flag = paymentDAO.creditMoney(seller.getUserId(),moneyToBeCreditedIntoSeller);
-			//credit money into ebay account as per seller SLA
-			flag = paymentDAO.creditMoney(ConstantValues.EbayUserID,moneyToBeCreditedIntoEbay);
-			
-			//insert the bought cart item in order table
-			flag = paymentDAO.insertIntoOrderTable(userId,sellerId,product.getProductId(),"\"PAYMENT_RECEIVED\"",product.getQuantity());
-			//Decrement Product Quantity
-			flag = paymentDAO.decrementProductQuantity(product.getProductId(),product.getQuantity());			
-		
-		currentBalanceUser=PaymentDAO.getBalance(userId);
-		currentBalanceEbay=PaymentDAO.getBalance(ConstantValues.EbayUserID);
+
+			// deduct Money from buyer account
+			int flag = paymentDAO.deduceMoney(userId,
+					moneyToBeDeductedForThisCartItem);
+			// if there is no sufficient Money, inform the user that he has
+			// insufficient funds to buy
+			if (flag == ConstantValues.INSUFFICIENT_MONEY)
+				return "insufficientMoney";
+			// credit money into sellers account
+			float moneyToBeCreditedIntoEbay = (seller.getSla() * moneyToBeDeductedForThisCartItem) / 100;
+			float moneyToBeCreditedIntoSeller = moneyToBeDeductedForThisCartItem
+					- moneyToBeCreditedIntoEbay;
+			flag = paymentDAO.creditMoney(seller.getUserId(),
+					moneyToBeCreditedIntoSeller);
+			// credit money into ebay account as per seller SLA
+			flag = paymentDAO.creditMoney(ConstantValues.EbayUserID,
+					moneyToBeCreditedIntoEbay);
+			// make type of the item in cart 'B' which means it is bought
+			flag = paymentDAO.updateCartItemStatus(cartPageModel.getCartId(),
+					'B');
+			// insert the bought cart item in order table
+			flag = paymentDAO.insertIntoOrderTable(userId, sellerId,
+					cartPageModel.getProduct().getProductId(),
+					"PAYMENT_RECEIVED", cartPageModel.getProduct()
+							.getQuantity());
+			// Decrement Product Quantity
+			flag = paymentDAO.decrementProductQuantity(cartPageModel
+					.getProduct().getProductId(), cartPageModel.getProduct()
+					.getQuantity());
+		}
+		currentBalanceUser = PaymentDAO.getBalance(userId);
+		currentBalanceEbay = PaymentDAO.getBalance(ConstantValues.EbayUserID);
 		return Action.SUCCESS;
-	} 
-	
-	public String creditCardBuyPay(){
+	}
+
+	public String debitCardBuyPay() {
 		PaymentDAO paymentDAO = new PaymentDAO();
-		int userId = ((UserModel)ActionContext.getContext().getSession().get("user")).getUserId();
-		//int userId =2;
-		boolean isValidated = paymentDAO.validateCreditCard(userId,accountNumber,password);
-		if(!isValidated)
+		int userId = ((UserModel) ActionContext.getContext().getSession()
+				.get("user")).getUserId();
+		// int userId =2;
+		boolean isValidated = paymentDAO.validateDebitCard(userId, atmNumber,
+				pinNumber);
+		if (!isValidated) {
+			addActionError("Invalid Credentials. Please try again");
 			return Action.ERROR;
-		ArrayList<CartPageModel> cartList = (ArrayList<CartPageModel>)ActionContext.getContext().getSession().get("cartList");
-		initialBalanceUser=PaymentDAO.getBalance(userId);
-		initialBalanceEbay=PaymentDAO.getBalance(ConstantValues.EbayUserID);
-		ProductModel product = (ProductModel)ActionContext.getContext().getSession().get("buyProduct");
+		}
+		initialBalanceUser = PaymentDAO.getBalance(userId);
+		initialBalanceEbay = PaymentDAO.getBalance(ConstantValues.EbayUserID);
+		ProductModel product = (ProductModel) ActionContext.getContext()
+				.getSession().get("buyProduct");
+
+		/**
+		 * //Get deal for this product
+		 * 
+		 * //Check if the deal is valid i.e if current date is less than deal
+		 * end date //If yes set moneyToBeDeductedForThisCartItem to the deal
+		 * selling price //If not do nothing
+		 */
+		// Get deal for this product
+//		DealModel deal = new DealsDAO().getDealModel(product.getProductId());
+//		Date currentDate = new Date();
+		float moneyToBeDeductedForThisCartItem;
+		// Check if the deal is valid i.e if current date is less than deal end
+		// date
+//		if (deal.getDealsId() != 0 && deal.getDealEndDate().after(currentDate)) {
+//			// set moneyToBeDeductedForThisCartItem to the deal selling price
+//			moneyToBeDeductedForThisCartItem = deal.getDealSellingPrice()
+//					* product.getQuantity();
+//		} else {
+//			moneyToBeDeductedForThisCartItem = (product.getPrice() - product
+//					.getDiscount()) * product.getQuantity();
+//		}
+
+		moneyToBeDeductedForThisCartItem = product.getPrice() * product.getQuantity();
 		
-			float moneyToBeDeductedForThisCartItem = (product.getPrice()-product.getDiscount())*product.getQuantity();
-			int sellerId = paymentDAO.getSellerId(product.getProductId());
-			SellerModel seller = paymentDAO.getSeller(sellerId);
-			
-			//deduct Money from buyer account
-			int flag = paymentDAO.deduceMoney(userId,moneyToBeDeductedForThisCartItem);
-				//if there is no sufficient Money, inform the user that he has insufficient funds to buy
-				if (flag == ConstantValues.INSUFFICIENT_MONEY)
-					return "insufficientMoney";
-			//credit money into sellers account
-			float moneyToBeCreditedIntoEbay =(seller.getSla()*moneyToBeDeductedForThisCartItem)/100;
-			float moneyToBeCreditedIntoSeller = moneyToBeDeductedForThisCartItem-moneyToBeCreditedIntoEbay;
-			flag = paymentDAO.creditMoney(seller.getUserId(),moneyToBeCreditedIntoSeller);
-			//credit money into ebay account as per seller SLA
-			flag = paymentDAO.creditMoney(ConstantValues.EbayUserID,moneyToBeCreditedIntoEbay);
-			
-			//insert the bought cart item in order table
-			flag = paymentDAO.insertIntoOrderTable(userId,sellerId,product.getProductId(),"\"PAYMENT_RECEIVED\"",product.getQuantity());
-			//Decrement Product Quantity
-			flag = paymentDAO.decrementProductQuantity(product.getProductId(),product.getQuantity());			
-		currentBalanceUser=PaymentDAO.getBalance(userId);
-		currentBalanceEbay=PaymentDAO.getBalance(ConstantValues.EbayUserID);
+		// float moneyToBeDeductedForThisCartItem =
+		// (product.getPrice()-product.getDiscount())*product.getQuantity();
+		int sellerId = paymentDAO.getSellerId(product.getProductId());
+		SellerModel seller = paymentDAO.getSeller(sellerId);
+
+		// deduct Money from buyer account
+		int flag = paymentDAO.deduceMoney(userId,
+				moneyToBeDeductedForThisCartItem);
+		// if there is no sufficient Money, inform the user that he has
+		// insufficient funds to buy
+		if (flag == ConstantValues.INSUFFICIENT_MONEY)
+			return "insufficientMoney";
+		// credit money into sellers account
+		float moneyToBeCreditedIntoEbay = (seller.getSla() * moneyToBeDeductedForThisCartItem) / 100;
+		float moneyToBeCreditedIntoSeller = moneyToBeDeductedForThisCartItem
+				- moneyToBeCreditedIntoEbay;
+		flag = paymentDAO.creditMoney(seller.getUserId(),
+				moneyToBeCreditedIntoSeller);
+		// credit money into ebay account as per seller SLA
+		flag = paymentDAO.creditMoney(ConstantValues.EbayUserID,
+				moneyToBeCreditedIntoEbay);
+
+		// insert the bought cart item in order table
+		flag = paymentDAO.insertIntoOrderTable(userId, sellerId,
+				product.getProductId(), "\"PAYMENT_RECEIVED\"",
+				product.getQuantity());
+		// Decrement Product Quantity
+		flag = paymentDAO.decrementProductQuantity(product.getProductId(),
+				product.getQuantity());
+
+		currentBalanceUser = PaymentDAO.getBalance(userId);
+		currentBalanceEbay = PaymentDAO.getBalance(ConstantValues.EbayUserID);
+		return Action.SUCCESS;
+	}
+
+	public String creditCardBuyPay() {
+		PaymentDAO paymentDAO = new PaymentDAO();
+		int userId = ((UserModel) ActionContext.getContext().getSession()
+				.get("user")).getUserId();
+		// int userId =2;
+		boolean isValidated = paymentDAO.validateCreditCard(userId,
+				accountNumber, password);
+		if (!isValidated) {
+			addActionError("Invalid Credentials. Please try again");
+			return Action.ERROR;
+		}
+		ArrayList<CartPageModel> cartList = (ArrayList<CartPageModel>) ActionContext
+				.getContext().getSession().get("cartList");
+		initialBalanceUser = PaymentDAO.getBalance(userId);
+		initialBalanceEbay = PaymentDAO.getBalance(ConstantValues.EbayUserID);
+		ProductModel product = (ProductModel) ActionContext.getContext()
+				.getSession().get("buyProduct");
+
+		/**
+		 * //Get deal for this product
+		 * 
+		 * //Check if the deal is valid i.e if current date is less than deal
+		 * end date //If yes set moneyToBeDeductedForThisCartItem to the deal
+		 * selling price //If not do nothing
+		 */
+		// Get deal for this product
+//		DealModel deal = new DealsDAO().getDealModel(product.getProductId());
+//		Date currentDate = new Date();
+		float moneyToBeDeductedForThisCartItem;
+		// Check if the deal is valid i.e if current date is less than deal end
+		// date
+//		if (deal.getDealsId() != 0 && deal.getDealEndDate().after(currentDate)) {
+//			// set moneyToBeDeductedForThisCartItem to the deal selling price
+//			moneyToBeDeductedForThisCartItem = deal.getDealSellingPrice()
+//					* product.getQuantity();
+//		} else {
+//			moneyToBeDeductedForThisCartItem = (product.getPrice() - product
+//					.getDiscount()) * product.getQuantity();
+//		}
+
+		moneyToBeDeductedForThisCartItem = product.getPrice() * product.getQuantity();
+		
+		// float moneyToBeDeductedForThisCartItem =
+		// (product.getPrice()-product.getDiscount())*product.getQuantity();
+		int sellerId = paymentDAO.getSellerId(product.getProductId());
+		SellerModel seller = paymentDAO.getSeller(sellerId);
+
+		// deduct Money from buyer account
+		int flag = paymentDAO.deduceMoney(userId,
+				moneyToBeDeductedForThisCartItem);
+		// if there is no sufficient Money, inform the user that he has
+		// insufficient funds to buy
+		if (flag == ConstantValues.INSUFFICIENT_MONEY)
+			return "insufficientMoney";
+		// credit money into sellers account
+		float moneyToBeCreditedIntoEbay = (seller.getSla() * moneyToBeDeductedForThisCartItem) / 100;
+		float moneyToBeCreditedIntoSeller = moneyToBeDeductedForThisCartItem
+				- moneyToBeCreditedIntoEbay;
+		flag = paymentDAO.creditMoney(seller.getUserId(),
+				moneyToBeCreditedIntoSeller);
+		// credit money into ebay account as per seller SLA
+		flag = paymentDAO.creditMoney(ConstantValues.EbayUserID,
+				moneyToBeCreditedIntoEbay);
+
+		// insert the bought cart item in order table
+		flag = paymentDAO.insertIntoOrderTable(userId, sellerId,
+				product.getProductId(), "\"PAYMENT_RECEIVED\"",
+				product.getQuantity());
+		// Decrement Product Quantity
+		flag = paymentDAO.decrementProductQuantity(product.getProductId(),
+				product.getQuantity());
+		currentBalanceUser = PaymentDAO.getBalance(userId);
+		currentBalanceEbay = PaymentDAO.getBalance(ConstantValues.EbayUserID);
 		return Action.SUCCESS;
 	}
 

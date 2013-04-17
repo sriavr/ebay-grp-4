@@ -1,12 +1,15 @@
 package edu.iiitb.ebay.action;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import edu.iiitb.ebay.dao.CartDAO;
+import edu.iiitb.ebay.dao.DealsDAO;
+import edu.iiitb.ebay.model.entity.DealModel;
 import edu.iiitb.ebay.model.entity.UserModel;
 import edu.iiitb.ebay.model.page.CartPageModel;
 
@@ -64,6 +67,17 @@ public class CartAction extends ActionSupport{
 		cartList = cartDAO.getUserCartList(userId);
 		cartAmount=0;
 		for (CartPageModel cart : cartList) {
+			//**************************************************************
+			//Set the price of product to deal price if exists
+			DealModel deal = new DealsDAO().getDealModel(productId);
+			if(deal.getDealsId()!=0 && deal.getDealEndDate().after(new Date())){
+				cart.getProduct().setPrice(deal.getDealSellingPrice());
+			}else{
+				cart.getProduct().setPrice(cart.getProduct().getPrice()-cart.getProduct().getDiscount());
+			}
+			//else set the price of product to price - discount price
+			//****************************************************************
+
 			cartAmount+=(cart.getProduct().getPrice()*cart.getProduct().getQuantity());
 		}
 		ActionContext.getContext().getSession().put("cartList", cartList);

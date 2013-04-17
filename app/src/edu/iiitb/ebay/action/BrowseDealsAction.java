@@ -173,7 +173,8 @@ public class BrowseDealsAction extends ActionSupport {
 			pageSize = 5;
 		}
 
-		setProducts(filter(products, startIndex, endIndex));
+		//setProducts(filter(products, startIndex, endIndex));
+		setProducts(products);
 		logger.info("BrowseAction successful returning");
 		return SUCCESS;
 	}
