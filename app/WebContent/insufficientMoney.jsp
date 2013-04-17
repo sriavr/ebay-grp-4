@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="row">
-Ayyo Ayyo Ayyayyooooooo No money darling!!!
+  Insufficent Balance in your Bank account
 </div>
 </body>
 </html>

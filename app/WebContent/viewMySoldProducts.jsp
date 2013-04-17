@@ -28,6 +28,7 @@
 							name="%{ordersList.get(#index).orderId}"></s:text></a> <br> Product Title:
 					<s:property value="%{products.get(#index).title}" />
 					<br><p style='color:red'>* Click Order No. to view Complete Order Details</p>
+					<br><a href="viewFeedback?productID=<s:property value="%{products.get(#index).productId}"/>">View Feedback </a>
 				</div>
 			</div>
 			<hr />
