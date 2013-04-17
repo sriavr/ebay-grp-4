@@ -214,7 +214,7 @@ a:hover {
 								alt="" />
 						</div>
 						<div class="columns large-9">
-							<s:url action="productdetails" var="urlTag">
+							<s:url action="productdealdetails" var="urlTag">
 								<s:param name="productId" value="productId"></s:param>
 							</s:url>
 							Name: <a href="<s:property value="#urlTag"></s:property>"> <s:text

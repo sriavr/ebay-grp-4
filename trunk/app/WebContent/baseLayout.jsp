@@ -1,7 +1,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -30,11 +30,13 @@ body {
 	margin-left: 0px;
 	width: 100%;
 }
-.price-text{
-	width:50px !important;
+
+.price-text {
+	width: 50px !important;
 }
-.searchBar{
-	margin-left:10px;
+
+.searchBar {
+	margin-left: 10px;
 }
 </style>
 </head>
