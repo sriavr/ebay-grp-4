@@ -1,7 +1,7 @@
 -- --------------------------------
 -- VERSION 1.0 last edited by VAMSI
 -- 		   1.1 last edited by Debargha, auto increment added to Category table, corresponding data added
-          1.2 last edited by Debargha, auto increment added to productcategorymapping table,changes in productspecs table
+--         1.2 last edited by Debargha, auto increment added to productcategorymapping table,changes in productspecs table
 -- --------------------------------
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -381,7 +381,7 @@ CREATE TABLE `productspecs` (
 	`value` VARCHAR(500) NULL DEFAULT NULL,
 	`type` VARCHAR(30) NULL DEFAULT NULL,
 	`productId` INT(11) NULL DEFAULT NULL,
-	PRIMARY KEY (`productSpecsId`)
+	PRIMARY KEY (`productSpecsId`))
 ENGINE = InnoDB;
 
 
