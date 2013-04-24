@@ -1,6 +1,8 @@
 package edu.iiitb.ebay.util;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -31,12 +33,13 @@ public class LoginFilter implements Filter {
 		LogMessage.log("Init param for excludePages:" + excludePagesParam);
 		if (excludePagesParam != null) {
 			String[] excludePages = excludePagesParam.split(",");
-			if (checkPage(url, excludePages)) {
+			if (checkPage(url, excludePages) || isWorthyRequest(request)) {
 				LogMessage.log("All well.. continuing..");
 				chain.doFilter(req, resp);
 			} else {
 				if ((session.getAttribute("user") == null)
-						&& (session.getAttribute("admin") == null) && (session.getAttribute("seller") == null)) {
+						&& (session.getAttribute("admin") == null)
+						&& (session.getAttribute("seller") == null)) {
 					LogMessage.log("Redirecting to login page...");
 					response.sendRedirect("login.action");
 				} else {
@@ -54,6 +57,7 @@ public class LoginFilter implements Filter {
 
 	private boolean checkPage(String pageURL, String[] pages) {
 		boolean found = false;
+
 		LogMessage.log("pageURL is:" + pageURL);
 		for (int i = 0; i < pages.length; i++) {
 			LogMessage.log("page is: " + pages[i]);
@@ -61,6 +65,16 @@ public class LoginFilter implements Filter {
 				found = true;
 		}
 		return found;
+	}
+
+	private static Pattern excludeUrls = Pattern.compile(
+			"^.*/(css|js|images)/.*$", Pattern.CASE_INSENSITIVE);
+
+	private boolean isWorthyRequest(HttpServletRequest request) {
+		String url = request.getRequestURI().toString();
+		Matcher m = excludeUrls.matcher(url);
+
+		return (m.matches());
 	}
 
 	@Override
