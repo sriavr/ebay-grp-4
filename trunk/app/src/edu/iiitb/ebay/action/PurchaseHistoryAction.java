@@ -22,7 +22,17 @@ public class PurchaseHistoryAction extends ActionSupport {
 	
 	private int userId=0;
 	private ArrayList<Integer> productId =new ArrayList<Integer>();
-	
+	private ArrayList<String> currentStatus=new ArrayList<String>();
+	public ArrayList<Integer> statusFlag= new ArrayList<Integer>(); 
+
+	public ArrayList<String> getCurrentStatus() {
+		return currentStatus;
+	}
+
+
+	public void setCurrentStatus(ArrayList<String> currentStatus) {
+		this.currentStatus = currentStatus;
+	}
 
 
 	Logger logger = Logger.getLogger(PurchaseHistoryAction.class);
@@ -108,7 +118,18 @@ public class PurchaseHistoryAction extends ActionSupport {
 			sellers.add(purchasehistoryDAO.getSellerName(products.get(i).getSellerId()));
 		}
 		
+		
 		return "success";
 
  }
+
+
+	public ArrayList<Integer> getStatusFlag() {
+		return statusFlag;
+	}
+
+
+	public void setStatusFlag(ArrayList<Integer> statusFlag) {
+		this.statusFlag = statusFlag;
+	}
 }
