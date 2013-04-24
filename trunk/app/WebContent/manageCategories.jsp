@@ -123,8 +123,8 @@
 		    <td width="2"><s:checkbox value="%{selected}" name="categoryList[%{#stat.index}].selected"
 								theme="simple" onclick="javascript:onSelect(this.id);"/></td>
 			<td><s:textfield id="namein[%{#stat.index}]"
-								name="categoryList[%{#stat.index}].categoryName"
-								value="%{categoryName}"  theme="simple" disabled="true" size="100" />
+								name="categoryName"
+								  theme="simple" disabled="true" size="100" />
 								
 			
 								
