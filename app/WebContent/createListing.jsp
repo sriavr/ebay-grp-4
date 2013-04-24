@@ -238,7 +238,7 @@
 		 <font size="3"><b>Item Specifics</b></font><br>
 		 <font size="3">Add more information to help buyers find your item in search results. Buyers can use popular item specifics to refine their search and locate your item faster.</font>
 		<table>
-		 <s:iterator value="itemspefics" status="stat">
+		 <s:iterator value="itemspefics" status="stat" >
 		   
 		     <tr>
 		       <td><s:textfield name = "itemspefics[%{#stat.index}].property" /> </td>
@@ -296,8 +296,6 @@
 		    Rs.<s:textfield cssClass="label" theme="simple" name="price"  tooltip="Enter Price" id="price"></s:textfield> <br>
 		    </div>
 		    </div>
-		    
-		    
 		    <font  size="2">Quantity*</font><br>
 		    <div class="row">
 		    <div class="small-2 columns">
@@ -317,8 +315,5 @@
 	</div>	
 	</s:form>	
 </div>		
-
-
-
 
 </html>
