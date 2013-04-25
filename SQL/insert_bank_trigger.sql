@@ -1,5 +1,5 @@
 -- --------------------------------
----trigger to insert into bank table when uesr do the redistration.
+-- trigger to insert into bank table when user do the registration.
 -- VERSION 1.0 last edited by pratibind Jha
 -- 		   
 -- --------------------------------
@@ -22,7 +22,7 @@ CREATE TRIGGER `insert_into_bank` AFTER INSERT ON `user`
 	 SELECT MAX(userId) INTO t_userId FROM `user` ;
 	 SELECT MAX(bankId) INTO t_bankId  FROM bank;
 	 INSERT INTO bank (`userId`,`accountNum`,`atmNum`,`pinNum`,`password`,`balance`) VALUES
-	 	(t_userId,CONCAT("1234_",t_userId+1),'1234',4321,'9876',10000);
+	 	(t_userId,CONCAT("1234_",t_userId+1),'1234',4321,'9876',100000);
  END$$
 DELIMITER ;
 

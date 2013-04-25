@@ -1,10 +1,11 @@
 -- -----------------------------------------------------
 -- Procedure `eBay`.`getSubCategories`
 -- -----------------------------------------------------
+USE `eBay` ;
 DROP procedure IF EXISTS `getSubCategories`;
 
-DELIMITER $$
-USE `ebay`$$
+delimiter $$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getSubCategories`(IN catId INT)
 BEGIN
     DECLARE temp INT DEFAULT catId;
@@ -14,6 +15,10 @@ BEGIN
         done INT
     ) engine = memory;
     insert into tmpcat values (0,0);
+
+    insert into tmpcat (categoryId, done) (select categoryId, 0 from category where parentCategoryId = temp);
+    select categoryId into temp from tmpcat where done = 0 order by categoryId desc LIMIT 1 ;
+    update tmpcat set done = 1 where categoryId = temp;
     WHILE temp <> 0 DO
         insert into tmpcat (categoryId, done) (select categoryId, 0 from category where parentCategoryId = temp);
         select categoryId into temp from tmpcat where done = 0 order by categoryId desc LIMIT 1 ;
@@ -153,7 +158,9 @@ DELIMITER ;
 -- --------------------------------------------------------------------------------
 -- Procedure `eBay`.`getProductDeals`
 -- --------------------------------------------------------------------------------
-DELIMITER $$
+DROP procedure IF EXISTS `getProductDeals`;
+
+delimiter $$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getProductDeals`(IN query VARCHAR(2000), IN catId INT, IN priceLower INT, IN priceHigher INT)
 BEGIN
@@ -170,43 +177,43 @@ BEGIN
         select 100000000 into priceHigher from dual;
     end if;
 
-    drop temporary table if exists tmpcat;
+   drop temporary table if exists tmpcat;
     create temporary table tmpcat (
         categoryId INT,
+        categoryName VARCHAR(200),
         done INT
     ) engine = memory;
-    insert into tmpcat values (0,0);
+    insert into tmpcat values (0,'All Categories',0);
+
+    insert into tmpcat (categoryId, categoryName, done) (select categoryId, categoryName, 0 from category where parentCategoryId = temp);
+    select categoryId into temp from tmpcat where done = 0 order by categoryId desc LIMIT 1 ;
+    update tmpcat set done = 1 where categoryId = temp;
+
     WHILE temp <> 0 DO
-        insert into tmpcat (categoryId, done) (select categoryId, 0 from category where parentCategoryId = temp);
+        insert into tmpcat (categoryId, categoryName, done) (select categoryId, categoryName, 0 from category where parentCategoryId = temp);
         select categoryId into temp from tmpcat where done = 0 order by categoryId desc LIMIT 1 ;
         update tmpcat set done = 1 where categoryId = temp;
     END WHILE;
-    insert into tmpcat values (catId, 1);
-    delete from tmpcat where categoryId = 0;
-    
-    if catId <> '' then
+
+
+    insert into tmpcat (categoryId, categoryName, done)  (select categoryId, categoryName, 1 from category where categoryId = catId) ;
+
+  
         select 
         p.productId, pcm.categoryId, p.description, p.title, p.price, p.quantity, p.photo, p.discount, 
         s.sellerId, s.location, u.firstName, u.lastName, u.email, u.telephoneNo,
 		d.dealsId, d.productId, d.dealStartDate, d.dealEndDate, d.dealSellingPrice
         from productcategorymapping pcm, user u, seller s, tmpCat t, product p LEFT OUTER JOIN deals d on d.productId = p.productId 
         where p.productId = pcm.productId and s.sellerId = p.sellerId and u.userId = s.userId and pcm.categoryId = t.categoryId
-        and (p.title like queryString or p.description like queryString) 
+        and (p.title sounds like queryString or p.title like queryString or p.description like queryString
+        or p.description sounds like queryString or t.categoryName like queryString
+        or s.location sounds like queryString or u.firstName sounds like queryString or u.lastName sounds like queryString
+        or u.homeAddress sounds like queryString or u.city sounds like queryString) 
         and p.price > priceLower and p.price < priceHigher 
 		and (ISNULL(d.dealsId) OR (d.dealStartDate <= curdate() and d.dealEndDate >= curdate())) order by p.productId;
-    else
-        select 
-        p.productId, pcm.categoryId, p.description, p.title, p.price, p.quantity, p.photo, p.discount, 
-        s.sellerId, s.location, u.firstName, u.lastName, u.email, u.telephoneNo,
-		d.dealsId, d.productId, d.dealStartDate, d.dealEndDate, d.dealSellingPrice
-        from productcategorymapping pcm, user u, seller s,  product p LEFT OUTER JOIN deals d on d.productId = p.productId
-        where p.productId = pcm.productId and s.sellerId = p.sellerId and u.userId = s.userId
-        and (p.title like queryString or p.description like queryString)
-        and p.price > priceLower and p.price < priceHigher         
-		and (ISNULL(d.dealsId) OR (d.dealStartDate <= curdate() and d.dealEndDate >= curdate())) order by p.productId;
-    end if;
 
-    -- select queryString from dual;
     drop temporary table tmpcat;
 END$$
-DELIMITER ;
+
+delimiter $$
+

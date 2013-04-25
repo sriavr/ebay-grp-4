@@ -9,14 +9,15 @@ insert into secretquestion values
 	(30, 'What is your mothers maiden name?'), (31, 'What is your favorite sport?'),  (32, 'What is your pet name?');
 
 DELETE FROM user;
- insert into user (`userId`,`firstName`,`lastName`,`homeAddress`,`city`,`pinCode`,`telephoneNo`,`email`,`password`,`secretQId`,`secretAnswer`,`dob`) values 
-	(10, 'Sridhar', 'Jammalamadaka', '1-23-23', 'hyderabad', 500020,'9924255323', 'sridhar.j@iiitb.org', 'sridhar123', 31, 'badminton', '1947-08-15'),
-	(11, 'Vamsi', 'Srungarapu', '19-234', 'jaggayapet', 500100,'8050897666', 'vamsikrishna.srungarapu@iiitb.org', 'vamsi123', 32, 'puppy', '1982-07-15'),
-	(12, 'Surya', 'Desai', '15-354', 'anantapur', 515001,'7259981049', 'suryapratap.desai@iiitb.org', 'surya123', 31, 'football', '1990-08-15'),
-	(13, 'Pavan', 'Kumar', '16-234', 'vijayawada', 502367,'9925678923', 'pavan.kumar@iiitb.org', 'pavan123', 32, 'mintu', '1988-04-12'),
-	(14, 'Ganguly', 'Dada', '1-34', 'kolkata', 505620,'9925465383', 'debargha.ganguly@iiitb.org', 'ganguly123', 31, 'tabletennis', '1967-05-25'),
-	(15, 'Pratibind', 'Jha', '1-5-2', 'Jharkhand', 567020,'8956255323', 'pratibind.jha@iiitb.org', 'pratibind123', 32, 'chotu', '1989-02-13'),
-	(16, 'Ranadheer', 'Kakkireni', '22-456', 'Kodad', 567920,'9845665323', 'randheer.kakkireni@iiitb.org', 'randheer123', 31, 'cricket', '1989-04-15');
+INSERT INTO `ebay`.`user`
+(`firstName`,`lastName`,`homeAddress`,`city`,`pinCode`,`telephoneNo`,`email`,`password`,`secretQId`,`secretAnswer`,`dob`) values
+    ('Sridhar', 'Jammalamadaka', '1-23-23', 'hyderabad', 500020,'9924255323', 'sridhar.j@iiitb.org', 'sridhar123', 31, 'badminton', '1947-08-15'),	
+    ('Vamsi', 'Srungarapu', '19-234', 'jaggayapet', 500100,'8050897666', 'vamsikrishna.srungarapu@iiitb.org', 'vamsi123', 32, 'puppy', '1982-07-15'),
+	('Surya', 'Desai', '15-354', 'anantapur', 515001,'7259981049', 'suryapratap.desai@iiitb.org', 'surya123', 31, 'football', '1990-08-15'),
+	('Pavan', 'Kumar', '16-234', 'vijayawada', 502367,'9925678923', 'pavan.kumar@iiitb.org', 'pavan123', 32, 'mintu', '1988-04-12'),
+	('Ganguly', 'Dada', '1-34', 'kolkata', 505620,'9925465383', 'debargha.ganguly@iiitb.org', 'ganguly123', 31, 'tabletennis', '1967-05-25'),
+	('Pratibind', 'Jha', '1-5-2', 'Jharkhand', 567020,'8956255323', 'pratibind.jha@iiitb.org', 'pratibind123', 32, 'chotu', '1989-02-13'),
+	('Ranadheer', 'Kakkireni', '22-456', 'Kodad', 567920,'9845665323', 'randheer.kakkireni@iiitb.org', 'randheer123', 31, 'cricket', '1989-04-15');
 
 DELETE FROM seller;
 insert into seller (sellerId, dateOfRegistration, location, userId, sla) values 
@@ -30,16 +31,16 @@ insert into seller (sellerId, dateOfRegistration, location, userId, sla) values
 
 DELETE FROM product;
 insert into product (productId, sellerId, title, description, price, photo, quantity) values
-    (200, 100, 'A1 shaving cream', 'Shaving cream that can give you an excellent shave', 75, '/images/default-pic.jpg', 21),
-    (201, 100, 'Bhagavad Gita as it is', 'A classic book wirtten by Prabhupada',150, '/images/default-pic.jpg',12),
-    (202, 100, 'Park Avenue deoderant', 'A deoderant that keeps you fresh all the day', 200, '/images/default-pic.jpg',52),
-    (203, 101, 'Sony A5001 laptop', 'High performance laptop for enterprise users', 35000, '/images/default-pic.jpg',22),
-    (204, 102, 'Sanskrit shlokas CD', 'A devotional MP3 collection of 80 songs', 100, '/images/default-pic.jpg',2),
-    (205, 103, 'Soyvita health Drink', 'A health drink for inteolerants, pregnant women, lactating mothers and aged people', 130, '/images/default-pic.jpg',44),
-    (206, 104, 'Raagini electronic tanpura', 'An electronic machine for Shruthi. Used by classicial musicians and learners', 5000, '/images/default-pic.jpg',3),
-    (207, 105, 'UNIX concepts and applications book', 'A best seller book written by Sumitabha Das', 400, '/images/default-pic.jpg',32),
-    (208, 106, 'Haldirams Plain Khakhara', 'Plain Khakhara made out of wheat and ready to eat. Perfect for breakfast and snacks.', 300, '/images/default-pic.jpg',2),
-    (209, 104, 'Teach yourself UNIX book', 'A hand book written by Ruth Amely', 50, '/images/default-pic.jpg',2),
+    (200, 100, 'A1 shaving cream', 'Shaving cream that can give you an excellent shave', 75, '/images/gillette-foamy-shave-cream.jpg', 21),
+    (201, 100, 'Bhagavad Gita as it is', 'A classic book wirtten by Prabhupada',150, '/images/bhagavad-gita.jpg',12),
+    (202, 100, 'Park Avenue deoderant', 'A deoderant that keeps you fresh all the day', 200, '/images/deodorant.jpg',52),
+    (203, 101, 'Sony A5001 laptop', 'High performance laptop for enterprise users', 35000, '/images/sony-laptop.jpg',22),
+    (204, 102, 'Sanskrit shlokas CD', 'A devotional MP3 collection of 80 songs', 100, '/images/sanskrit-shlokas-cd.jpg',2),
+    (205, 103, 'Soyvita health Drink', 'A health drink for inteolerants, pregnant women, lactating mothers and aged people', 130, '/images/soyvita.png',44),
+    (206, 104, 'Raagini electronic tanpura', 'An electronic machine for Shruthi. Used by classicial musicians and learners', 5000, '/images/raagini-tanpura-electronic.jpg',3),
+    (207, 105, 'UNIX concepts and applications book', 'A best seller book written by Sumitabha Das', 400, '/images/unix-book.jpg',32),
+    (208, 106, 'Haldirams Plain Khakhara', 'Plain Khakhara made out of wheat and ready to eat. Perfect for breakfast and snacks.', 300, '/images/Haldirams-Khakra.jpg',2),
+    (209, 104, 'Teach yourself UNIX book', 'A hand book written by Ruth Amely', 50, '/images/teach-unix-book.jpg',2),
     (210, 104, 'Beautiful portrait', 'A beautiful scenario that can be used as a wall hanging.', 5000, '/images/scenary1.jpg',22),
     (211, 104, 'Adidas Cricket equipment', 'World class equipment from Adidas sports company.', 2500, '/images/cricket-equipment.jpg',5),
     (212, 105, 'SS Sports cricket kit', 'A collection of all the cricket equipment.',4500, '/images/cricket-goods.jpg',9),
@@ -130,22 +131,15 @@ INSERT INTO `userfeedback` (`userFeedBackId`,`userId`,`sellerId`,`rate`,`rating1
 
 delete from deals;
 insert into deals (dealsId, productId, dealStartDate, dealEndDate, dealSellingPrice) values
-    (3000,200,'2013-04-01','2013-04-03',60),
-    (3001,201,'2013-03-02','2013-04-03',120),
-    (3002,202,'2013-04-02','2013-04-03',80),
+    (3000,200,'2013-04-01','2013-05-03',60),
+    (3001,201,'2013-03-02','2013-05-03',120),
+    (3002,202,'2013-04-02','2013-05-03',80),
     (3003,203,'2013-04-01','2013-05-03',34000),
     (3004,204,'2013-04-02','2013-05-03',60),
     (3005,205,'2013-04-01','2013-04-10',120),
     (3006,206,'2013-03-01','2013-03-10',4000),
-    (3007,207,'2013-03-03','2013-03-03',300),
-    (3008,208,'2013-04-01','2013-05-03',200),
-    (3009,209,'2013-04-10','2013-05-03',30),
-    (3010,210,'2013-04-01','2013-04-10',3000),
-    (3011,211,'2013-03-01','2013-06-10',2400),
-    (3012,212,'2013-03-03','2013-06-03',4300),
-    (3013,213,'2013-04-01','2013-06-03',5200),
-    (3014,214,'2013-04-10','2013-06-03',530);    
-    
+    (3007,207,'2013-03-03','2013-03-03',300);
+
 DELETE FROM userwishlist;
 INSERT INTO `userwishlist` (`userwishlistId`,`userId`,`productId`) VALUES
   (1,10,200),
@@ -162,21 +156,21 @@ INSERT INTO `userwishlist` (`userwishlistId`,`userId`,`productId`) VALUES
   (13,15,205);
 
 insert into bank (`userId`,`accountNum`,`atmNum`,`pinNum`,`password`,`balance`) VALUES
-	(10,'1234','5678','4321','8765',10000),
-	(11,'1235','6678','4322','8766',10000),
-	(12,'1236','7678','4323','8767',10000),
-	(13,'1237','8678','4324','8768',10000),
-	(14,'1238','9678','4325','8769',10000),
-	(15,'1239','4678','4326','8764',10000),
-	(16,'1233','3678','4327','8763',10000);
+	(10,'1234_11','1234',4321,'9876',100000),
+	(11,'1234_12','1234',4321,'9876',100000),
+	(12,'1234_13','1234',4321,'9876',100000),
+	(13,'1234_14','1234',4321,'9876',100000),
+	(14,'1234_15','1234',4321,'9876',100000),
+	(15,'1234_16','1234',4321,'9876',100000),
+	(16,'1234_17','1234',4321,'9876',100000);
     
-	insert into eBay.order(userId,sellerId,productId,currentStatus) values(12,100,200,'PAYMENT RECIEVED');
-	insert into eBay.order(userId,sellerId,productId,currentStatus) values(13,100,200,'PAYMENT RECIEVED');
-	insert into eBay.order(userId,sellerId,productId,currentStatus) values(14,100,200,'PAYMENT RECIEVED');
-	insert into eBay.order(userId,sellerId,productId,currentStatus) values(13,106,208,'PAYMENT RECIEVED');
-	insert into eBay.order(userId,sellerId,productId,currentStatus) values(14,106,208,'PAYMENT RECIEVED');
-	insert into eBay.order(userId,sellerId,productId,currentStatus) values(12,104,209,'PAYMENT RECIEVED');
-	insert into eBay.order(userId,sellerId,productId,currentStatus) values(13,104,209,'PAYMENT RECIEVED');
-	insert into eBay.order(userId,sellerId,productId,currentStatus) values(16,104,210,'PAYMENT RECIEVED');
-	insert into eBay.order(userId,sellerId,productId,currentStatus) values(16,100,201,'PAYMENT RECIEVED');
-	insert into eBay.order(userId,sellerId,productId,currentStatus) values(14,100,202,'PAYMENT RECIEVED');    
+insert into eBay.order(userId,sellerId,productId,currentStatus) values(12,100,200,'PAYMENT_RECEIVED');
+insert into eBay.order(userId,sellerId,productId,currentStatus) values(13,100,200,'PAYMENT_RECEIVED');
+insert into eBay.order(userId,sellerId,productId,currentStatus) values(14,100,200,'PAYMENT_RECEIVED');
+insert into eBay.order(userId,sellerId,productId,currentStatus) values(13,106,208,'PAYMENT_RECEIVED');
+insert into eBay.order(userId,sellerId,productId,currentStatus) values(14,106,208,'PAYMENT_RECEIVED');
+insert into eBay.order(userId,sellerId,productId,currentStatus) values(12,104,209,'PAYMENT_RECEIVED');
+insert into eBay.order(userId,sellerId,productId,currentStatus) values(13,104,209,'PAYMENT_RECEIVED');
+insert into eBay.order(userId,sellerId,productId,currentStatus) values(16,104,210,'PAYMENT_RECEIVED');
+insert into eBay.order(userId,sellerId,productId,currentStatus) values(16,100,201,'PAYMENT_RECEIVED');
+insert into eBay.order(userId,sellerId,productId,currentStatus) values(14,100,202,'PAYMENT_RECEIVED');    
