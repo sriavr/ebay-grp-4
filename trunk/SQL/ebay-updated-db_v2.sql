@@ -25,7 +25,7 @@ CREATE  TABLE IF NOT EXISTS `eBay`.`user` (
   `secretAnswer` VARCHAR(100) NULL ,
   `dob` DATE NOT NULL ,
   PRIMARY KEY (`userId`) )
-ENGINE = InnoDB;
+ENGINE = InnoDB AUTO_INCREMENT=10;
 
 
 -- -----------------------------------------------------
@@ -64,9 +64,9 @@ CREATE  TABLE IF NOT EXISTS `eBay`.`seller` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
---- This needs to be changed in v3 ------- 
+-- This needs to be changed in v3 ------- 
 alter table seller modify sla float(11) NOT NULL;
---- This needs to be changed in v3 ------- 
+-- This needs to be changed in v3 ------- 
 
 -- -----------------------------------------------------
 -- Table `eBay`.`product`
@@ -276,10 +276,10 @@ CREATE  TABLE IF NOT EXISTS `eBay`.`order` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
---- This needs to be changed in v3 ------- 
+-- This needs to be changed in v3 ------- 
 alter table ebay.order add column quantity int;
 alter table ebay.order drop column transactionId;
---- This needs to be changed in v3 ------- 
+-- This needs to be changed in v3 ------- 
 
 -- -----------------------------------------------------
 -- Table `eBay`.`category`
